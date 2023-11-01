@@ -20,9 +20,9 @@ public class DictionaryApp extends Application {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/Views/DictionaryGui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Views/DictionaryView.fxml"));
         stage.setTitle("Dictionary Application");
-        stage.initStyle(StageStyle.TRANSPARENT);
+//        stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

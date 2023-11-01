@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearcherController">
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.SearchWordController">
    <children>
         <Pane layoutX="8.0" prefHeight="91.0" prefWidth="751.0" stylesheets="@../Utils/style.css">
             <children>
@@ -127,7 +127,7 @@
                                     <Tooltip text="Xóa từ này" />
                                  </tooltip>
                               </Button>
-                                        <Label fx:id="englishWord" layoutX="5.0" layoutY="5.0" prefHeight="35.0" prefWidth="273.0" text="abbbbbbbbbbbbbbbbbbb" textFill="#9f45b0" wrapText="true">
+                                        <Label fx:id="englishWord" layoutX="5.0" layoutY="5.0" prefHeight="35.0" prefWidth="273.0" text="Hello" textFill="#007acc" wrapText="true">
                                             <font>
                                                 <Font name="System Bold" size="17.0" />
                                             </font>

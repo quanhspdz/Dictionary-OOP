@@ -1,5 +1,9 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
 @font-face {
-    src: url("fonts/Poppins-Regular.ttf"),
+    font-family: 'Roboto', sans-serif;
 }
 .root{
      -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
@@ -21,7 +25,7 @@
  -fx-background-insets: 0;
  -fx-text-fill: #fff;
  -fx-font-weight: bold;
- -fx-font-family: "Poppins";
+ -fx-font-family: "Roboto";
 }
 .menu-item:hover,
 .menu-item:focused{
@@ -36,7 +40,7 @@
   -fx-background-color: transparent;
    -fx-prompt-text-fill: #FFF;
   -fx-text-fill: #FFF;
-  -fx-font-family: "Poppins";
+  -fx-font-family: "Roboto";
   -fx-font-weight: bold;
   -fx-font-size: 13;
   -fx-border: none ;
@@ -65,7 +69,7 @@
     -fx-font-size: 16px;
 }
 .explanation-menu{
-    -fx-border-color: #966FBD;
+    -fx-border-color: #4285f4;
     -fx-border-width: 0 0 2 0;
 }
 .edit-button, .delete-button,
@@ -173,9 +177,9 @@
    	-fx-background-radius: 2em;
 }
 .english-word-input,
-.meaning-input{
-    -fx-text-fill: #9f45b0;
-    -fx-border-color: #966FBD;
+.meaning-input {
+    -fx-text-fill: #007acc;
+    -fx-border-color: #4285f4;
     -fx-font-size: 14px;
     -fx-border-width: 1.5;
     -fx-background-radius: 5;
@@ -187,7 +191,7 @@
     -fx-background-radius: 5px;
     -fx-font-size: 13px;
     -fx-font-weight: 700;
-    -fx-background-color: linear-gradient(to bottom left, #44008b, #9f45b0);
+    -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
     -fx-pref-width: 100px;
     -fx-pref-height: 30px;
 }
@@ -196,7 +200,7 @@
     -fx-background-radius: 5px;
     -fx-font-size: 13px;
     -fx-font-weight: 700;
-    -fx-background-color: linear-gradient(to bottom left, #44008b, #9f45b0);
+    -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
     -fx-pref-width: 100px;
     -fx-pref-height: 25px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
@@ -220,14 +224,14 @@
     -fx-border-radius: 2;
 }
 .header-translate{
-    -fx-border-color:  #966FBD;
+    -fx-border-color:  #4285f4;
     -fx-border-width: 1.5;
     -fx-background-radius: 7 7 0 0;
     -fx-border-radius: 7 7 0 0;
 }
 .src-speech-field,.to-speech-field{
     -fx-text-fill: #9f45b0;
-    -fx-border-color: #966FBD;
+    -fx-border-color: #4285f4;
     -fx-font-size: 18px;
     -fx-border-width: 1.5;
 }
@@ -254,7 +258,7 @@
      -fx-background-insets: 0;
      -fx-text-fill: #fff;
      -fx-font-weight: bold;
-     -fx-font-family: "Poppins";
+     -fx-font-family: "Roboto";
 }
 .exit-button:hover{
      -fx-background-color: #b22a00;

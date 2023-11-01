@@ -1,7 +1,5 @@
 package Controllers;
 
-import com.sun.speech.freetts.Voice;
-import com.sun.speech.freetts.VoiceManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -9,10 +7,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class SearcherController implements Initializable {
+public class SearchWordController implements Initializable {
 
 
     @Override

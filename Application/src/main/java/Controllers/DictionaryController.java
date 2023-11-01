@@ -21,28 +21,28 @@ public class DictionaryController implements Initializable {
         searchWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/SearcherGui.fxml");
+                showComponent("/Views/SearchWordView.fxml");
             }
         });
 
         addWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/AdditionGui.fxml");
+                showComponent("/Views/AddWordView.fxml");
             }
         });
 
         translateBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/TranslationGui.fxml");
+                showComponent("/Views/TranslationView.fxml");
             }
         });
 
         tooltip1.setShowDelay(Duration.seconds(0.5));
         tooltip2.setShowDelay(Duration.seconds(0.5));
         tooltip3.setShowDelay(Duration.seconds(0.5));
-        showComponent("/Views/SearcherGui.fxml");
+        showComponent("/Views/SearchWordView.fxml");
 
         closeBtn.setOnMouseClicked(e -> {
             System.exit(0);
