@@ -1,20 +1,61 @@
 package Controllers;
 
+import Models.Word;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebView;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class SearchWordController implements Initializable {
-
+    private static final String DATA_FILE_PATH = "Application/src/main/data/E_V.txt";
+    private static final String SPLITTING_CHARACTERS = "<html>";
+    private Map<String, Word> data = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            readData();
+            loadWordList();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+
+    }
+
+    public void loadWordList() {
+        this.wordListView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    Word selectedWord = data.get(newValue.trim());
+                    String definition = selectedWord.getDef();
+                    this.selectedWord.setText(selectedWord.getWord());
+                    definitionWebView.getEngine().loadContent(definition, "text/html");
+                }
+        );
+        this.wordListView.getItems().addAll(data.keySet());
+    }
+
+    public void readData() throws IOException {
+        FileReader fis = new FileReader(DATA_FILE_PATH);
+        BufferedReader br = new BufferedReader(fis);
+        String line;
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(SPLITTING_CHARACTERS);
+            String word = parts[0];
+            String definition = SPLITTING_CHARACTERS + parts[1];
+            Word wordObj = new Word(word, definition);
+            data.put(word, wordObj);
+        }
     }
 
     @FXML
@@ -57,14 +98,17 @@ public class SearchWordController implements Initializable {
     private Button cancelBtn, saveBtn;
 
     @FXML
-    private Label englishWord, headerList, notAvailableAlert;
+    private Label selectedWord, headerList, notAvailableAlert;
 
     @FXML
     private TextArea explanation;
 
     @FXML
-    private ListView<String> listResults;
+    private ListView<String> wordListView;
 
     @FXML
     private Pane headerOfExplanation;
+
+    @FXML
+    public WebView definitionWebView;
 }
