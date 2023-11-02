@@ -165,7 +165,7 @@
                     <children>
                         <Pane prefHeight="45.0" prefWidth="263.0" styleClass="title" stylesheets="@../Utils/style.css">
                             <children>
-                                <Label fx:id="headerList" layoutX="18.0" prefHeight="45.0" prefWidth="230.0" text="15 kết quả liên quan" textFill="#FFF">
+                                <Label fx:id="headerList" layoutX="18.0" prefHeight="45.0" prefWidth="230.0" text="Kết quả liên quan" textFill="#FFF">
                                     <font>
                                         <Font name="System Bold Italic" size="16.5" />
                                     </font>

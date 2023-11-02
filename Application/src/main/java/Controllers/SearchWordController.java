@@ -12,9 +12,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SearchWordController implements Initializable {
     private static final String DATA_FILE_PATH = "Application/src/main/data/E_V.txt";
@@ -29,8 +27,6 @@ public class SearchWordController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     public void loadWordList() {
@@ -42,7 +38,14 @@ public class SearchWordController implements Initializable {
                     definitionWebView.getEngine().loadContent(definition, "text/html");
                 }
         );
-        this.wordListView.getItems().addAll(data.keySet());
+        // Chuyển danh sách từ Map thành danh sách có thứ tự
+        List<String> sortedWords = new ArrayList<>(data.keySet());
+
+        // Sắp xếp danh sách các từ theo thứ tự bảng chữ cái (alpha)
+        Collections.sort(sortedWords);
+
+        // Đặt danh sách đã sắp xếp vào wordListView
+        this.wordListView.getItems().setAll(sortedWords);
     }
 
     public void readData() throws IOException {
