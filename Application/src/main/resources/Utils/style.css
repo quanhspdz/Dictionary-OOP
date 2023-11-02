@@ -113,7 +113,7 @@
      -fx-border-radius: 5;
 }
 .list-cell{
-    -fx-text-fill: #9f45b0;
+    -fx-text-fill: #4285f4;
     -fx-font-size: 16;
     -fx-font-weight: 700;
     -fx-padding: 5;
@@ -133,7 +133,7 @@
 }
 .list-cell:filled:hover,
 .list-cell:filled:selected{
-    -fx-background-color: linear-gradient(to bottom left, #44008b, #9f45b0);
+    -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
     -fx-text-fill: white;
 }
 .list-cell .scroll-bar:horizontal .track,
