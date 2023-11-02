@@ -11,9 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class DictionaryApp extends Application {
@@ -21,7 +20,7 @@ public class DictionaryApp extends Application {
     private double yOffset = 0;
 
     public static Map<String, Word> data = new HashMap<>();
-    private static final String DATA_FILE_PATH = "Application/src/main/data/E_V.txt";
+    private static final String DATA_FILE_PATH = "Data/E_V.txt";
     private static final String SPLITTING_CHARACTERS = "<html>";
 
     public static boolean isLoadedAllData = false;
@@ -60,8 +59,10 @@ public class DictionaryApp extends Application {
     }
 
     public void readData() throws IOException {
-        FileReader fis = new FileReader(DATA_FILE_PATH);
-        BufferedReader br = new BufferedReader(fis);
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(DATA_FILE_PATH);
+        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(reader);
         String line;
         while ((line = br.readLine()) != null) {
             String[] parts = line.split(SPLITTING_CHARACTERS);
