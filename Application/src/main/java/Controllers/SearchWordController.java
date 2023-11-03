@@ -34,13 +34,17 @@ public class SearchWordController implements Initializable {
             loadWordList();
         }
 
+        notAvailableAlert.setVisible(false);
+        cancelBtn.setVisible(false);
+
         searchTerm.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String searchKey = searchTerm.getText();
                 if (searchKey.isEmpty()) {
-                    cancelBtn.setVisible(false);
                     showDefaultListView();
+                    cancelBtn.setVisible(false);
+                    notAvailableAlert.setVisible(false);
                 } else {
                     cancelBtn.setVisible(true);
                     handleSearchOnKeyTyped(searchKey);
@@ -86,7 +90,7 @@ public class SearchWordController implements Initializable {
     private void handleSearchOnKeyTyped(String searchKey) {
         List<String> searchResultList = new ArrayList<>();
         // Chuyển sang chữ thường để tìm kiếm không phân biệt chữ hoa/chữ thường
-        searchKey = searchKey.toLowerCase();
+        searchKey = searchKey.trim().toLowerCase();
 
         for (String key : data.keySet()) {
             if (key.toLowerCase().startsWith(searchKey)) {

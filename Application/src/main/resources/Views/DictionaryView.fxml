@@ -8,17 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530.0" prefWidth="831.0" styleClass="root" stylesheets="@../Utils/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryController">
+<AnchorPane prefHeight="530.0" prefWidth="831.0" styleClass="root" stylesheets="@../Utils/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryController">
     <children>
-        <Button fx:id="closeBtn" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="469.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="exit-button" stylesheets="@../Utils/style.css" text="Exit">
-            <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Utils/icons/temp.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
           <Button fx:id="searchWordBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="     Search">
               <font>
                   <Font name="System Bold" size="12.0" />
@@ -26,7 +17,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/temp.png" />
+                          <Image url="@../Utils/icons/search.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -44,7 +35,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/temp.png" />
+                          <Image url="@../Utils/icons/addition.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -62,7 +53,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/temp.png" />
+                          <Image url="@../Utils/icons/google-translate.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -73,6 +64,24 @@
                   <Tooltip fx:id="tooltip3" text="Phiên dịch" />
               </tooltip>
           </Button>
+        <Button fx:id="userProfileBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="469.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="    Profile">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+            <graphic>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../Utils/icons/user.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+            <tooltip>
+                <Tooltip fx:id="tooltip4" text= "Hồ sơ" />
+            </tooltip>
+        </Button>
       <AnchorPane fx:id="container" layoutX="52.0" layoutY="9.0" prefHeight="510.0" prefWidth="769.0" styleClass="container" />
     </children>
 </AnchorPane>
