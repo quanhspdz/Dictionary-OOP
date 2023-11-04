@@ -1,7 +1,7 @@
 # Dictionary-OOP
 Hướng dẫn clone:
 --> Clone project bằng câu lệnh dưới đây: 
-https://github.com/quanhspdz/Dictionary-OOP.git
+git clone https://github.com/quanhspdz/Dictionary-OOP.git
 
 Hướng dẫn build App: 
 - Run -> Edit Configurations... -> Add new run configuration... -> Application
