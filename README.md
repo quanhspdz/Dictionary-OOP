@@ -1,5 +1,5 @@
 # Dictionary-OOP
-Hướng dẫn clone : 
+Hướng dẫn clone:
 --> Clone project bằng câu lệnh dưới đây: 
 https://github.com/quanhspdz/Dictionary-OOP.git
 
