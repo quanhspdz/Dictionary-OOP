@@ -1,5 +1,6 @@
 package App;
 
+import Constant.Constant;
 import Interfaces.DataLoadedListener;
 import Models.Word;
 import javafx.application.Application;
@@ -15,13 +16,13 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+import static Constant.Constant.*;
+
 public class DictionaryApp extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
 
     public static Map<String, Word> data = new HashMap<>();
-    private static final String DATA_FILE_PATH = "Data/E_V.txt";
-    private static final String SPLITTING_CHARACTERS = "<html>";
 
     public static boolean isLoadedAllData = false;
     private static List<DataLoadedListener> listeners = new ArrayList<>();
@@ -70,6 +71,22 @@ public class DictionaryApp extends Application {
             String definition = SPLITTING_CHARACTERS + parts[1];
             Word wordObj = new Word(word, definition);
             data.put(word, wordObj);
+        }
+
+        inputStream = new FileInputStream(EDITED_WORD_FILE);
+        reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+        br = new BufferedReader(reader);
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(SPLITTING_CHARACTERS);
+            if (parts.length > 1) {
+                String word = parts[0];
+                String definition = SPLITTING_CHARACTERS + parts[1];
+                Word wordObj = new Word(word, definition);
+                data.put(word, wordObj);
+            } else {
+                data.remove(parts[0]);
+            }
+
         }
 
         dataLoaded();

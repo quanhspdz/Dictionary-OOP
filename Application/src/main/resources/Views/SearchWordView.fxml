@@ -83,7 +83,7 @@
                         <Pane layoutX="3.0" layoutY="52.0" opacity="0.74" prefHeight="2.0" prefWidth="483.0" styleClass="explanation-menu" />
                         <Pane fx:id="headerOfExplanation" layoutX="1.0" layoutY="6.0" prefHeight="45.0" prefWidth="488.0">
                            <children>
-                              <Button fx:id="volumeBtn" layoutX="280.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickSoundBtn" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
+                              <Button fx:id="textToSpeechBtn" layoutX="280.0" layoutY="5.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="volume-button">
                                  <graphic>
                                                 <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -95,7 +95,7 @@
                                     <Tooltip text="Phát âm" />
                                  </tooltip>
                               </Button>
-                              <Button layoutX="349.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickEditBtn" prefHeight="32.0" prefWidth="60.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
+                              <Button fx:id = "editDefinitionBtn" layoutX="349.0" layoutY="5.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
                                  <graphic>
                                                 <ImageView fitHeight="25.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true" styleClass="editBtn">
                                                     <image>
@@ -107,7 +107,7 @@
                                     <Tooltip text="Cho phép chỉnh sửa" />
                                  </tooltip>
                               </Button>
-                              <Button layoutX="418.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleClickDeleteBtn" prefHeight="32.0" prefWidth="60.0" styleClass="delete-button">
+                              <Button fx:id = "deleteWordBtn" layoutX="418.0" layoutY="5.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="delete-button">
                                  <graphic>
                                                 <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -129,7 +129,7 @@
                                         </Label>
                            </children>
                         </Pane>
-                        <Button fx:id="saveBtn" layoutX="444.0" layoutY="60.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#handleClickSaveBtn" prefHeight="30.0" prefWidth="30.0" styleClass="save-button" stylesheets="@../Utils/style.css">
+                        <Button fx:id="saveBtn" layoutX="444.0" layoutY="60.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="30.0" styleClass="save-button" stylesheets="@../Utils/style.css">
                            <graphic>
                               <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -163,7 +163,7 @@
                                 </Label>
                             </children>
                         </Pane>
-                        <ListView fx:id="wordListView" layoutX="1.5" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#handleMouseClickAWord" prefHeight="355.0" prefWidth="260.0" styleClass="list-cell" stylesheets="@../Utils/style.css" />
+                        <ListView fx:id="wordListView" layoutX="1.5" layoutY="51.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="355.0" prefWidth="260.0" styleClass="list-cell" stylesheets="@../Utils/style.css" />
                     </children>
                 </AnchorPane>
             </children>
