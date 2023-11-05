@@ -4,6 +4,9 @@ Hướng dẫn clone:
 git clone https://github.com/quanhspdz/Dictionary-OOP.git
 
 Hướng dẫn build App: 
+- Project Stucture -> Modules -> DictionaryApplication:
+    + Source Folders: src\main\java
+    + Resource Folders: src\main\resources
 - Run -> Edit Configurations... -> Add new run configuration... -> Application
     + Name: DictionaryApp
     + MainClass: App.DictionaryApp
