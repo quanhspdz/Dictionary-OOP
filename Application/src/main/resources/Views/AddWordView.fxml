@@ -53,19 +53,19 @@
                         </Label>
                     </children>
                 </Pane>
-                <Label layoutX="31.0" layoutY="55.0" text="Từ tiếng anh " textFill="#007acc">
+                <Label layoutX="31.0" layoutY="55.0" text="Từ tiếng Anh " textFill="#007acc">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <TextField fx:id="wordTargetInput" layoutX="31.0" layoutY="85.0" prefHeight="32.0" prefWidth="386.0" promptText="Nhập từ tiếng anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+                <TextField fx:id="newWordInput" layoutX="31.0" layoutY="85.0" prefHeight="32.0" prefWidth="386.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
                 <Label layoutX="30.0" layoutY="125.0" text="Giải nghĩa" textFill="#007acc">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <TextArea fx:id="explanationInput" layoutX="31.0" layoutY="155.0" prefHeight="200.0" prefWidth="386.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
-                <Button fx:id="addBtn" layoutX="31.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleClickAddBtn" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
+                <TextArea fx:id="wordDefinitionInput" layoutX="31.0" layoutY="155.0" prefHeight="200.0" prefWidth="386.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
+                <Button fx:id="addBtn" layoutX="31.0" layoutY="363.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
                 <ImageView fitHeight="297.0" fitWidth="296.0" layoutX="435.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);">
                     <image>
                         <Image url="@../Utils/images/suzy.jpg" />
