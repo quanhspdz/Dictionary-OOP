@@ -1,26 +1,57 @@
 package Controllers;
 
 import App.DictionaryApp;
+import DialogAlert.AlertDialog;
 import Interfaces.DataLoadedListener;
 import Models.Word;
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
-import static App.DictionaryApp.data;
+import static App.DictionaryApp.*;
+import static Constant.Constant.*;
 
 public class SearchWordController implements Initializable {
+
+    @FXML
+    private TextField searchTerm;
+
+    @FXML
+    private Button cancelBtn, saveBtn, textToSpeechBtn,
+            editDefinitionBtn, deleteWordBtn;
+
+    @FXML
+    private Label selectedWord, headerList, notAvailableAlert;
+
+    @FXML
+    private TextArea explanation;
+
+    @FXML
+    private ListView<String> wordListView;
+
+    @FXML
+    private Pane headerOfExplanation;
+
+    @FXML
+    public WebView definitionWebView;
+
+    private WebEngine definitionWebEngine;
+
+    private Word currentSelectedWord;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (data.isEmpty()) {
@@ -34,19 +65,143 @@ public class SearchWordController implements Initializable {
             loadWordList();
         }
 
+        notAvailableAlert.setVisible(false);
+        cancelBtn.setVisible(false);
+        saveBtn.setVisible(false);
+
         searchTerm.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
                 String searchKey = searchTerm.getText();
                 if (searchKey.isEmpty()) {
-                    cancelBtn.setVisible(false);
                     showDefaultListView();
+                    cancelBtn.setVisible(false);
+                    notAvailableAlert.setVisible(false);
                 } else {
                     cancelBtn.setVisible(true);
                     handleSearchOnKeyTyped(searchKey);
                 }
             }
         });
+
+        textToSpeechBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String word = selectedWord.getText();
+                if (word != null) {
+                    textToSpeech(word);
+                }
+            }
+        });
+
+        editDefinitionBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (currentSelectedWord != null) {
+                    handleEditDefinition();
+                }
+            }
+        });
+
+        saveBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    handleSaveDefinitionEdit();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        deleteWordBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if (currentSelectedWord != null) {
+                    handleDeleteWord();
+                }
+            }
+        });
+
+        cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                searchTerm.clear();
+                showDefaultListView();
+            }
+        });
+    }
+
+    private void handleDeleteWord() {
+        AlertDialog alertDialog = new AlertDialog();
+        Alert warningAlert = alertDialog.warningAlertDialog(
+                "Xoá từ " + currentSelectedWord.getWord(),
+                "Bạn có chắc chắn muốn xoá từ này không?"
+        );
+        warningAlert.getButtonTypes().add(ButtonType.CANCEL);
+        Optional<ButtonType> option = warningAlert.showAndWait();
+        if (option.get() == ButtonType.OK) {
+            try {
+                deleteWord(currentSelectedWord);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            alertDialog.showInfoAlertDialog(
+                    "Thông tin",
+                    "Đã xoá thành công"
+            );
+        } else {
+            alertDialog.showInfoAlertDialog(
+                    "Thông tin",
+                    "Đã huỷ xoá"
+            );
+        }
+    }
+
+    private void deleteWord(Word currentSelectedWord) throws IOException {
+        data.remove(currentSelectedWord.getWord());
+        showDefaultListView();
+        currentSelectedWord.setDef("");
+        selectedWord.setText("");
+        definitionWebEngine.loadContent("", "text/html");
+        saveWordToFile(currentSelectedWord);
+        this.currentSelectedWord = null;
+    }
+
+    private void handleSaveDefinitionEdit() throws IOException {
+        String newDef = (String) definitionWebEngine.executeScript("document.documentElement.outerHTML");
+        currentSelectedWord.setDef(newDef);
+        saveWordToFile(currentSelectedWord);
+        AlertDialog alertDialog = new AlertDialog();
+        alertDialog.showInfoAlertDialog(
+                "Thông tin",
+                "Đã lưu chỉnh sửa!"
+        );
+    }
+
+    private void saveWordToFile(Word currentSelectedWord) throws IOException {
+        // Tạo một đối tượng File cho tệp dữ liệu
+        File file = new File(EDITED_WORD_FILE);
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream(file, true);
+             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+             BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
+
+            // Ghi dữ liệu vào tệp
+            String wordAndDefinition = currentSelectedWord.getWord()
+                    + SPLITTING_CHARACTERS + currentSelectedWord.getDef();
+            writer.write(wordAndDefinition);
+            writer.newLine(); // Xuống dòng mới cho từ tiếp theo (nếu cần)
+        }
+    }
+
+
+    private void handleEditDefinition() {
+        // Thêm thuộc tính contenteditable="true" vào mã HTML
+        saveBtn.setVisible(true);
+        String definition = currentSelectedWord.getDef();
+        definition = definition.replaceFirst("<html", "<html contenteditable=\"true\"");
+        definitionWebEngine.loadContent(definition, "text/html");
     }
 
     public void loadWordList() {
@@ -54,9 +209,13 @@ public class SearchWordController implements Initializable {
             if (newValue != null) {
                 // Đảm bảo rằng newValue không null
                 Word selectedWord = data.get(newValue.trim());
+                currentSelectedWord = selectedWord;
+                saveBtn.setVisible(false);
                 String definition = selectedWord.getDef();
                 this.selectedWord.setText(selectedWord.getWord());
-                definitionWebView.getEngine().loadContent(definition, "text/html");
+
+                definitionWebEngine = definitionWebView.getEngine();
+                definitionWebEngine.loadContent(definition, "text/html");
             }
         });
 
@@ -86,7 +245,7 @@ public class SearchWordController implements Initializable {
     private void handleSearchOnKeyTyped(String searchKey) {
         List<String> searchResultList = new ArrayList<>();
         // Chuyển sang chữ thường để tìm kiếm không phân biệt chữ hoa/chữ thường
-        searchKey = searchKey.toLowerCase();
+        searchKey = searchKey.trim().toLowerCase();
 
         for (String key : data.keySet()) {
             if (key.toLowerCase().startsWith(searchKey)) {
@@ -103,57 +262,17 @@ public class SearchWordController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleMouseClickAWord(MouseEvent arg0) {
+    public static void textToSpeech(String text) {
+        // Khởi tạo FreeTTS
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        VoiceManager voiceManager = VoiceManager.getInstance();
+        Voice voice = voiceManager.getVoice("kevin16");
 
+        if (voice != null) {
+            voice.allocate();
+            voice.speak(text);
+        } else {
+            System.out.println("Không thể tìm thấy giọng đọc.");
+        }
     }
-
-    @FXML
-    private void handleClickEditBtn() {
-
-    }
-
-    @FXML
-    private void handleClickSoundBtn() {
-
-    }
-
-    @FXML
-    private void handleClickSaveBtn() {
-
-    }
-
-    @FXML
-    private void handleClickDeleteBtn() {
-
-    }
-
-    private void refreshAfterDeleting() {
-
-    }
-
-    private void setListDefault(int index) {
-
-    }
-
-    @FXML
-    private TextField searchTerm;
-
-    @FXML
-    private Button cancelBtn, saveBtn;
-
-    @FXML
-    private Label selectedWord, headerList, notAvailableAlert;
-
-    @FXML
-    private TextArea explanation;
-
-    @FXML
-    private ListView<String> wordListView;
-
-    @FXML
-    private Pane headerOfExplanation;
-
-    @FXML
-    public WebView definitionWebView;
 }

@@ -39,14 +39,18 @@ public class DictionaryController implements Initializable {
             }
         });
 
-        tooltip1.setShowDelay(Duration.seconds(0.5));
-        tooltip2.setShowDelay(Duration.seconds(0.5));
-        tooltip3.setShowDelay(Duration.seconds(0.5));
-        showComponent("/Views/SearchWordView.fxml");
+        userProfileBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
 
-        closeBtn.setOnMouseClicked(e -> {
-            System.exit(0);
+            }
         });
+
+        tooltip1.setShowDelay(Duration.seconds(0.3));
+        tooltip2.setShowDelay(Duration.seconds(0.3));
+        tooltip3.setShowDelay(Duration.seconds(0.3));
+        tooltip4.setShowDelay(Duration.seconds(0.3));
+        showComponent("/Views/SearchWordView.fxml");
     }
 
     private void setNode(Node node) {
@@ -65,10 +69,10 @@ public class DictionaryController implements Initializable {
     }
 
     @FXML
-    private Tooltip tooltip1, tooltip2, tooltip3;
+    private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
 
     @FXML
-    private Button addWordBtn, translateBtn, searchWordBtn, closeBtn;
+    private Button addWordBtn, translateBtn, searchWordBtn, userProfileBtn;
 
     @FXML
     private AnchorPane container;
