@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -59,6 +60,18 @@
                     </font>
                 </Label>
                 <TextField fx:id="newWordInput" layoutX="31.0" layoutY="85.0" prefHeight="32.0" prefWidth="386.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+                <Button fx:id="deleteWordInputBtn" layoutX="379.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/cancle.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Clear" />
+                    </tooltip>
+                </Button>
                 <Label layoutX="30.0" layoutY="125.0" text="Giải nghĩa" textFill="#007acc">
                     <font>
                         <Font name="System Bold" size="16.0" />
@@ -79,6 +92,18 @@
                      </image>
                   </ImageView>
                </graphic></Label>
+            <Button fx:id="deleteDefinitionInput" layoutX="379.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
+               <tooltip>
+                  <Tooltip text="Clear" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Utils/icons/cancle.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </AnchorPane>
     </children>
