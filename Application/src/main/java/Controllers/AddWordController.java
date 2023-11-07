@@ -25,7 +25,7 @@ import static Constant.Constant.SPLITTING_CHARACTERS;
 public class AddWordController implements Initializable {
 
     @FXML
-    private Button addBtn;
+    private Button addBtn, deleteDefinitionInput, deleteWordInputBtn;
     @FXML
     private TextField newWordInput;
     @FXML
@@ -36,6 +36,8 @@ public class AddWordController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         successAlert.setVisible(false);
+        deleteDefinitionInput.setVisible(false);
+        deleteWordInputBtn.setVisible(false);
 
         addBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -51,8 +53,12 @@ public class AddWordController implements Initializable {
         newWordInput.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (newWordInput.getText().isEmpty()) {
+                String input = newWordInput.getText();
+                if (input.isEmpty()) {
                     successAlert.setVisible(false);
+                    deleteWordInputBtn.setVisible(false);
+                } else {
+                    deleteWordInputBtn.setVisible(true);
                 }
             }
         });
@@ -60,9 +66,29 @@ public class AddWordController implements Initializable {
         wordDefinitionInput.setOnKeyTyped(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (wordDefinitionInput.getText().isEmpty()) {
+                String input = wordDefinitionInput.getText();
+                if (input.isEmpty()) {
                     successAlert.setVisible(false);
+                    deleteDefinitionInput.setVisible(false);
+                } else {
+                    deleteDefinitionInput.setVisible(true);
                 }
+            }
+        });
+
+        deleteWordInputBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                newWordInput.clear();
+                successAlert.setVisible(false);
+            }
+        });
+
+        deleteDefinitionInput.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                wordDefinitionInput.clear();
+                successAlert.setVisible(false);
             }
         });
     }
