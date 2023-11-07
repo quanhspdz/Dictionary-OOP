@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,12 +17,12 @@
             <children>
             <Pane layoutX="316.0" layoutY="20.0">
                <children>
-                      <Label layoutX="3.0" prefHeight="30.0" prefWidth="221.0" text="Cái gì đó hay ho" textFill="#4285f4">
+                      <Label layoutX="3.0" prefHeight="30.0" prefWidth="221.0" text="Fighting!" textFill="#4285f4">
                           <font>
                               <Font name="System Bold Italic" size="20.0" />
                           </font>
                       </Label>
-                  <Label layoutY="21.0" prefHeight="30.0" prefWidth="212.0" text="Cố lên ae " textFill="#4285f4">
+                  <Label layoutY="21.0" prefHeight="30.0" prefWidth="212.0" text="Cố lên opppa " textFill="#4285f4">
                      <font>
                         <Font name="System Italic" size="18.0" />
                      </font>
@@ -30,7 +31,7 @@
             </Pane>
                 <ImageView fitHeight="78.0" fitWidth="110.0" layoutX="206.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Utils/images/temp.png" />
+                        <Image url="@../Utils/images/suzy-header.jpg" />
                     </image>
                 </ImageView>
             </children>
@@ -46,40 +47,38 @@
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../Utils/icons/temp.png" />
+                                        <Image url="@../Utils/icons/add_blue.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
                         </Label>
                     </children>
                 </Pane>
-                <Label layoutX="31.0" layoutY="55.0" text="Từ tiếng anh " textFill="#007acc">
+                <Label layoutX="31.0" layoutY="55.0" text="Từ tiếng Anh " textFill="#007acc">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
+                </Label>
+                <TextField fx:id="newWordInput" layoutX="31.0" layoutY="85.0" prefHeight="32.0" prefWidth="386.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+                <Button fx:id="deleteWordInputBtn" layoutX="379.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../Utils/icons/temp.png" />
+                                <Image url="@../Utils/icons/cancle.png" />
                             </image>
                         </ImageView>
                     </graphic>
-                </Label>
-                <TextField fx:id="wordTargetInput" layoutX="31.0" layoutY="85.0" prefHeight="32.0" prefWidth="386.0" promptText="Nhập từ tiếng anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+                    <tooltip>
+                        <Tooltip text="Clear" />
+                    </tooltip>
+                </Button>
                 <Label layoutX="30.0" layoutY="125.0" text="Giải nghĩa" textFill="#007acc">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
-                    <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../Utils/icons/temp.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
                 </Label>
-                <TextArea fx:id="explanationInput" layoutX="31.0" layoutY="155.0" prefHeight="200.0" prefWidth="386.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
-                <Button fx:id="addBtn" layoutX="31.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleClickAddBtn" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
+                <TextArea fx:id="wordDefinitionInput" layoutX="31.0" layoutY="155.0" prefHeight="200.0" prefWidth="386.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
+                <Button fx:id="addBtn" layoutX="31.0" layoutY="363.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
                 <ImageView fitHeight="297.0" fitWidth="296.0" layoutX="435.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);">
                     <image>
                         <Image url="@../Utils/images/suzy.jpg" />
@@ -89,10 +88,22 @@
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Utils/icons/temp.png" />
+                        <Image url="@../Utils/icons/checked.png" />
                      </image>
                   </ImageView>
                </graphic></Label>
+            <Button fx:id="deleteDefinitionInput" layoutX="379.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
+               <tooltip>
+                  <Tooltip text="Clear" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Utils/icons/cancle.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </AnchorPane>
     </children>
