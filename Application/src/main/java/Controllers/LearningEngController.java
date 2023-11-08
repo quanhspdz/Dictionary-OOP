@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static Constant.Constant.*;
 
-public class LearningEngController extends BaseController implements Initializable {
+public class LearningEngController implements Initializable {
 
     @FXML
     public AnchorPane bodyContainer, headerContainer;
