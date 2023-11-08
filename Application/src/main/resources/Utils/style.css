@@ -277,3 +277,45 @@
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
+
+.answer-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-border-color: #4285f4;
+    -fx-background-color: #FFF;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+.answer-button:pressed{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-background-color: #dfe6e9;
+}
+.answer-button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+.answer-button:selected {
+    -fx-text-fill: #FFF;
+    -fx-background-color: #4285f4;
+}
+.answer-button .radio {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.answer-button .box {
+    -fx-padding: 0;
+}
+.answer-button:selected .dot {
+    -fx-background-color: transparent;
+}
+.question-box{
+     -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
+     -fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);
+     -fx-background-radius: 5;
+     -fx-border-radius: 5;
+}
