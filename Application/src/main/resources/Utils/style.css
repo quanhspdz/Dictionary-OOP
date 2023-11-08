@@ -263,3 +263,17 @@
 .exit-button:hover{
      -fx-background-color: #b22a00;
 }
+.question-text{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 14px;
+}
+
+.answer-text{
+    -fx-text-fill: #333333;
+    -fx-border-color: #4285f4;
+    -fx-background-color: #FFF;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}

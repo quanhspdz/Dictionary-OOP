@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.LearningEngController">
+
+    <SplitPane dividerPositions="0.5" layoutX="1" layoutY="1" orientation="VERTICAL" prefHeight="510.0"
+               prefWidth="768.0">
+        <items>
+            <AnchorPane fx:id="headerContainer" prefHeight="100" prefWidth="769" styleClass="container">
+                <Pane prefHeight="108.0" prefWidth="769" styleClass="definition-wrapper"
+                      stylesheets="@../Utils/style.css">
+
+                </Pane>
+            </AnchorPane>
+            <AnchorPane fx:id="bodyContainer" prefHeight="402" prefWidth="769" styleClass="container">
+                <children>
+                    <Pane prefHeight="400.0" prefWidth="600.0" styleClass="definition-wrapper"
+                          stylesheets="@../Utils/style.css">
+                        <Pane layoutX="65.0" layoutY="28.0" prefHeight="90.0" prefWidth="470.0" styleClass="title"
+                              stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label fx:id="questionText" layoutX="15.0" layoutY="5" prefHeight="80" prefWidth="460"
+                                       styleClass="question-text" stylesheets="@../Utils/style.css"
+                                       text="Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?"
+                                       wrapText="true"/>
+                            </children>
+                        </Pane>
+
+                        <Button fx:id="answerA" layoutX="65.0" layoutY="155.0" prefHeight="60" prefWidth="200"
+                                styleClass="answer-text" stylesheets="@../Utils/style.css"
+                                text="A. Quang Anh đẹp trai"/>
+                        <Button fx:id="answerB" layoutX="335.0" layoutY="155.0" prefHeight="60" prefWidth="200"
+                                styleClass="answer-text" stylesheets="@../Utils/style.css"
+                                text="B. Quang Anh đẹp trai"/>
+                        <Button fx:id="answerC" layoutX="65.0" layoutY="235.0" prefHeight="60" prefWidth="200"
+                                styleClass="answer-text" stylesheets="@../Utils/style.css"
+                                text="C. Quang Anh đẹp trai"/>
+                        <Button fx:id="answerD" layoutX="335.0" layoutY="235.0" prefHeight="60" prefWidth="200"
+                                styleClass="answer-text" stylesheets="@../Utils/style.css"
+                                text="D. Quang Anh đẹp trai"/>
+
+                    </Pane>
+                    <Pane layoutX="603.0" prefHeight="400.0" prefWidth="166" styleClass="definition-wrapper"
+                          stylesheets="@../Utils/style.css">
+
+                    </Pane>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
+
+
+</AnchorPane>

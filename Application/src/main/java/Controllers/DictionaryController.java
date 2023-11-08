@@ -15,27 +15,27 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DictionaryController implements Initializable {
+public class DictionaryController extends BaseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/SearchWordView.fxml");
+                showComponent("/Views/SearchWordView.fxml", container);
             }
         });
 
         addWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/AddWordView.fxml");
+                showComponent("/Views/AddWordView.fxml", container);
             }
         });
 
         translateBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/TranslationView.fxml");
+                showComponent("/Views/TranslationView.fxml", container);
             }
         });
 
@@ -46,33 +46,26 @@ public class DictionaryController implements Initializable {
             }
         });
 
+        learningEngBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                showComponent("/Views/LearningEngView.fxml", container);
+            }
+        });
+
         tooltip1.setShowDelay(Duration.seconds(0.3));
         tooltip2.setShowDelay(Duration.seconds(0.3));
         tooltip3.setShowDelay(Duration.seconds(0.3));
         tooltip4.setShowDelay(Duration.seconds(0.3));
-        showComponent("/Views/SearchWordView.fxml");
-    }
-
-    private void setNode(Node node) {
-        container.getChildren().clear();
-        container.getChildren().add(node);
-    }
-
-    @FXML
-    private void showComponent(String path) {
-        try {
-            AnchorPane component = FXMLLoader.load(getClass().getResource(path));
-            setNode(component);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        showComponent("/Views/SearchWordView.fxml", container);
     }
 
     @FXML
     private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
 
     @FXML
-    private Button addWordBtn, translateBtn, searchWordBtn, userProfileBtn;
+    private Button addWordBtn, translateBtn,
+            searchWordBtn, userProfileBtn, learningEngBtn;
 
     @FXML
     private AnchorPane container;
