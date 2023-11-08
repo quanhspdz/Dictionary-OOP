@@ -8,16 +8,17 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-
-import java.awt.*;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,9 +35,18 @@ public class LearningEngController implements Initializable {
     private RadioButton answerBtnA, answerBtnB, answerBtnC, answerBtnD;
     @FXML
     private Button nextBtn;
+    @FXML
+    private Circle circle1, circle2, circle3, circle4, circle5, circle6,
+            circle7, circle8, circle9, circle10;
+    @FXML
+    private Label progressText1, progressText2, progressText3, progressText4,
+            progressText5, progressText6, progressText7, progressText8, progressText9, progressText10;
 
     private Media correctAudioMedia;
     private MediaPlayer correctAudioMediaPlayer;
+    private final Paint currentQuestion = Color.rgb(152, 206, 243),
+            correctQuestion = Color.rgb(166, 232, 58),
+            incorrectQuestion = Color.rgb(255, 216, 0);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -79,6 +89,12 @@ public class LearningEngController implements Initializable {
                 createFireworkAnimation(questionAndAnswerPane);
             }
         });
+
+        for (int i = 0; i < 7; i++) {
+            setQuestionProgress(i + 1, correctQuestion);
+        }
+        setQuestionProgress(7, currentQuestion);
+        setQuestionProgress(3, incorrectQuestion);
     }
 
     private void createFireworkAnimation(Pane container) {
@@ -136,12 +152,93 @@ public class LearningEngController implements Initializable {
             timeline.setOnFinished(event -> {
                 container.getChildren().remove(firework);
                 correctAudioMediaPlayer.stop(); // Dừng phát âm thanh sau khi hiệu ứng hoàn thành
+
+                //Enable buttons
+                answerBtnA.setDisable(false);
+                answerBtnB.setDisable(false);
+                answerBtnC.setDisable(false);
+                answerBtnD.setDisable(false);
+                nextBtn.setDisable(false);
             });
+
+            //Disable buttons
+            answerBtnA.setDisable(true);
+            answerBtnB.setDisable(true);
+            answerBtnC.setDisable(true);
+            answerBtnD.setDisable(true);
+            nextBtn.setDisable(true);
 
             // Bắt đầu animation
             timeline.play();
         }
     }
 
+    private void setQuestionProgress(int questionNumber, Paint color) {
+        switch (questionNumber) {
+            case 1: {
+                circle1.setStroke(color);
+                circle1.setFill(color);
+                progressText1.setTextFill(Color.WHITE);
+                break;
+            }
+            case 2: {
+                circle2.setStroke(color);
+                circle2.setFill(color);
+                progressText2.setTextFill(Color.WHITE);
+                break;
+            }
+            case 3: {
+                circle3.setStroke(color);
+                circle3.setFill(color);
+                progressText3.setTextFill(Color.WHITE);
+                break;
+            }
+            case 4: {
+                circle4.setStroke(color);
+                circle4.setFill(color);
+                progressText4.setTextFill(Color.WHITE);
+                break;
+            }
+            case 5: {
+                circle5.setStroke(color);
+                circle5.setFill(color);
+                progressText5.setTextFill(Color.WHITE);
+                break;
+            }
+            case 6: {
+                circle6.setStroke(color);
+                circle6.setFill(color);
+                progressText6.setTextFill(Color.WHITE);
+                break;
+            }
+            case 7: {
+                circle7.setStroke(color);
+                circle7.setFill(color);
+                progressText7.setTextFill(Color.WHITE);
+                break;
+            }
+            case 8: {
+                circle8.setStroke(color);
+                circle8.setFill(color);
+                progressText8.setTextFill(Color.WHITE);
+                break;
+            }
+            case 9: {
+                circle9.setStroke(color);
+                circle9.setFill(color);
+                progressText9.setTextFill(Color.WHITE);
+                break;
+            }
+            case 10: {
+                circle10.setStroke(color);
+                circle10.setFill(color);
+                progressText10.setTextFill(Color.WHITE);
+                break;
+            }
+            default: {
+
+            }
+        }
+    }
 
 }
