@@ -106,7 +106,7 @@ public class AddWordController implements Initializable {
         } else if (definition.isEmpty()) {
             alertDialog.showInfoAlertDialog(
                     "Thông báo",
-                    "Bạn chưa nhập nghĩa của từ!"
+                    "Bạn chưa nhập giải nghĩa của từ!"
             );
         } else {
             Word word = new Word(wordString, definition);
