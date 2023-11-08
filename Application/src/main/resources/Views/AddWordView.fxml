@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,29 +17,66 @@
         <Pane layoutX="3.0" layoutY="90.0" prefHeight="1.0" prefWidth="764.0" styleClass="header" stylesheets="@../Utils/style.css">
             <children>
             <Pane layoutX="316.0" layoutY="20.0" />
+<<<<<<< Updated upstream
+=======
+                <Pane layoutY="55.0" prefHeight="45.0" prefWidth="764.0" styleClass="title" stylesheets="@../Utils/style.css">
+                    <children>
+                        <Label layoutX="20.0" prefHeight="45.0" prefWidth="240.0" text="Thêm từ vựng mới" textFill="#fff">
+                            <font>
+                                <Font name="System Bold Italic" size="18.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../Utils/icons/add_blue.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Label>
+                    </children>
+                </Pane>
+>>>>>>> Stashed changes
             </children>
         </Pane>
         <AnchorPane layoutY="91.0" prefHeight="421.0" prefWidth="769.0">
             <children>
+<<<<<<< Updated upstream
                 <Label layoutX="83.0" layoutY="53.0" text="Từ mới " textFill="#007acc">
+=======
+                <Label layoutX="29.0" layoutY="22.0" text="Từ tiếng Anh " textFill="#007acc">
+>>>>>>> Stashed changes
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
+<<<<<<< Updated upstream
                 <TextField fx:id="newWordInput" layoutX="83.0" layoutY="85.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="34.0" prefWidth="614.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+=======
+                <TextField fx:id="newWordInput" layoutX="31.0" layoutY="61.0" prefHeight="33.0" prefWidth="721.0" promptText="Nhập từ tiếng Anh..." styleClass="english-word-input" stylesheets="@../Utils/style.css" />
+>>>>>>> Stashed changes
                 <Button fx:id="deleteWordInputBtn" layoutX="379.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
                     <tooltip>
                         <Tooltip text="Clear" />
                     </tooltip>
                 </Button>
+<<<<<<< Updated upstream
                 <Label layoutX="82.0" layoutY="129.0" text="Nghĩa của từ" textFill="#007acc">
+=======
+                <Label layoutX="29.0" layoutY="113.0" text="Giải nghĩa" textFill="#007acc">
+>>>>>>> Stashed changes
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
+<<<<<<< Updated upstream
                 <TextArea fx:id="wordDefinitionInput" layoutX="83.0" layoutY="155.0" prefHeight="200.0" prefWidth="614.0" promptText="Nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
                 <Button fx:id="addBtn" layoutX="112.0" layoutY="363.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
                 <Label fx:id="successAlert" alignment="CENTER" layoutX="409.0" layoutY="362.0" prefHeight="32.0" prefWidth="273.0" styleClass="success-alert" stylesheets="@../Utils/style.css" text="Thành công">
+=======
+                <TextArea fx:id="wordDefinitionInput" layoutX="31.0" layoutY="155.0" prefHeight="200.0" prefWidth="722.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
+                <Button fx:id="addBtn" layoutX="31.0" layoutY="363.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
+                <Label fx:id="successAlert" alignment="CENTER" layoutX="423.0" layoutY="362.0" prefHeight="32.0" prefWidth="273.0" styleClass="success-alert" stylesheets="@../Utils/style.css" text="Thành công">
+>>>>>>> Stashed changes
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -51,6 +89,7 @@
                   <Tooltip text="Clear" />
                </tooltip>
             </Button>
+<<<<<<< Updated upstream
                 <Pane layoutX="14.0" layoutY="-14.0" prefHeight="46.0" prefWidth="741.0" styleClass="title" stylesheets="@../Utils/style.css">
                     <children>
                         <Label layoutX="20.0" prefHeight="45.0" prefWidth="240.0" text="Thêm từ vựng mới" textFill="#fff">
@@ -67,6 +106,24 @@
                         </Label>
                     </children>
                 </Pane>
+=======
+                  <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="720.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                          <Image url="@../Utils/icons/cancle.png" />
+                      </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+                  </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="720.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Utils/icons/cancle.png" />
+               </image>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+>>>>>>> Stashed changes
             </children>
         </AnchorPane>
     </children>
