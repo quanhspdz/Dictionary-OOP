@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
@@ -17,13 +19,48 @@
                 <Pane prefHeight="108.0" prefWidth="769" styleClass="definition-wrapper"
                       stylesheets="@../Utils/style.css">
 
+                    <Pane prefHeight="30.0" prefWidth="768.0" styleClass="title-learning"
+                          stylesheets="@../Utils/style.css">
+                        <children>
+                            <Label fx:id="progressTitle" layoutX="20.0" layoutY="-1.0" prefHeight="30.0"
+                                   prefWidth="100.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                                   text="Tiến trình" textFill="#FFF" wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <image>
+                                            <Image url="@../Utils/icons/success.png"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Label>
+                        </children>
+                    </Pane>
+
                 </Pane>
             </AnchorPane>
             <AnchorPane fx:id="bodyContainer" prefHeight="402" prefWidth="769" styleClass="container">
                 <children>
-                    <Pane fx:id="questionAndAnswerPane" prefHeight="400.0" prefWidth="600.0" styleClass="definition-wrapper"
-                          stylesheets="@../Utils/style.css">
-                        <Pane layoutX="65.0" layoutY="28.0" prefHeight="90.0" prefWidth="470.0"
+                    <Pane fx:id="questionAndAnswerPane" prefHeight="400.0" prefWidth="600.0"
+                          styleClass="definition-wrapper" stylesheets="@../Utils/style.css">
+                        <Pane prefHeight="30.0" prefWidth="600.0" styleClass="title-learning"
+                              stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label fx:id="questionTitle" layoutX="20.0" layoutY="-8.0" prefHeight="45.0"
+                                       prefWidth="230.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                                       text="Câu hỏi" textFill="#FFF">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Utils/icons/question.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Pane layoutX="65.0" layoutY="47.0" prefHeight="90.0" prefWidth="470.0"
                               styleClass="question-box" stylesheets="@../Utils/style.css">
                             <children>
                                 <Label fx:id="questionText" layoutX="15.0" layoutY="5" prefHeight="80" prefWidth="460"
@@ -33,24 +70,42 @@
                             </children>
                         </Pane>
 
-                        <RadioButton fx:id="answerBtnA" layoutX="65.0" layoutY="155.0" prefHeight="60" prefWidth="200"
+                        <RadioButton fx:id="answerBtnA" layoutX="65.0" layoutY="170.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
                                      text="A. Quang Anh đẹp trai"/>
-                        <RadioButton fx:id="answerBtnB" layoutX="335.0" layoutY="155.0" prefHeight="60" prefWidth="200"
+                        <RadioButton fx:id="answerBtnB" layoutX="335.0" layoutY="170.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
                                      text="B. Quang Anh đẹp trai"/>
-                        <RadioButton fx:id="answerBtnC" layoutX="65.0" layoutY="235.0" prefHeight="60" prefWidth="200"
+                        <RadioButton fx:id="answerBtnC" layoutX="65.0" layoutY="250.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
                                      text="C. Quang Anh đẹp trai"/>
-                        <RadioButton fx:id="answerBtnD" layoutX="335.0" layoutY="235.0" prefHeight="60" prefWidth="200"
+                        <RadioButton fx:id="answerBtnD" layoutX="335.0" layoutY="250.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
                                      text="D. Quang Anh đẹp trai"/>
-                        <Button fx:id="nextBtn" layoutX="250.0" layoutY="329.0" mnemonicParsing="false"
+                        <Button fx:id="nextBtn" layoutX="250.0" layoutY="334.0" mnemonicParsing="false"
                                 prefHeight="32.0" prefWidth="60.0" styleClass="add-button"
                                 stylesheets="@../Utils/style.css" text="Kiểm tra"/>
                     </Pane>
                     <Pane layoutX="603.0" prefHeight="400.0" prefWidth="166" styleClass="definition-wrapper"
                           stylesheets="@../Utils/style.css">
+
+                        <Pane prefHeight="30.0" prefWidth="166.0" styleClass="title-learning"
+                              stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label fx:id="infoTitle" layoutX="20.0" layoutY="-8.0" prefHeight="45.0"
+                                       prefWidth="230.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                                       text="Thông tin" textFill="#FFF">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Utils/icons/informative.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </children>
+                        </Pane>
 
                     </Pane>
                 </children>

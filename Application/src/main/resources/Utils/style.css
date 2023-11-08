@@ -319,3 +319,13 @@
      -fx-background-radius: 5;
      -fx-border-radius: 5;
 }
+
+.title-learning{
+     -fx-background-color:   #4285f4;
+     -fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);
+}
+.question-title{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
