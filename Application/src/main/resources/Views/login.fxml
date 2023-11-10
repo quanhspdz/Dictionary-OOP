@@ -47,34 +47,33 @@
             </AnchorPane>
             <AnchorPane layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">
                <children>
-                  <Label alignment="CENTER" layoutX="191.0" layoutY="34.0" prefHeight="58.0" prefWidth="235.0" text="Đăng ký">
+                  <Label alignment="CENTER" layoutX="187.0" layoutY="20.0" prefHeight="58.0" prefWidth="235.0" text="Đăng ký">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                   <TextField layoutX="205.0" layoutY="104.0" prefHeight="26.0" prefWidth="222.0" promptText="Email Address" />
                   <PasswordField layoutX="206.0" layoutY="179.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />
-                  <Button alignment="CENTER" layoutX="232.0" layoutY="267.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#3e3a3a" />
-                  <Button layoutX="232.0" layoutY="334.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" />
+                  <Button alignment="CENTER" layoutX="232.0" layoutY="325.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#3e3a3a" />
+                  <Button layoutX="231.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" />
                   <TextField layoutX="206.0" layoutY="144.0" prefHeight="26.0" prefWidth="222.0" promptText="User name" />
                   <TextField layoutX="204.0" layoutY="216.0" prefHeight="26.0" prefWidth="222.0" promptText="Confirm Password" />
+                  <TextField layoutX="202.0" layoutY="290.0" prefHeight="26.0" prefWidth="229.0" promptText="Câu trả lời" />
+                  <ComboBox layoutX="204.0" layoutY="253.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0">
+            <AnchorPane layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0">
                <children>
                   <Label alignment="CENTER" layoutX="197.0" layoutY="24.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="197.0" layoutY="77.0" prefHeight="26.0" prefWidth="215.0" promptText="Email Address" />
-                  <PasswordField layoutX="195.0" layoutY="151.0" prefHeight="26.0" prefWidth="215.0" promptText="Password" />
-                  <Button alignment="CENTER" layoutX="225.0" layoutY="321.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#3e3a3a" />
-                  <Button layoutX="225.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" />
-                  <TextField layoutX="195.0" layoutY="113.0" prefHeight="26.0" prefWidth="215.0" promptText="User name" />
-                  <TextField layoutX="198.0" layoutY="192.0" prefHeight="26.0" prefWidth="215.0" promptText="Confirm Password" />
-                  <ComboBox layoutX="201.0" layoutY="229.0" prefHeight="26.0" prefWidth="209.0" promptText="Chọn câu hỏi" />
-                  <TextField layoutX="202.0" layoutY="266.0" prefHeight="26.0" prefWidth="210.0" promptText="Câu trả lời" />
+                  <Button alignment="CENTER" layoutX="217.0" layoutY="258.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#3e3a3a" />
+                  <Button layoutX="217.0" layoutY="359.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Quay lại" />
+                  <TextField layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="User name" />
+                  <TextField layoutX="191.0" layoutY="205.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />
+                  <ComboBox layoutX="188.0" layoutY="158.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />
                </children>
             </AnchorPane>
          </children>
