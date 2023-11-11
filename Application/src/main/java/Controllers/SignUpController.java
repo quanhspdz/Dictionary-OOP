@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,76 +28,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-/**
- * @author WINDOWS 10
- */
+
 public class SignUpController implements Initializable {
 
     @FXML
-    private AnchorPane main_form;
+    private Button changePass_backBtn;
 
     @FXML
-    private AnchorPane login_form;
+    private TextField changePass_cPassword;
 
     @FXML
-    private TextField login_username;
+    private AnchorPane changePass_form;
 
     @FXML
-    private PasswordField login_password;
+    private TextField changePass_password;
 
     @FXML
-    private TextField login_showPassword;
-
-    @FXML
-    private CheckBox login_selectShowPassword;
-
-    @FXML
-    private Button login_btn;
-
-    @FXML
-    private Button login_createAccount;
-
-    @FXML
-    private Hyperlink login_forgotPassword;
-
-    @FXML
-    private AnchorPane signup_form;
-
-    @FXML
-    private TextField signup_email;
-
-    @FXML
-    private TextField signup_username;
-
-    @FXML
-    private PasswordField signup_password;
-
-    @FXML
-    private PasswordField signup_cPassword;
-
-    @FXML
-    private Button signup_btn;
-
-    @FXML
-    private Button signup_loginAccount;
-
-    @FXML
-    private ComboBox<?> signup_selectQuestion;
-
-    @FXML
-    private TextField signup_answer;
-
-    @FXML
-    private AnchorPane forgot_form;
+    private Button changePass_proceedBtn;
 
     @FXML
     private TextField forgot_answer;
 
     @FXML
-    private Button forgot_proceedBtn;
+    private Button forgot_backBtn;
 
     @FXML
-    private Button forgot_backBtn;
+    private AnchorPane forgot_form;
+
+    @FXML
+    private Button forgot_proceedBtn;
 
     @FXML
     private ComboBox<?> forgot_selectQuestion;
@@ -107,21 +65,57 @@ public class SignUpController implements Initializable {
     private TextField forgot_username;
 
     @FXML
-    private AnchorPane changePass_form;
+    private Button login_btn;
 
     @FXML
-    private Button changePass_proceedBtn;
+    private Button login_create;
 
     @FXML
-    private Button changePass_backBtn;
+    private Hyperlink login_forgotPassword;
 
     @FXML
-    private PasswordField changePass_password;
+    private AnchorPane login_form;
 
     @FXML
-    private PasswordField changePass_cPassword;
+    private PasswordField login_password;
 
-    private Connection connect;
+    @FXML
+    private CheckBox login_selectShowPassword;
+
+    @FXML
+    private TextField login_username;
+
+    @FXML
+    private AnchorPane main_form;
+
+    @FXML
+    private TextField signup_answer;
+
+    @FXML
+    private Button signup_btn;
+
+    @FXML
+    private TextField signup_cPassword;
+
+    @FXML
+    private TextField signup_email;
+
+    @FXML
+    private AnchorPane signup_form;
+
+    @FXML
+    private Button signup_loginAccount;
+
+    @FXML
+    private PasswordField signup_password;
+
+    @FXML
+    private ComboBox<?> signup_selectQuestion;
+
+    @FXML
+    private TextField signup_username;
+
+
     private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
@@ -130,13 +124,13 @@ public class SignUpController implements Initializable {
     public void showPassword() {
 
         if (login_selectShowPassword.isSelected()) {
-            login_showPassword.setText(login_password.getText());
-            login_showPassword.setVisible(true);
-            login_password.setVisible(false);
+//            login_showPassword.setText(login_password.getText());
+//            login_showPassword.setVisible(true);
+//            login_password.setVisible(false);
         } else {
-            login_password.setText(login_showPassword.getText());
-            login_showPassword.setVisible(false);
-            login_password.setVisible(true);
+//            login_password.setText(login_showPassword.getText());
+//            login_showPassword.setVisible(false);
+//            login_password.setVisible(true);
         }
 
     }
@@ -220,7 +214,7 @@ public class SignUpController implements Initializable {
             login_form.setVisible(true);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
-        } else if (event.getSource() == login_createAccount) { // THE LOGIN FORM WILL BE VISIBLE
+        } else if (event.getSource() == login_create) { // THE LOGIN FORM WILL BE VISIBLE
             signup_form.setVisible(true);
             login_form.setVisible(false);
             forgot_form.setVisible(false);
