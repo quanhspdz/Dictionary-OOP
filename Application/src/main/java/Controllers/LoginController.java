@@ -1,9 +1,7 @@
 package Controllers;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -108,11 +106,26 @@ public class LoginController implements Initializable {
     @FXML
     private TextField signup_username;
 
+    private Connection connect;
 
     private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
 
+
+    public Connection connectDb() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/useraccount", "root", "");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void login() {
+
+    }
 
     public void showPassword() {
 
@@ -132,9 +145,7 @@ public class LoginController implements Initializable {
 
         alertMessage alert = new alertMessage();
 
-        if (forgot_username.getText().isEmpty()
-                || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
-                || forgot_answer.getText().isEmpty()) {
+        if (forgot_username.getText().isEmpty() || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null || forgot_answer.getText().isEmpty()) {
             alert.errorMessage("Please fill all blank fields");
         }
     }
@@ -157,19 +168,41 @@ public class LoginController implements Initializable {
 
         alertMessage alert = new alertMessage();
 
-        // CHECK IF WE HAVE EMPTY FIELDS
-        if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty()
-                || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty()
-                || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
-                || signup_answer.getText().isEmpty()) {
-            alert.errorMessage("All fields are necessary to be filled");
+        // check if we have the empty fields.
+        if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty() || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty() || signup_selectQuestion.getSelectionModel().getSelectedItem() == null || signup_answer.getText().isEmpty()) {
+            alert.errorMessage("Bạn cần nhập đầy đủ thông tin");
         } else if (signup_password.getText() == signup_cPassword.getText()) {
-            // CHECK IF THE VALUE OF PASSWORD FIELDS IS EQUAL TO CONFIRM PASSWORD
-            alert.errorMessage("Password does not match");
+            // Check if the password math with the information.
+            alert.errorMessage("Mật khẩu xác nhận không trùng khớp");
         } else if (signup_password.getText().length() < 8) {
             // CHECK IF THE LENGTH OF PASSWORD VALUE IS LESS THAN TO 8
-            //, WE WILL CHECK THE CHARACTERS OF PASSWORD
-            alert.errorMessage("Invalid Password, at least 8 characters needed");
+            alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
+        } else {
+            String checkUsername = "SELECT * FROM users WHERE username = '" + signup_username.getText() + "'";
+            connect = connectDb();
+
+            try {
+                statement = connect.createStatement();
+                result = statement.executeQuery(checkUsername);
+
+                if (result.next()) {
+                    alert.errorMessage(signup_username.getText() + " đã tồn tại");
+                } else {
+                    String insertDate = "INSERT INTO users " + "(email, username, password, question, answer)" + "VALUES (?,?,?,?,?)";
+                    prepare = connect.prepareStatement(insertDate);
+                    prepare.setString(1, signup_email.getText());
+                    prepare.setString(2, signup_username.getText());
+                    prepare.setString(3, signup_password.getText());
+                    prepare.setString(4, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
+                    prepare.setString(5, signup_answer.getText());
+
+                    prepare.executeUpdate();
+
+                    alert.successMessage("Đăng ký thành công");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -228,8 +261,7 @@ public class LoginController implements Initializable {
 
     }
 
-    private String[] questionList = {"What is your favorite food?", "What is your favorite color?",
-            "What is the name of your pet?", "What is your most favorite sport?"};
+    private String[] questionList = {"What is your favorite food?", "What is your favorite color?", "What is the name of your pet?", "What is your most favorite sport?"};
 
     public void questions() {
         List<String> listQ = new ArrayList<>();
