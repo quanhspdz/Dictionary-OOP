@@ -113,17 +113,43 @@ public class LoginController implements Initializable {
     private Statement statement;
 
 
-    public Connection connectDb() {
+    public Connection connectDB() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/useraccount", "root", "");
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connect
+                    = DriverManager.getConnection("jdbc:mysql://localhost/useraccount", "root", "");
+            return connect;
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
+
     public void login() {
+        alertMessage alert = new alertMessage();
+        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
+            alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
+        } else {
+            String selectData = "SELECT username, password FROM users WHERE "
+                    + "username = ? and password = ?";
+            connect = connectDB();
+            try {
+                prepare = connect.prepareStatement(selectData);
+                prepare.setString(1, login_username.getText());
+                prepare.setString(2, login_password.getText());
+
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    alert.successMessage("Đăng nhập thành công");
+                } else {
+                    alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
@@ -145,8 +171,40 @@ public class LoginController implements Initializable {
 
         alertMessage alert = new alertMessage();
 
-        if (forgot_username.getText().isEmpty() || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null || forgot_answer.getText().isEmpty()) {
-            alert.errorMessage("Please fill all blank fields");
+        if (forgot_username.getText().isEmpty()
+                || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
+                || forgot_answer.getText().isEmpty()) {
+            alert.errorMessage("Vui lòng nhập đầy đủ thông tin");
+        } else {
+
+            String checkData = "SELECT username, question, answer FROM users "
+                    + "WHERE username = ? AND question = ? AND answer = ?";
+
+            connect = connectDB();
+
+            try {
+
+                prepare = connect.prepareStatement(checkData);
+                prepare.setString(1, forgot_username.getText());
+                prepare.setString(2, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem());
+                prepare.setString(3, forgot_answer.getText());
+
+                result = prepare.executeQuery();
+                // IF CORRECT
+                if (result.next()) {
+                    // PROCEED TO CHANGE PASSWORD
+                    signup_form.setVisible(false);
+                    login_form.setVisible(false);
+                    forgot_form.setVisible(false);
+                    changePass_form.setVisible(true);
+                } else {
+                    alert.errorMessage("Thông tin không chính xác");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -179,7 +237,7 @@ public class LoginController implements Initializable {
             alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
         } else {
             String checkUsername = "SELECT * FROM users WHERE username = '" + signup_username.getText() + "'";
-            connect = connectDb();
+            connect = connectDB();
 
             try {
                 statement = connect.createStatement();
@@ -188,17 +246,30 @@ public class LoginController implements Initializable {
                 if (result.next()) {
                     alert.errorMessage(signup_username.getText() + " đã tồn tại");
                 } else {
-                    String insertDate = "INSERT INTO users " + "(email, username, password, question, answer)" + "VALUES (?,?,?,?,?)";
-                    prepare = connect.prepareStatement(insertDate);
+                    String insertData = "INSERT INTO users " + "(email, username, password, question, answer, date) " + "VALUES(?,?,?,?,?,?)"; // FIVE (?)
+
+                    prepare = connect.prepareStatement(insertData);
                     prepare.setString(1, signup_email.getText());
                     prepare.setString(2, signup_username.getText());
                     prepare.setString(3, signup_password.getText());
                     prepare.setString(4, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
                     prepare.setString(5, signup_answer.getText());
+                    ///TODO : date
+                    Date date = new Date(System.currentTimeMillis());
+//                    java.util.Date date = new java.util.Date();
+                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                    prepare.setString(6, String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
                     alert.successMessage("Đăng ký thành công");
+
+                    registerClearFields();
+
+                    signup_form.setVisible(false);
+                    login_form.setVisible(true);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -221,14 +292,54 @@ public class LoginController implements Initializable {
         alertMessage alert = new alertMessage();
         // CHECK ALL FIELDS IF EMPTY OR NOT
         if (changePass_password.getText().isEmpty() || changePass_cPassword.getText().isEmpty()) {
-            alert.errorMessage("Please fill all blank fields");
+            alert.errorMessage("Vui lòng nhập đầy đủ thông tin");
         } else if (!changePass_password.getText().equals(changePass_cPassword.getText())) {
             // CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
-            alert.errorMessage("Password does not match");
+            alert.errorMessage("Mật khẩu xác thực không chính xác");
         } else if (changePass_password.getText().length() < 8) {
             // CHECK IF THE LENGTH OF PASSWORD IS LESS THAN TO 8
-            alert.errorMessage("Invalid Password, at least 8 characters needed");
+            alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
+        } else {
+            // USERNAME IS OUR REFERENCE TO UPDATE THE DATA OF THE USER
+            String updateData = "UPDATE users SET password = ?, update_date = ? "
+                    + "WHERE username = '" + forgot_username.getText() + "'";
+
+            connect = connectDB();
+
+            try {
+
+                prepare = connect.prepareStatement(updateData);
+                prepare.setString(1, changePass_password.getText());
+
+                java.util.Date date = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                prepare.setString(2, String.valueOf(sqlDate));
+
+                prepare.executeUpdate();
+                alert.successMessage("Đăng nhập thành công");
+
+                // LOGIN FORM WILL APPEAR
+                signup_form.setVisible(false);
+                login_form.setVisible(true);
+                forgot_form.setVisible(false);
+                changePass_form.setVisible(false);
+
+                login_username.setText("");
+                login_password.setVisible(true);
+                login_password.setText("");
+//                login_showPassword.setVisible(false);
+                login_selectShowPassword.setSelected(false);
+
+                changePass_password.setText("");
+                changePass_cPassword.setText("");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
+
 
     }
 
@@ -261,7 +372,7 @@ public class LoginController implements Initializable {
 
     }
 
-    private String[] questionList = {"What is your favorite food?", "What is your favorite color?", "What is the name of your pet?", "What is your most favorite sport?"};
+    private String[] questionList = {"Món ăn nào bạn thích nhất", "Màu sắc yêu thích nhất của bạn?", "Tên thú cưng của bạn?", "Môn thể thao bạn yêu thích nhất ?"};
 
     public void questions() {
         List<String> listQ = new ArrayList<>();
