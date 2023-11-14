@@ -34,7 +34,7 @@ public class DictionaryApp extends Application {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/DictionaryView.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Login.fxml")));
         stage.setTitle("Dictionary Application");
         readData();
 //        stage.initStyle(StageStyle.TRANSPARENT);
