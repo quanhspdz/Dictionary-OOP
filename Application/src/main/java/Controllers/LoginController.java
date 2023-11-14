@@ -115,7 +115,7 @@ public class LoginController implements Initializable {
 
     public Connection connectDB() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Connection connect
                     = DriverManager.getConnection("jdbc:mysql://localhost/useraccount", "root", "");
             return connect;
