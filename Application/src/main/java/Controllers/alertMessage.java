@@ -8,7 +8,7 @@ public class alertMessage {
     public void errorMessage(String message) {
 
         alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error Message");
+        alert.setTitle("Có lỗi xảy ra");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
