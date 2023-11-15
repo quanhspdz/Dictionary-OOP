@@ -185,4 +185,14 @@ public class Question {
                 "\nDifficulty: " + difficulty +
                 "\nSubject: " + subject;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof  Question) {
+            Question question = (Question) obj;
+            return question.getQuestionTitle().equals(this.getQuestionTitle());
+        } else {
+            return false;
+        }
+    }
 }

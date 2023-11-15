@@ -14,6 +14,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
@@ -38,7 +39,7 @@ public class LearningEngController implements Initializable {
     @FXML
     private RadioButton answerBtnA, answerBtnB, answerBtnC, answerBtnD;
     @FXML
-    private Button nextBtn;
+    private Button nextBtn, shuffleBtn, teamworkBtn, fiftyPercentBtn;
     @FXML
     private Circle circle1, circle2, circle3, circle4, circle5, circle6,
             circle7, circle8, circle9, circle10;
@@ -46,6 +47,8 @@ public class LearningEngController implements Initializable {
     private Label progressText1, progressText2, progressText3, progressText4,
             progressText5, progressText6, progressText7, progressText8, progressText9, progressText10,
             questionText, questionTitle, scoreLabel, countdownLabel;
+    @FXML
+    private VBox vboxListRanking;
 
     private Media correctAudioMedia;
     private MediaPlayer correctAudioMediaPlayer;
@@ -115,6 +118,57 @@ public class LearningEngController implements Initializable {
         setQuestionProgress(1, currentQuestion);
 
         setupQuestion();
+        vboxListRanking.setVisible(false);
+
+        //Các quyền trợ giúp
+        //50 50
+        fiftyPercentBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleFiftyPercentHelp();
+            }
+        });
+
+        //Tổ tư vấn
+        teamworkBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleTeamWorkHelp();
+            }
+        });
+
+        //Đổi câu hỏi khác
+        shuffleBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleShuffleHelp();
+            }
+        });
+    }
+
+    private void handleShuffleHelp() {
+        Question currentQuestion = listQuestion.get(currentQuestionIndex);
+
+        boolean foundReplaceQuestion = false;
+        Random random = new Random();
+        while (!foundReplaceQuestion) {
+            int randomIndex = random.nextInt(listQuestionData.size());
+            Question question = listQuestionData.get(randomIndex);
+            if (!question.equals(currentQuestion)) {
+                foundReplaceQuestion = true;
+                currentQuestion = question;
+            }
+        }
+
+        listQuestion.set(currentQuestionIndex, currentQuestion);
+        countdownTimer.stop();
+        showQuestion(currentQuestion);
+    }
+
+    private void handleTeamWorkHelp() {
+    }
+
+    private void handleFiftyPercentHelp() {
     }
 
     public void pickQuestions() {
@@ -234,6 +288,13 @@ public class LearningEngController implements Initializable {
     }
 
     private void createAnimation(Pane container, Boolean isCorrect) {
+        //Disable buttons
+        answerBtnA.setDisable(true);
+        answerBtnB.setDisable(true);
+        answerBtnC.setDisable(true);
+        answerBtnD.setDisable(true);
+        nextBtn.setDisable(true);
+
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_FIREWORK);
         javafx.scene.image.Image originalImage = new javafx.scene.image.Image(inputStream);
@@ -255,7 +316,7 @@ public class LearningEngController implements Initializable {
         correctAudioMediaPlayer.play(); // Phát âm thanh hoan hô
 
         // Tạo một số lượng hạt pháo hoa
-        int numFireworks = 30;
+        int numFireworks = 40;
 
         for (int i = 0; i < numFireworks; i++) {
             Timeline timeline = new Timeline();
@@ -298,13 +359,6 @@ public class LearningEngController implements Initializable {
             timeline.setOnFinished(event -> {
                 container.getChildren().remove(firework);
             });
-
-            //Disable buttons
-            answerBtnA.setDisable(true);
-            answerBtnB.setDisable(true);
-            answerBtnC.setDisable(true);
-            answerBtnD.setDisable(true);
-            nextBtn.setDisable(true);
 
             // Bắt đầu animation
             timeline.play();

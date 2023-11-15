@@ -189,16 +189,24 @@
 
                         <RadioButton fx:id="answerBtnA" layoutX="65.0" layoutY="170.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
-                                     text="A. Quang Anh đẹp trai"/>
+                                     text="A. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
                         <RadioButton fx:id="answerBtnB" layoutX="335.0" layoutY="170.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
-                                     text="B. Quang Anh đẹp trai"/>
+                                     text="B. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
                         <RadioButton fx:id="answerBtnC" layoutX="65.0" layoutY="250.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
-                                     text="C. Quang Anh đẹp trai"/>
+                                     text="C. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
                         <RadioButton fx:id="answerBtnD" layoutX="335.0" layoutY="250.0" prefHeight="60" prefWidth="200"
                                      styleClass="answer-button" stylesheets="@../Utils/style.css"
-                                     text="D. Quang Anh đẹp trai"/>
+                                     text="D. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
                         <Button fx:id="nextBtn" layoutX="250.0" layoutY="334.0" mnemonicParsing="false"
                                 prefHeight="32.0" prefWidth="60.0" styleClass="add-button"
                                 stylesheets="@../Utils/style.css" text="Kiểm tra"/>
@@ -232,7 +240,8 @@
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
                                     </Label>
-                                    <Label fx:id="countdownLabel" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="30s" textFill="RED">
+                                    <Label fx:id="countdownLabel" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT"
+                                           text="30s" textFill="RED">
                                         <font>
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
@@ -277,7 +286,7 @@
                             </Label>
                             <HBox spacing="10.0">
                                 <children>
-                                    <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0"
+                                    <Button fx:id="fiftyPercentBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0"
                                             styleClass="edit-button" stylesheets="@../Utils/style.css">
                                         <graphic>
                                             <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
@@ -294,7 +303,7 @@
                                             <Tooltip text="Bỏ đi 2 phương án sai"/>
                                         </tooltip>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
+                                    <Button fx:id="teamworkBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
                                             prefWidth="40.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
                                         <graphic>
                                             <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
@@ -308,7 +317,7 @@
                                             <Tooltip text="Trợ giúp của tổ tư vấn"/>
                                         </tooltip>
                                     </Button>
-                                    <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
+                                    <Button fx:id="shuffleBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
                                             prefWidth="40.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
                                         <graphic>
                                             <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
@@ -327,24 +336,28 @@
                                     <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
                                 </VBox.margin>
                             </HBox>
-                            <Pane opacity="0.5" prefHeight="1.0" prefWidth="40.0" styleClass="explanation-menu">
-                                <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0"/>
-                                </VBox.margin>
-                            </Pane>
-                            <Label layoutX="20.0" layoutY="112.0" text="Xếp hạng:" textFill="#007acc">
-                                <font>
-                                    <Font name="System Bold" size="14.0"/>
-                                </font>
-                                <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
-                                </VBox.margin>
-                            </Label>
-                            <ListView prefHeight="150.0" styleClass="list-cell" VBox.vgrow="ALWAYS">
-                                <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0"/>
-                                </VBox.margin>
-                            </ListView>
+                            <VBox VBox.vgrow="ALWAYS" fx:id="vboxListRanking">
+                                <children>
+                                    <Pane opacity="0.5" prefHeight="1.0" prefWidth="40.0" styleClass="explanation-menu">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                        </VBox.margin>
+                                    </Pane>
+                                    <Label text="Xếp hạng:" textFill="#007acc">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets left="10.0" right="10.0"/>
+                                        </VBox.margin>
+                                    </Label>
+                                    <ListView prefHeight="150.0" styleClass="list-cell" VBox.vgrow="ALWAYS">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0"/>
+                                        </VBox.margin>
+                                    </ListView>
+                                </children>
+                            </VBox>
                         </children>
                     </VBox>
                 </children>
