@@ -1,5 +1,6 @@
 package Controllers;
 
+import Models.Question;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -21,6 +22,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static Constant.Constant.*;
@@ -40,7 +42,8 @@ public class LearningEngController implements Initializable {
             circle7, circle8, circle9, circle10;
     @FXML
     private Label progressText1, progressText2, progressText3, progressText4,
-            progressText5, progressText6, progressText7, progressText8, progressText9, progressText10;
+            progressText5, progressText6, progressText7, progressText8, progressText9, progressText10,
+            questionText, questionTitle;
 
     private Media correctAudioMedia;
     private MediaPlayer correctAudioMediaPlayer;
@@ -48,14 +51,15 @@ public class LearningEngController implements Initializable {
             correctQuestion = Color.rgb(166, 232, 58),
             incorrectQuestion = Color.rgb(255, 216, 0);
 
+    private ArrayList<Question> listQuestion = new ArrayList<>();
+    private int currentQuestionIndex;
+
+    private String answer = "";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ClassLoader classLoader = getClass().getClassLoader();
-        //Tải audio từ tài nguyên
-        correctAudioMedia = new Media(classLoader.getResource(PATH_TO_CORRECT_CHEERING).toExternalForm());
-        correctAudioMediaPlayer = new MediaPlayer(correctAudioMedia);
-
         answerBtnA.setOnAction(event -> {
+            answer = "A";
             answerBtnA.setSelected(true);
             answerBtnB.setSelected(false);
             answerBtnC.setSelected(false);
@@ -63,6 +67,7 @@ public class LearningEngController implements Initializable {
         });
 
         answerBtnB.setOnAction(event -> {
+            answer = "B";
             answerBtnA.setSelected(false);
             answerBtnB.setSelected(true);
             answerBtnC.setSelected(false);
@@ -70,6 +75,7 @@ public class LearningEngController implements Initializable {
         });
 
         answerBtnC.setOnAction(event -> {
+            answer = "C";
             answerBtnA.setSelected(false);
             answerBtnB.setSelected(false);
             answerBtnC.setSelected(true);
@@ -77,6 +83,7 @@ public class LearningEngController implements Initializable {
         });
 
         answerBtnD.setOnAction(event -> {
+            answer = "D";
             answerBtnA.setSelected(false);
             answerBtnB.setSelected(false);
             answerBtnC.setSelected(false);
@@ -86,26 +93,67 @@ public class LearningEngController implements Initializable {
         nextBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                createFireworkAnimation(questionAndAnswerPane);
+                checkAnswer();
             }
         });
 
-        for (int i = 0; i < 7; i++) {
-            setQuestionProgress(i + 1, correctQuestion);
-        }
-        setQuestionProgress(7, currentQuestion);
-        setQuestionProgress(3, incorrectQuestion);
+        setQuestionProgress(1, currentQuestion);
+
+        setupQuestion();
     }
 
-    private void createFireworkAnimation(Pane container) {
+    private void checkAnswer() {
+        Question question = listQuestion.get(currentQuestionIndex);
+        if (answer.equals(question.getCorrectAnswer())) {
+            handleCorrectAnswer();
+        } else {
+            handleIncorrectAnswer();
+        }
+    }
+
+    private void handleIncorrectAnswer() {
+        createAnimation(questionAndAnswerPane, false);
+    }
+
+    private void handleCorrectAnswer() {
+        createAnimation(questionAndAnswerPane, true);
+    }
+
+    private void setupQuestion() {
+        Question.readQuestionFile(listQuestion);
+        currentQuestionIndex = 1;
+        questionTitle.setText("Câu hỏi " + currentQuestionIndex + ":");
+        showQuestion(listQuestion.get(0));
+    }
+
+    private void showQuestion(Question question) {
+        questionText.setText(question.getQuestionTitle());
+        answerBtnA.setText(question.getAnswerA());
+        answerBtnB.setText(question.getAnswerB());
+        answerBtnC.setText(question.getAnswerC());
+        answerBtnD.setText(question.getAnswerD());
+    }
+
+    private void createAnimation(Pane container, Boolean isCorrect) {
         ClassLoader classLoader = getClass().getClassLoader();
-
-        correctAudioMediaPlayer.stop(); // Đảm bảo rằng âm thanh sẽ chơi từ đầu
-        correctAudioMediaPlayer.play(); // Phát âm thanh hoan hô
-
-        // Tải hình ảnh từ tài nguyên
         InputStream inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_FIREWORK);
         javafx.scene.image.Image originalImage = new javafx.scene.image.Image(inputStream);
+
+        if (isCorrect) {
+            // Tải hình ảnh từ tài nguyên
+            inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_FIREWORK);
+            originalImage = new javafx.scene.image.Image(inputStream);
+            correctAudioMedia = new Media(classLoader.getResource(PATH_TO_CORRECT_CHEERING).toExternalForm());
+            correctAudioMediaPlayer = new MediaPlayer(correctAudioMedia);
+        } else {
+            // Tải hình ảnh từ tài nguyên
+            inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_SAD);
+            originalImage = new javafx.scene.image.Image(inputStream);
+            correctAudioMedia = new Media(classLoader.getResource(PATH_TO_INCORRECT_SOUND).toExternalForm());
+            correctAudioMediaPlayer = new MediaPlayer(correctAudioMedia);
+        }
+
+        correctAudioMediaPlayer.play(); // Phát âm thanh hoan hô
 
         // Tạo một số lượng hạt pháo hoa
         int numFireworks = 30;

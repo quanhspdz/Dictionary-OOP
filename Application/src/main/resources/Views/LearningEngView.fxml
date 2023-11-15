@@ -181,10 +181,9 @@
                         <Pane layoutX="65.0" layoutY="47.0" prefHeight="90.0" prefWidth="470.0"
                               styleClass="question-box" stylesheets="@../Utils/style.css">
                             <children>
-                                <Label fx:id="questionText" layoutX="15.0" layoutY="5" prefHeight="80" prefWidth="460"
-                                       styleClass="question-text" stylesheets="@../Utils/style.css"
-                                       text="Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?Mày biết bố mày là ai không?"
-                                       wrapText="true"/>
+                                <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0"
+                                       layoutY="5" prefHeight="80" prefWidth="460" styleClass="question-text"
+                                       stylesheets="@../Utils/style.css" text="ab" wrapText="true"/>
                             </children>
                         </Pane>
 

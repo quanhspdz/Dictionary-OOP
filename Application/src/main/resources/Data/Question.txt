@@ -1,0 +1,202 @@
+[
+  {
+    "questionTitle": "What is the lifespan of a butterfly?",
+    "answerA": "A. One week",
+    "answerB": "B. One month",
+    "answerC": "C. One year",
+    "answerD": "D. Three years",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which bird is known for its ability to mimic human speech?",
+    "answerA": "A. Eagle",
+    "answerB": "B. Parrot",
+    "answerC": "C. Owl",
+    "answerD": "D. Penguin",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the primary diet of a koala?",
+    "answerA": "A. Insects",
+    "answerB": "B. Eucalyptus leaves",
+    "answerC": "C. Fish",
+    "answerD": "D. Seeds",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which of the following is a marsupial?",
+    "answerA": "A. Elephant",
+    "answerB": "B. Kangaroo",
+    "answerC": "C. Cheetah",
+    "answerD": "D. Gorilla",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the largest big cat in the world?",
+    "answerA": "A. Cheetah",
+    "answerB": "B. Leopard",
+    "answerC": "C. Lion",
+    "answerD": "D. Tiger",
+    "correctAnswer": "D",
+    "difficulty": 3,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "How many legs does a spider have?",
+    "answerA": "A. Four",
+    "answerB": "B. Six",
+    "answerC": "C. Eight",
+    "answerD": "D. Ten",
+    "correctAnswer": "C",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is a group of wolves called?",
+    "answerA": "A. Pack",
+    "answerB": "B. Herd",
+    "answerC": "C. Flock",
+    "answerD": "D. Swarm",
+    "correctAnswer": "A",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which ocean is the largest?",
+    "answerA": "A. Atlantic Ocean",
+    "answerB": "B. Indian Ocean",
+    "answerC": "C. Southern Ocean",
+    "answerD": "D. Pacific Ocean",
+    "correctAnswer": "D",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the average wingspan of an albatross?",
+    "answerA": "A. 2 feet",
+    "answerB": "B. 5 feet",
+    "answerC": "C. 8 feet",
+    "answerD": "D. 12 feet",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which mammal is known for its ability to glide from tree to tree?",
+    "answerA": "A. Squirrel",
+    "answerB": "B. Flying fox",
+    "answerC": "C. Beaver",
+    "answerD": "D. Hamster",
+    "correctAnswer": "B",
+    "difficulty": 3,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the largest ocean mammal?",
+    "answerA": "A. Blue whale",
+    "answerB": "B. Killer whale",
+    "answerC": "C. Dolphin",
+    "answerD": "D. Sperm whale",
+    "correctAnswer": "A",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which snake is known for its hood and deadly venom?",
+    "answerA": "A. Python",
+    "answerB": "B. Boa constrictor",
+    "answerC": "C. Rattlesnake",
+    "answerD": "D. King cobra",
+    "correctAnswer": "D",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the gestation period of an elephant?",
+    "answerA": "A. 3 months",
+    "answerB": "B. 9 months",
+    "answerC": "C. 15 months",
+    "answerD": "D. 24 months",
+    "correctAnswer": "C",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which big cat is known for its distinctive black mane?",
+    "answerA": "A. Cheetah",
+    "answerB": "B. Leopard",
+    "answerC": "C. Lion",
+    "answerD": "D. Tiger",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the primary diet of a panda?",
+    "answerA": "A. Bamboo",
+    "answerB": "B. Fish",
+    "answerC": "C. Eucalyptus leaves",
+    "answerD": "D. Ants",
+    "correctAnswer": "A",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which animal is known for its ability to change color to match its surroundings?",
+    "answerA": "A. Chameleon",
+    "answerB": "B. Iguana",
+    "answerC": "C. Gecko",
+    "answerD": "D. Komodo dragon",
+    "correctAnswer": "A",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the largest rodent in the world?",
+    "answerA": "A. Guinea pig",
+    "answerB": "B. Capybara",
+    "answerC": "C. Rat",
+    "answerD": "D. Hamster",
+    "correctAnswer": "B",
+    "difficulty": 3,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which bird is known for its long, curved beak?",
+    "answerA": "A. Eagle",
+    "answerB": "B. Pelican",
+    "answerC": "C. Sparrow",
+    "answerD": "D. Hummingbird",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "What is the fastest land animal?",
+    "answerA": "A. Cheetah",
+    "answerB": "B. Lion",
+    "answerC": "C. Gazelle",
+    "answerD": "D. Zebra",
+    "correctAnswer": "A",
+    "difficulty": 2,
+    "subject": "Animals"
+  },
+  {
+    "questionTitle": "Which animal is known for its distinctive black and white fur?",
+    "answerA": "A. Zebra",
+    "answerB": "B. Panda",
+    "answerC": "C. Skunk",
+    "answerD": "D. Giraffe",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Animals"
+  }
+]
