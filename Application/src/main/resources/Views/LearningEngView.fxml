@@ -232,7 +232,7 @@
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
                                     </Label>
-                                    <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="30s" textFill="RED">
+                                    <Label fx:id="countdownLabel" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="30s" textFill="RED">
                                         <font>
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
@@ -249,7 +249,7 @@
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
                                     </Label>
-                                    <Label text="100/100" textFill="#007acc">
+                                    <Label fx:id="scoreLabel" text="0/100" textFill="#007acc">
                                         <font>
                                             <Font name="System Bold" size="14.0"/>
                                         </font>
