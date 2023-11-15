@@ -23,9 +23,7 @@ import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static Constant.Constant.*;
@@ -73,6 +71,10 @@ public class LearningEngController implements Initializable {
     Timeline countdownTimer;
 
     private final int correctScore = 10;
+
+    private boolean isUsedFiftyPercentHelp = false;
+    private boolean isUsedShuffleHelp = false;
+    private boolean isUsedTeamworkHelp = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -125,7 +127,9 @@ public class LearningEngController implements Initializable {
         fiftyPercentBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                handleFiftyPercentHelp();
+                if (!isUsedFiftyPercentHelp) {
+                    handleFiftyPercentHelp();
+                }
             }
         });
 
@@ -133,7 +137,9 @@ public class LearningEngController implements Initializable {
         teamworkBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                handleTeamWorkHelp();
+                if (!isUsedTeamworkHelp) {
+                    handleTeamWorkHelp();
+                }
             }
         });
 
@@ -141,12 +147,16 @@ public class LearningEngController implements Initializable {
         shuffleBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                handleShuffleHelp();
+                if (!isUsedShuffleHelp) {
+                    handleShuffleHelp();
+                }
             }
         });
     }
 
     private void handleShuffleHelp() {
+        isUsedShuffleHelp = true;
+
         Question currentQuestion = listQuestion.get(currentQuestionIndex);
 
         boolean foundReplaceQuestion = false;
@@ -166,9 +176,56 @@ public class LearningEngController implements Initializable {
     }
 
     private void handleTeamWorkHelp() {
+        isUsedTeamworkHelp = true;
     }
 
     private void handleFiftyPercentHelp() {
+        isUsedFiftyPercentHelp = true;
+        Question question = listQuestion.get(currentQuestionIndex);
+        String answer = question.getCorrectAnswer();
+
+        List<String> options = new ArrayList<>();
+        options.add("A");
+        options.add("B");
+        options.add("C");
+        options.add("D");
+
+        // Remove the selected option
+        options.remove(answer);
+
+        // Shuffle the remaining options
+        Collections.shuffle(options);
+
+        // Randomly select two options from the remaining list
+        int randomIndex1 = new Random().nextInt(2);
+        int randomIndex2 = 1 - randomIndex1;
+
+        String randomAnswer1 = options.get(randomIndex1);
+        String randomAnswer2 = options.get(randomIndex2);
+
+        disableAnswer(randomAnswer1);
+        disableAnswer(randomAnswer2);
+    }
+
+    private void disableAnswer(String answer) {
+        switch (answer) {
+            case "A": {
+                answerBtnA.setDisable(true);
+                break;
+            }
+            case "B": {
+                answerBtnB.setDisable(true);
+                break;
+            }
+            case "C": {
+                answerBtnC.setDisable(true);
+                break;
+            }
+            case "D": {
+                answerBtnD.setDisable(true);
+                break;
+            }
+        }
     }
 
     public void pickQuestions() {
@@ -253,6 +310,16 @@ public class LearningEngController implements Initializable {
     }
 
     private void showQuestion(Question question) {
+        isUsedFiftyPercentHelp = false;
+        isUsedShuffleHelp = false;
+        isUsedTeamworkHelp = false;
+
+        //Enable buttons
+        answerBtnA.setDisable(false);
+        answerBtnB.setDisable(false);
+        answerBtnC.setDisable(false);
+        answerBtnD.setDisable(false);
+
         questionText.setText(question.getQuestionTitle());
         answerBtnA.setText(question.getAnswerA());
         answerBtnB.setText(question.getAnswerB());
