@@ -8,11 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
@@ -20,9 +19,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.InputStream;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -177,6 +179,129 @@ public class LearningEngController implements Initializable {
 
     private void handleTeamWorkHelp() {
         isUsedTeamworkHelp = true;
+
+        Question question = listQuestion.get(currentQuestionIndex);
+        String answer = question.getCorrectAnswer();
+
+        // Creating a dialog
+        Dialog<String> dialog = new Dialog<String>();
+        // Setting the title
+        dialog.setTitle("Teamwork Help");
+        // Adding an OK button
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+
+        // Creating a GridPane to hold the ProgressBar, labels, and percentages
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+
+        // Set the width and height of the DialogPane
+        dialog.getDialogPane().setPrefWidth(500);  // Adjust as needed
+        dialog.getDialogPane().setPrefHeight(200);  // Adjust as needed
+
+        // Adding 4 ProgressBar, labels, and percentages to the GridPane
+        double totalProbability = 0.0;  // Tổng xác suất
+
+        // Đáp án đúng
+        int correctAnswerIndex = getAnswerIndex(answer);
+        double correctAnswerProbability = 0.6 + 0.4 * new Random().nextDouble();
+        totalProbability += correctAnswerProbability;
+        ProgressBar correctAnswerProgressBar = new ProgressBar();
+        correctAnswerProgressBar.setPrefWidth(300);
+        correctAnswerProgressBar.setProgress(correctAnswerProbability);
+        Label correctAnswerLabel = new Label("Đáp án " + getAnswerChoice(correctAnswerIndex));
+        Label correctAnswerPercentageLabel = new Label(formatPercentage(correctAnswerProbability));
+        gridPane.add(correctAnswerLabel, 0, correctAnswerIndex);
+        gridPane.add(correctAnswerProgressBar, 1, correctAnswerIndex);
+        gridPane.add(correctAnswerPercentageLabel, 2, correctAnswerIndex);
+
+        // Tạo danh sách đáp án sai
+        List<Integer> incorrectAnswerIndices = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            if (i != correctAnswerIndex) {
+                incorrectAnswerIndices.add(i);
+            }
+        }
+
+        // Đáp án sai
+        for (int i : incorrectAnswerIndices) {
+            double incorrectAnswerProbability = 0.01 + 0.39 * new Random().nextDouble();
+            totalProbability += incorrectAnswerProbability;
+            ProgressBar progressBar = new ProgressBar();
+            progressBar.setPrefWidth(300);
+            progressBar.setProgress(incorrectAnswerProbability);
+
+            Label label = new Label("Đáp án " + getAnswerChoice(i));
+            Label percentageLabel = new Label(formatPercentage(incorrectAnswerProbability));
+
+            gridPane.add(label, 0, i);
+            gridPane.add(progressBar, 1, i);
+            gridPane.add(percentageLabel, 2, i);
+        }
+
+        // Đảm bảo tổng xác suất không vượt quá 100%
+        if (totalProbability > 1.0) {
+            // Tính toán sự thay đổi cần thiết để tổng xác suất bằng 1.0
+            double scale = 1.0 / totalProbability;
+            for (int i = 0; i < 4; i++) {
+                ProgressBar progressBar = (ProgressBar) gridPane.getChildren().get(i * 3 + 1);  // Lấy ProgressBar từ GridPane
+                double probability = progressBar.getProgress() * scale;
+                progressBar.setProgress(probability);
+
+                // Cập nhật Label phần trăm
+                Label percentageLabel = (Label) gridPane.getChildren().get(i * 3 + 2);
+                percentageLabel.setText(formatPercentage(probability));
+            }
+        }
+
+        // Setting the content of the dialog to the GridPane
+        dialog.getDialogPane().setContent(gridPane);
+
+        // Center the OK button
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.setOnShown(event -> dialog.getDialogPane().lookupButton(ButtonType.OK).requestFocus());
+
+        // Showing the dialog
+        dialog.showAndWait();
+    }
+
+
+    // Format a percentage with one decimal place
+    private String formatPercentage(double value) {
+        DecimalFormat df = new DecimalFormat("#.#");
+        return df.format(value * 100) + "%";
+    }
+
+    private String getAnswerChoice(int index) {
+        // Map index to corresponding answer choices A, B, C, D
+        switch (index) {
+            case 0:
+                return "A";
+            case 1:
+                return "B";
+            case 2:
+                return "C";
+            case 3:
+                return "D";
+            default:
+                return "";  // Handle the default case or error
+        }
+    }
+
+    private int getAnswerIndex(String answer) {
+        // Map answer choices A, B, C, D to corresponding indices
+        switch (answer) {
+            case "A":
+                return 0;
+            case "B":
+                return 1;
+            case "C":
+                return 2;
+            case "D":
+                return 3;
+            default:
+                return -1;  // Handle the default case or error
+        }
     }
 
     private void handleFiftyPercentHelp() {
