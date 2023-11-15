@@ -4,13 +4,17 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -18,6 +22,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 
 public class LoginController implements Initializable {
@@ -131,7 +137,7 @@ public class LoginController implements Initializable {
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
             alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
         } else {
-            String selectData = "SELECT username, password FROM users WHERE "
+            String selectData = "SELECT * FROM users WHERE "
                     + "username = ? and password = ?";
             connect = connectDB();
             try {
@@ -143,6 +149,15 @@ public class LoginController implements Initializable {
 
                 if (result.next()) {
                     alert.successMessage("Đăng nhập thành công");
+
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/DictionaryView.fxml")));
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    scene.setFill(Color.TRANSPARENT);
+                    stage.setScene(scene);
+                    stage.show();
+
+                    login_btn.getScene().getWindow().hide();
                 } else {
                     alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
                 }
@@ -317,7 +332,7 @@ public class LoginController implements Initializable {
                 prepare.setString(2, String.valueOf(sqlDate));
 
                 prepare.executeUpdate();
-                alert.successMessage("Đăng nhập thành công");
+                alert.successMessage("Thay Đổi mật khẩu thành công");
 
                 // LOGIN FORM WILL APPEAR
                 signup_form.setVisible(false);
