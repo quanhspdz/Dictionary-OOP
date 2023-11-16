@@ -11,83 +11,96 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+           prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="Controllers.LoginController">
     <children>
         <AnchorPane id="main_form" fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
             <children>
-                <AnchorPane fx:id="login_form" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+                <AnchorPane fx:id="login_form" layoutX="7.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0f0f0;">
                     <children>
-<!--                        <Label alignment="CENTER" layoutX="191.0" layoutY="34.0" prefHeight="58.0" prefWidth="235.0" text="Đăng nhập">-->
-<!--                            <font>-->
-<!--                                <Font size="24.0" />-->
-<!--                            </font>-->
-<!--                        </Label>-->
-                       <Label alignment="CENTER" layoutX="177.0" layoutY="40.0" prefHeight="58.0" prefWidth="235.0" text="Đăng nhập">
-                        <font>
-                            <Font size="24.0" />
-                        </font>
-                        <textFill>#336699</textFill> <!-- Set the text color -->
-                    </Label>
-<!--                        <TextField id="login_username" fx:id="login_username" layoutX="207.0" layoutY="118.0" prefHeight="26.0" prefWidth="221.0" promptText="Username" />-->
-<!--                        <PasswordField id="login_password" fx:id="login_password" layoutX="206.0" layoutY="156.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />-->
-                        <TextField id="login_username" fx:id="login_username" layoutX="183.0" layoutY="110.0" prefHeight="26.0" prefWidth="221.0" promptText="Username" style="-fx-prompt-text-fill: #808080; -fx-background-radius: 5;" />
-                        <PasswordField id="login_password" fx:id="login_password" layoutX="183.0" layoutY="150.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" style="-fx-prompt-text-fill: #808080; -fx-background-radius: 5;" />
-
-<!--                        <Button id="login_btn" fx:id="login_btn" alignment="CENTER" layoutX="232.0" layoutY="228.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập" textFill="#3e3a3a" />-->
-<!--                        <Button id="login_create" fx:id="login_create" layoutX="232.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Tạo tài khoản" />-->
-                        <Button id="login_btn" fx:id="login_btn" alignment="CENTER" layoutX="215.0" layoutY="232.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;" text="Đăng nhập" />
-                        <Button id="login_create" fx:id="login_create" layoutX="215.0" layoutY="276.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" style="-fx-background-color: #008CBA; -fx-text-fill: white;-fx-background-radius: 5;" text="Tạo tài khoản" />
-
-                        <CheckBox id="login_selectShowPassword" fx:id="login_selectShowPassword" layoutX="183.0" layoutY="180.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="18.0" prefWidth="106.0" text="Show password" />
-<!--                        <Hyperlink id="login_forgotPassword" fx:id="login_forgotPassword" layoutX="331.0" layoutY="183.0" onAction="#switchForm" text="Quên mật khẩu ?">-->
-<!--                            <font>-->
-<!--                                <Font size="13.0" />-->
-<!--                            </font>-->
-<!--                        </Hyperlink>-->
-                        <Hyperlink id="login_forgotPassword" fx:id="login_forgotPassword" layoutX="300.0" layoutY="176.0" onAction="#switchForm" prefHeight="26.0" prefWidth="106.0" text="Quên mật khẩu ?">
+                        <Label alignment="CENTER" layoutX="177.0" layoutY="40.0" prefHeight="58.0" prefWidth="235.0"
+                               text="Đăng nhập">
                             <font>
-                                <Font size="13.0" />
+                                <Font size="24.0"/>
+                            </font>
+                            <textFill>#336699</textFill> <!-- Set the text color -->
+                        </Label>
+                        <TextField id="login_username" fx:id="login_username" layoutX="183.0" layoutY="110.0"
+                                   prefHeight="26.0" prefWidth="221.0" promptText="Username"
+                                   style="-fx-prompt-text-fill: #808080; -fx-background-radius: 5;"/>
+                        <PasswordField id="login_password" fx:id="login_password" layoutX="183.0" layoutY="150.0"
+                                       prefHeight="26.0" prefWidth="222.0" promptText="Password"
+                                       style="-fx-prompt-text-fill: #808080; -fx-background-radius: 5;"/>
+
+                        <Button id="login_btn" fx:id="login_btn" alignment="CENTER" layoutX="215.0" layoutY="232.0"
+                                mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="170.0"
+                                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 5;"
+                                text="Đăng nhập"/>
+                        <Button id="login_create" fx:id="login_create" layoutX="215.0" layoutY="276.0"
+                                mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0"
+                                style="-fx-background-color: #008CBA; -fx-text-fill: white;-fx-background-radius: 5;"
+                                text="Tạo tài khoản"/>
+
+                        <CheckBox id="login_selectShowPassword" fx:id="login_selectShowPassword" layoutX="183.0"
+                                  layoutY="180.0" mnemonicParsing="false" onAction="#showPassword" prefHeight="18.0"
+                                  prefWidth="106.0" text="Show password"/>
+
+                        <Hyperlink id="login_forgotPassword" fx:id="login_forgotPassword" layoutX="300.0"
+                                   layoutY="176.0" onAction="#switchForm" prefHeight="26.0" prefWidth="106.0"
+                                   text="Quên mật khẩu ?">
+                            <font>
+                                <Font size="13.0"/>
                             </font>
                             <underline>true</underline> <!-- Underline the hyperlink text -->
                             <textFill>#FF0000</textFill> <!-- Set the text color -->
                         </Hyperlink>
-                        <TextField fx:id="login_showPassword" layoutX="206.0" layoutY="156.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" visible="false" />
+                        <TextField fx:id="login_showPassword" layoutX="206.0" layoutY="156.0" prefHeight="26.0"
+                                   prefWidth="222.0" promptText="Password" visible="false"/>
                     </children>
                 </AnchorPane>
-<!--                <AnchorPane fx:id="signup_form" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
-<!--                    <children>-->
-<!--                        <Label alignment="CENTER" layoutX="187.0" layoutY="20.0" prefHeight="58.0" prefWidth="235.0" text="Đăng ký">-->
-<!--                            <font>-->
-<!--                                <Font size="24.0" />-->
-<!--                            </font>-->
-<!--                        </Label>-->
-<!--                        <TextField id="signup_email" fx:id="signup_email" layoutX="205.0" layoutY="104.0" prefHeight="26.0" prefWidth="222.0" promptText="Email Address" />-->
-<!--                        <PasswordField id="signup_password" fx:id="signup_password" layoutX="206.0" layoutY="179.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />-->
-<!--                        <Button id="signup_btn" fx:id="signup_btn" alignment="CENTER" layoutX="232.0" layoutY="325.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#3e3a3a" />-->
-<!--                        <Button id="signup_loginAccount" fx:id="signup_loginAccount" layoutX="231.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" />-->
-<!--                        <TextField id="signup_username" fx:id="signup_username" layoutX="206.0" layoutY="144.0" prefHeight="26.0" prefWidth="222.0" promptText="User name" />-->
-<!--                        <TextField id="signup_cPassword" fx:id="signup_cPassword" layoutX="204.0" layoutY="216.0" prefHeight="26.0" prefWidth="222.0" promptText="Confirm Password" />-->
-<!--                        <TextField id="signup_answer" fx:id="signup_answer" layoutX="202.0" layoutY="290.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />-->
-<!--                        <ComboBox id="signup_selectQuestion" fx:id="signup_selectQuestion" layoutX="204.0" layoutY="253.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />-->
-<!--                    </children>-->
-<!--                </AnchorPane>-->
-                <AnchorPane fx:id="signup_form" layoutX="2.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">
+                <!--                <AnchorPane fx:id="signup_form" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
+                <!--                    <children>-->
+                <!--                        <Label alignment="CENTER" layoutX="187.0" layoutY="20.0" prefHeight="58.0" prefWidth="235.0" text="Đăng ký">-->
+                <!--                            <font>-->
+                <!--                                <Font size="24.0" />-->
+                <!--                            </font>-->
+                <!--                        </Label>-->
+                <!--                        <TextField id="signup_email" fx:id="signup_email" layoutX="205.0" layoutY="104.0" prefHeight="26.0" prefWidth="222.0" promptText="Email Address" />-->
+                <!--                        <PasswordField id="signup_password" fx:id="signup_password" layoutX="206.0" layoutY="179.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />-->
+                <!--                        <Button id="signup_btn" fx:id="signup_btn" alignment="CENTER" layoutX="232.0" layoutY="325.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#3e3a3a" />-->
+                <!--                        <Button id="signup_loginAccount" fx:id="signup_loginAccount" layoutX="231.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" />-->
+                <!--                        <TextField id="signup_username" fx:id="signup_username" layoutX="206.0" layoutY="144.0" prefHeight="26.0" prefWidth="222.0" promptText="User name" />-->
+                <!--                        <TextField id="signup_cPassword" fx:id="signup_cPassword" layoutX="204.0" layoutY="216.0" prefHeight="26.0" prefWidth="222.0" promptText="Confirm Password" />-->
+                <!--                        <TextField id="signup_answer" fx:id="signup_answer" layoutX="202.0" layoutY="290.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />-->
+                <!--                        <ComboBox id="signup_selectQuestion" fx:id="signup_selectQuestion" layoutX="204.0" layoutY="253.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />-->
+                <!--                    </children>-->
+                <!--                </AnchorPane>-->
+                <AnchorPane fx:id="signup_form" layoutX="2.0" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0"
+                            visible="false">
                     <children>
-                        <Label alignment="CENTER" layoutX="187.0" layoutY="20.0" prefHeight="58.0" prefWidth="235.0" text="Đăng ký">
+                        <Label alignment="CENTER" layoutX="187.0" layoutY="20.0" prefHeight="58.0" prefWidth="235.0"
+                               text="Đăng ký">
                             <font>
-                                <Font size="24.0" />
+                                <Font size="24.0"/>
                             </font>
                             <textFill>#336699</textFill> <!-- Set text color -->
                         </Label>
 
                         <!-- TextField for Email -->
-                        <TextField id="signup_email" fx:id="signup_email" layoutX="202.0" layoutY="86.0" prefHeight="26.0" prefWidth="222.0" promptText="Email Address" />
+                        <TextField id="signup_email" fx:id="signup_email" layoutX="193.0" layoutY="86.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="Email Address"/>
 
                         <!-- PasswordField for Password -->
-                        <PasswordField id="signup_password" fx:id="signup_password" layoutX="202.0" layoutY="158.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />
+                        <PasswordField id="signup_password" fx:id="signup_password" layoutX="193.0" layoutY="158.0"
+                                       prefHeight="26.0" prefWidth="222.0" promptText="Password"/>
 
                         <!-- Button for Signup -->
-                        <Button id="signup_btn" fx:id="signup_btn" alignment="CENTER" layoutX="231.0" layoutY="302.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="170.0" text="Đăng ký" textFill="#FFFFFF">
+                        <Button id="signup_btn" fx:id="signup_btn" alignment="CENTER" layoutX="219.0" layoutY="309.0"
+                                mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="170.0"
+                                text="Đăng ký" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #4CAF50; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -95,7 +108,9 @@
                         </Button>
 
                         <!-- Button for Login -->
-                        <Button id="signup_loginAccount" fx:id="signup_loginAccount" layoutX="231.0" layoutY="340.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Đăng nhập tài khoản" textFill="#FFFFFF">
+                        <Button id="signup_loginAccount" fx:id="signup_loginAccount" layoutX="219.0" layoutY="347.0"
+                                mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0"
+                                text="Đăng nhập tài khoản" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #008CBA; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -103,44 +118,53 @@
                         </Button>
 
                         <!-- TextField for Username -->
-                        <TextField id="signup_username" fx:id="signup_username" layoutX="202.0" layoutY="123.0" prefHeight="26.0" prefWidth="222.0" promptText="User name" />
+                        <TextField id="signup_username" fx:id="signup_username" layoutX="193.0" layoutY="122.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="User name"/>
 
                         <!-- TextField for Confirm Password -->
-                        <PasswordField id="signup_cPassword" fx:id="signup_cPassword" layoutX="202.0" layoutY="192.0" prefHeight="26.0" prefWidth="222.0" promptText="Confirm Password" />
+                        <PasswordField id="signup_cPassword" fx:id="signup_cPassword" layoutX="193.0" layoutY="192.0"
+                                       prefHeight="26.0" prefWidth="222.0" promptText="Confirm Password"/>
 
                         <!-- TextField for Answer -->
-                        <TextField id="signup_answer" fx:id="signup_answer" layoutX="204.0" layoutY="263.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />
+                        <TextField id="signup_answer" fx:id="signup_answer" layoutX="193.0" layoutY="263.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời"/>
 
                         <!-- ComboBox for selecting a question -->
-                        <ComboBox id="signup_selectQuestion" fx:id="signup_selectQuestion" layoutX="204.0" layoutY="227.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />
+                        <ComboBox id="signup_selectQuestion" fx:id="signup_selectQuestion" layoutX="193.0"
+                                  layoutY="227.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi"/>
 
                     </children>
                 </AnchorPane>
-<!--                <AnchorPane fx:id="forgot_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
-<!--                    <children>-->
-<!--                        <Label alignment="CENTER" layoutX="197.0" layoutY="24.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">-->
-<!--                            <font>-->
-<!--                                <Font size="24.0" />-->
-<!--                            </font>-->
-<!--                        </Label>-->
-<!--                        <Button id="forgot_proceedBtn" fx:id="forgot_proceedBtn" alignment="CENTER" layoutX="217.0" layoutY="258.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#3e3a3a" />-->
-<!--                        <Button id="forgot_backBtn" fx:id="forgot_backBtn" layoutX="217.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" />-->
-<!--                        <TextField id="forgot_username" fx:id="forgot_username" layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" />-->
-<!--                        <TextField id="forgot_answer" fx:id="forgot_answer" layoutX="191.0" layoutY="205.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />-->
-<!--                        <ComboBox id="forgot_selectQuestion" fx:id="forgot_selectQuestion" layoutX="188.0" layoutY="158.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />-->
-<!--                    </children>-->
-<!--                </AnchorPane>-->
-                <AnchorPane fx:id="forgot_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">
+                <!--                <AnchorPane fx:id="forgot_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
+                <!--                    <children>-->
+                <!--                        <Label alignment="CENTER" layoutX="197.0" layoutY="24.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">-->
+                <!--                            <font>-->
+                <!--                                <Font size="24.0" />-->
+                <!--                            </font>-->
+                <!--                        </Label>-->
+                <!--                        <Button id="forgot_proceedBtn" fx:id="forgot_proceedBtn" alignment="CENTER" layoutX="217.0" layoutY="258.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#3e3a3a" />-->
+                <!--                        <Button id="forgot_backBtn" fx:id="forgot_backBtn" layoutX="217.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" />-->
+                <!--                        <TextField id="forgot_username" fx:id="forgot_username" layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" />-->
+                <!--                        <TextField id="forgot_answer" fx:id="forgot_answer" layoutX="191.0" layoutY="205.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" />-->
+                <!--                        <ComboBox id="forgot_selectQuestion" fx:id="forgot_selectQuestion" layoutX="188.0" layoutY="158.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" />-->
+                <!--                    </children>-->
+                <!--                </AnchorPane>-->
+                <AnchorPane fx:id="forgot_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                            minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0"
+                            visible="false">
                     <children>
-                        <Label alignment="CENTER" layoutX="194.0" layoutY="46.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">
+                        <Label alignment="CENTER" layoutX="194.0" layoutY="46.0" prefHeight="34.0" prefWidth="215.0"
+                               text="Quên mật khẩu">
                             <font>
-                                <Font size="24.0" />
+                                <Font size="24.0"/>
                             </font>
                             <textFill>#336699</textFill> <!-- Set text color -->
                         </Label>
 
                         <!-- Button for Proceed -->
-                        <Button id="forgot_proceedBtn" fx:id="forgot_proceedBtn" alignment="CENTER" layoutX="217.0" layoutY="244.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#FFFFFF">
+                        <Button id="forgot_proceedBtn" fx:id="forgot_proceedBtn" alignment="CENTER" layoutX="217.0"
+                                layoutY="244.0" mnemonicParsing="false" onAction="#forgotPassword" prefHeight="26.0"
+                                prefWidth="170.0" text="Xác nhận" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #4CAF50; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -148,7 +172,9 @@
                         </Button>
 
                         <!-- Button for Back -->
-                        <Button id="forgot_backBtn" fx:id="forgot_backBtn" layoutX="216.0" layoutY="293.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" textFill="#FFFFFF">
+                        <Button id="forgot_backBtn" fx:id="forgot_backBtn" layoutX="216.0" layoutY="293.0"
+                                mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0"
+                                text="Quay lại" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #008CBA; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -156,41 +182,52 @@
                         </Button>
 
                         <!-- TextField for Username -->
-                        <TextField id="forgot_username" fx:id="forgot_username" layoutX="188.0" layoutY="105.0" prefHeight="26.0" prefWidth="222.0" promptText="Username" style="-fx-background-radius: 5;" />
+                        <TextField id="forgot_username" fx:id="forgot_username" layoutX="188.0" layoutY="105.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="Username"
+                                   style="-fx-background-radius: 5;"/>
 
                         <!-- TextField for Answer -->
-                        <TextField id="forgot_answer" fx:id="forgot_answer" layoutX="188.0" layoutY="192.0" prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời" style="-fx-background-radius: 5;" />
+                        <TextField id="forgot_answer" fx:id="forgot_answer" layoutX="188.0" layoutY="192.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="Câu trả lời"
+                                   style="-fx-background-radius: 5;"/>
 
                         <!-- ComboBox for selecting a question -->
-                        <ComboBox id="forgot_selectQuestion" fx:id="forgot_selectQuestion" layoutX="188.0" layoutY="146.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi" style="-fx-background-radius: 5;" />
+                        <ComboBox id="forgot_selectQuestion" fx:id="forgot_selectQuestion" layoutX="188.0"
+                                  layoutY="146.0" prefHeight="26.0" prefWidth="222.0" promptText="Chọn câu hỏi"
+                                  style="-fx-background-radius: 5;"/>
 
                     </children>
                 </AnchorPane>
 
-<!--                <AnchorPane fx:id="changePass_form" layoutX="2.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
-<!--                    <children>-->
-<!--                        <Label alignment="CENTER" layoutX="197.0" layoutY="24.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">-->
-<!--                            <font>-->
-<!--                                <Font size="24.0" />-->
-<!--                            </font>-->
-<!--                        </Label>-->
-<!--                        <Button id="changePass_proceedBtn" fx:id="changePass_proceedBtn" alignment="CENTER" layoutX="217.0" layoutY="258.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#3e3a3a" />-->
-<!--                        <Button id="changePass_backBtn" fx:id="changePass_backBtn" focusTraversable="false" layoutX="217.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" />-->
-<!--                        <TextField id="changePass_password" fx:id="changePass_password" layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="Mật khẩu mới" />-->
-<!--                        <TextField id="changePass_cPassword" fx:id="changePass_cPassword" layoutX="188.0" layoutY="162.0" prefHeight="26.0" prefWidth="222.0" promptText="Xác nhận mật khẩu" />-->
-<!--                    </children>-->
-<!--                </AnchorPane>-->
-                <AnchorPane fx:id="changePass_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">
+                <!--                <AnchorPane fx:id="changePass_form" layoutX="2.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
+                <!--                    <children>-->
+                <!--                        <Label alignment="CENTER" layoutX="197.0" layoutY="24.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">-->
+                <!--                            <font>-->
+                <!--                                <Font size="24.0" />-->
+                <!--                            </font>-->
+                <!--                        </Label>-->
+                <!--                        <Button id="changePass_proceedBtn" fx:id="changePass_proceedBtn" alignment="CENTER" layoutX="217.0" layoutY="258.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#3e3a3a" />-->
+                <!--                        <Button id="changePass_backBtn" fx:id="changePass_backBtn" focusTraversable="false" layoutX="217.0" layoutY="359.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" />-->
+                <!--                        <TextField id="changePass_password" fx:id="changePass_password" layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="Mật khẩu mới" />-->
+                <!--                        <TextField id="changePass_cPassword" fx:id="changePass_cPassword" layoutX="188.0" layoutY="162.0" prefHeight="26.0" prefWidth="222.0" promptText="Xác nhận mật khẩu" />-->
+                <!--                    </children>-->
+                <!--                </AnchorPane>-->
+                <AnchorPane fx:id="changePass_form" layoutX="2.0" layoutY="5.0" maxHeight="-Infinity"
+                            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0"
+                            prefWidth="610.0" visible="false">
                     <children>
-                        <Label alignment="CENTER" layoutX="191.0" layoutY="48.0" prefHeight="34.0" prefWidth="215.0" text="Quên mật khẩu">
+                        <Label alignment="CENTER" layoutX="191.0" layoutY="48.0" prefHeight="34.0" prefWidth="215.0"
+                               text="Quên mật khẩu">
                             <font>
-                                <Font size="24.0" />
+                                <Font size="24.0"/>
                             </font>
                             <textFill>#336699</textFill> <!-- Set text color -->
                         </Label>
 
                         <!-- Button for Proceed -->
-                        <Button id="changePass_proceedBtn" fx:id="changePass_proceedBtn" alignment="CENTER" layoutX="220.0" layoutY="219.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#FFFFFF">
+                        <Button id="changePass_proceedBtn" fx:id="changePass_proceedBtn" alignment="CENTER"
+                                layoutX="220.0" layoutY="219.0" mnemonicParsing="false" onAction="#changePassword"
+                                prefHeight="26.0" prefWidth="170.0" text="Xác nhận" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #4CAF50; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -198,7 +235,9 @@
                         </Button>
 
                         <!-- Button for Back -->
-                        <Button id="changePass_backBtn" fx:id="changePass_backBtn" focusTraversable="false" layoutX="220.0" layoutY="270.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="170.0" text="Quay lại" textFill="#FFFFFF">
+                        <Button id="changePass_backBtn" fx:id="changePass_backBtn" focusTraversable="false"
+                                layoutX="220.0" layoutY="270.0" mnemonicParsing="false" onAction="#switchForm"
+                                prefHeight="26.0" prefWidth="170.0" text="Quay lại" textFill="#FFFFFF">
                             <style>
                                 -fx-background-color: #008CBA; /* Button background color */
                                 -fx-background-radius: 5; /* Button corner radius */
@@ -206,10 +245,14 @@
                         </Button>
 
                         <!-- TextField for New Password -->
-                        <TextField id="changePass_password" fx:id="changePass_password" layoutX="188.0" layoutY="113.0" prefHeight="26.0" prefWidth="222.0" promptText="Mật khẩu mới" style="-fx-background-radius: 5;" />
+                        <TextField id="changePass_password" fx:id="changePass_password" layoutX="188.0" layoutY="113.0"
+                                   prefHeight="26.0" prefWidth="222.0" promptText="Mật khẩu mới"
+                                   style="-fx-background-radius: 5;"/>
 
                         <!-- TextField for Confirm Password -->
-                        <TextField id="changePass_cPassword" fx:id="changePass_cPassword" layoutX="188.0" layoutY="153.0" prefHeight="26.0" prefWidth="222.0" promptText="Xác nhận mật khẩu" style="-fx-background-radius: 5;" />
+                        <TextField id="changePass_cPassword" fx:id="changePass_cPassword" layoutX="188.0"
+                                   layoutY="153.0" prefHeight="26.0" prefWidth="222.0" promptText="Xác nhận mật khẩu"
+                                   style="-fx-background-radius: 5;"/>
 
                     </children>
                 </AnchorPane>
