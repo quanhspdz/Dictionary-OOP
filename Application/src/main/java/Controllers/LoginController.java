@@ -83,6 +83,9 @@ public class LoginController implements Initializable {
     private TextField login_username;
 
     @FXML
+    private TextField login_showPassword;
+
+    @FXML
     private AnchorPane main_form;
 
     @FXML
@@ -171,13 +174,13 @@ public class LoginController implements Initializable {
     public void showPassword() {
 
         if (login_selectShowPassword.isSelected()) {
-//            login_showPassword.setText(login_password.getText());
-//            login_showPassword.setVisible(true);
-//            login_password.setVisible(false);
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
         } else {
-//            login_password.setText(login_showPassword.getText());
-//            login_showPassword.setVisible(false);
-//            login_password.setVisible(true);
+            login_password.setText(login_showPassword.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
         }
 
     }
