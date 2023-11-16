@@ -1,14 +1,17 @@
 package Controllers;
 
+import DialogAlert.AlertDialog;
 import Models.Question;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -73,6 +76,8 @@ public class LearningEngController implements Initializable {
     Timeline countdownTimer;
 
     private final int correctScore = 10;
+
+    private final int incorrectScore = -5;
 
     private boolean isUsedFiftyPercentHelp = false;
     private boolean isUsedShuffleHelp = false;
@@ -158,6 +163,7 @@ public class LearningEngController implements Initializable {
 
     private void handleShuffleHelp() {
         isUsedShuffleHelp = true;
+        shuffleBtn.setDisable(true);
 
         Question currentQuestion = listQuestion.get(currentQuestionIndex);
 
@@ -166,7 +172,7 @@ public class LearningEngController implements Initializable {
         while (!foundReplaceQuestion) {
             int randomIndex = random.nextInt(listQuestionData.size());
             Question question = listQuestionData.get(randomIndex);
-            if (!question.equals(currentQuestion)) {
+            if (!question.equals(currentQuestion) && !listQuestion.contains(question)) {
                 foundReplaceQuestion = true;
                 currentQuestion = question;
             }
@@ -179,6 +185,7 @@ public class LearningEngController implements Initializable {
 
     private void handleTeamWorkHelp() {
         isUsedTeamworkHelp = true;
+        teamworkBtn.setDisable(true);
 
         Question question = listQuestion.get(currentQuestionIndex);
         String answer = question.getCorrectAnswer();
@@ -306,6 +313,8 @@ public class LearningEngController implements Initializable {
 
     private void handleFiftyPercentHelp() {
         isUsedFiftyPercentHelp = true;
+        fiftyPercentBtn.setDisable(true);
+
         Question question = listQuestion.get(currentQuestionIndex);
         String answer = question.getCorrectAnswer();
 
@@ -391,10 +400,77 @@ public class LearningEngController implements Initializable {
             answerBtnB.setDisable(true);
             answerBtnC.setDisable(true);
             answerBtnD.setDisable(true);
+            nextBtn.setDisable(true);
 
             isCompleted = true;
-            nextBtn.setText("Hoàn thành");
+
+            Platform.runLater(this::showScoreSummaryDialog);
         }
+    }
+
+    private void showScoreSummaryDialog() {
+        // Creating a dialog
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Thông báo điểm số");
+
+        // Set the width and height of the DialogPane
+        alert.getDialogPane().setPrefWidth(500);  // Adjust as needed
+        alert.getDialogPane().setPrefHeight(200);  // Adjust as needed
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_FIREWORK);
+        Image originalImage = new Image(inputStream);
+
+        // Create a scaled-down version of the image
+        double scaleFactor = 1.0 / 10.0;
+        Image image = new Image(inputStream);
+        ImageView imageView = new ImageView(image);
+        // Set the image view properties
+        imageView.setPreserveRatio(true);
+        imageView.setFitWidth(alert.getDialogPane().getPrefWidth()); // Adjust fit width to match the dialog width
+        imageView.setFitHeight(alert.getDialogPane().getPrefHeight() / 2); // Adjust fit height if needed
+
+        alert.setHeaderText("Chúc mừng bạn đã hoàn thành bài thi!\n");
+
+        String scoreStr = "";
+
+        // Set the content text based on the score
+        scoreStr += "Bạn đã đạt được: " + score + "/100 điểm!\n";
+
+        if (score >= 80) {
+            scoreStr += "Bạn thật xuất sắc! <3";
+        } else if (score >= 60) {
+            scoreStr += "Amazing good job nha bạn! :))))";
+        } else {
+            scoreStr += "Cố gắng hơn lần sau bạn nha! :((";
+        }
+
+        // Customize the dialog pane
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+
+        // Add additional content to the GridPane if needed
+        Label additionalLabel = new Label(scoreStr);
+        gridPane.add(additionalLabel, 0, 1); // Example of adding an additional label
+
+        // Set the content of the dialog to the GridPane
+        alert.getDialogPane().setContent(gridPane);
+
+        // Show the dialog
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.setOnShown(event -> alert.getDialogPane().lookupButton(ButtonType.OK).requestFocus());
+
+        // Handle the "OK" button click
+        alert.setResultConverter(dialogButton -> {
+            if (dialogButton == ButtonType.OK) {
+                // Code to be executed when the "OK" button is clicked
+                System.out.println("OK Button Clicked!");
+            }
+            return null;
+        });
+
+        alert.showAndWait();
     }
 
     private void checkAnswer() {
@@ -413,6 +489,7 @@ public class LearningEngController implements Initializable {
     private void handleIncorrectAnswer() {
         setQuestionProgress(currentQuestionIndex + 1, incorrectQuestion);
         createAnimation(questionAndAnswerPane, false);
+        updateScore(incorrectScore);
     }
 
     private void handleCorrectAnswer() {
@@ -435,10 +512,6 @@ public class LearningEngController implements Initializable {
     }
 
     private void showQuestion(Question question) {
-        isUsedFiftyPercentHelp = false;
-        isUsedShuffleHelp = false;
-        isUsedTeamworkHelp = false;
-
         //Enable buttons
         answerBtnA.setDisable(false);
         answerBtnB.setDisable(false);
