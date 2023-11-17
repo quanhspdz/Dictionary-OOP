@@ -21,21 +21,21 @@ public class DictionaryController extends BaseController implements Initializabl
         searchWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/SearchWordView.fxml", container);
+                showComponent("/Views/SearchWordView.fxml");
             }
         });
 
         addWordBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/AddWordView.fxml", container);
+                showComponent("/Views/AddWordView.fxml");
             }
         });
 
         translateBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/TranslationView.fxml", container);
+                showComponent("/Views/TranslationView.fxml");
             }
         });
 
@@ -49,7 +49,7 @@ public class DictionaryController extends BaseController implements Initializabl
         learningEngBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                showComponent("/Views/LearningEngView.fxml", container);
+                showComponent("/Views/LearningOverviewView.fxml");
             }
         });
 
@@ -57,7 +57,7 @@ public class DictionaryController extends BaseController implements Initializabl
         tooltip2.setShowDelay(Duration.seconds(0.3));
         tooltip3.setShowDelay(Duration.seconds(0.3));
         tooltip4.setShowDelay(Duration.seconds(0.3));
-        showComponent("/Views/SearchWordView.fxml", container);
+        showComponent("/Views/SearchWordView.fxml");
     }
 
     @FXML
@@ -66,7 +66,4 @@ public class DictionaryController extends BaseController implements Initializabl
     @FXML
     private Button addWordBtn, translateBtn,
             searchWordBtn, userProfileBtn, learningEngBtn;
-
-    @FXML
-    private AnchorPane container;
 }

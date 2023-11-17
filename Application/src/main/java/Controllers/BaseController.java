@@ -5,15 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class BaseController {
+    @FXML
+    AnchorPane container;
+
     public void setNode(Node node, AnchorPane container) {
         container.getChildren().clear();
         container.getChildren().add(node);
     }
 
-    public void showComponent(String path, AnchorPane container) {
+    public void showComponent(String path) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             AnchorPane component = loader.load();
