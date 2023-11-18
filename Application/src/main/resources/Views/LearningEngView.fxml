@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane fx:id="container" prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="Controllers.LearningEngController">
 
     <SplitPane dividerPositions="0.5" layoutX="1" layoutY="1" orientation="VERTICAL" prefHeight="510.0"

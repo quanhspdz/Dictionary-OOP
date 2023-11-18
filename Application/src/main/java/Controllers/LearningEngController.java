@@ -1,7 +1,7 @@
 package Controllers;
 
-import DialogAlert.AlertDialog;
 import Models.Question;
+import Models.StudyRecord;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -23,17 +23,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.sql.Time;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static Constant.Constant.*;
 
-public class LearningEngController implements Initializable {
+public class LearningEngController extends BaseController implements Initializable {
 
     @FXML
     public AnchorPane bodyContainer, headerContainer;
@@ -82,6 +86,8 @@ public class LearningEngController implements Initializable {
     private boolean isUsedFiftyPercentHelp = false;
     private boolean isUsedShuffleHelp = false;
     private boolean isUsedTeamworkHelp = false;
+    private final int countDownTime = 30;
+    private AtomicInteger secondsRemaining;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -404,8 +410,85 @@ public class LearningEngController implements Initializable {
 
             isCompleted = true;
 
-            Platform.runLater(this::showScoreSummaryDialog);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    showScoreSummaryDialog();
+                    saveTestRecord();
+                }
+            });
         }
+    }
+
+    private void saveTestRecord() {
+        int numberOfCorrectAns = 0;
+        long totalSeconds = 0;
+
+        for (Question question : listQuestion) {
+            if (question.isAnsIsCorrect()) {
+                numberOfCorrectAns++;
+            }
+            if (question.getFinishedTime() != null) {
+                totalSeconds += question.getFinishedTime().getSeconds();
+            }
+        }
+
+        Duration duration = Duration.ofSeconds(totalSeconds);
+
+        long minutes = duration.toMinutes();
+        long seconds = totalSeconds -
+                TimeUnit.MINUTES.toSeconds(minutes);
+
+        updateTestRecord(score, numberOfCorrectAns, duration);
+    }
+
+    private void updateTestRecord(int score, int numberOfCorrectAns, Duration duration) {
+        StudyRecord studyRecord = StudyRecord.readRecordFile();
+        // Lấy ngày hôm nay
+        Date currentDate = new Date();
+        // Định dạng ngày thành chuỗi
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = dateFormat.format(currentDate);
+
+        if (studyRecord == null) {
+            HashMap<String, Duration> mapStudyTime = new HashMap<>();
+            mapStudyTime.put(formattedDate, duration);
+            studyRecord = new StudyRecord(
+                    score,
+                    1,
+                    listQuestion.size(),
+                    numberOfCorrectAns,
+                    listQuestion.size() - numberOfCorrectAns,
+                    duration,
+                    mapStudyTime
+            );
+        } else {
+            int newScore = studyRecord.getTotalScore() + score;
+            Duration newTotalTime = studyRecord.getTotalTimeSpend().plus(duration);
+            int newTotalQuestion = studyRecord.getTotalQuestion() + listQuestion.size();
+            int newTimeAttempt = studyRecord.getTimesAttempt() + 1;
+            int newCorrectAns = studyRecord.getCorrectQuestions() + numberOfCorrectAns;
+            int newIncorrectAns = studyRecord.getIncorrectQuestions()
+                    + listQuestion.size() - numberOfCorrectAns;
+
+            Duration newDayStudyTime = studyRecord.getMapStudyTime().get(formattedDate);
+
+            if (newDayStudyTime == null) {
+                studyRecord.getMapStudyTime().put(formattedDate, duration);
+            } else {
+                newDayStudyTime = newDayStudyTime.plus(duration); // Cập nhật newDayStudyTime
+                studyRecord.getMapStudyTime().put(formattedDate, newDayStudyTime);
+            }
+
+            studyRecord.setTotalScore(newScore);
+            studyRecord.setTotalTimeSpend(newTotalTime);
+            studyRecord.setTotalQuestion(newTotalQuestion);
+            studyRecord.setTimesAttempt(newTimeAttempt);
+            studyRecord.setCorrectQuestions(newCorrectAns);
+            studyRecord.setIncorrectQuestions(newIncorrectAns);
+        }
+
+        studyRecord.writeStudyRecord();
     }
 
     private void showScoreSummaryDialog() {
@@ -465,7 +548,7 @@ public class LearningEngController implements Initializable {
         alert.setResultConverter(dialogButton -> {
             if (dialogButton == ButtonType.OK) {
                 // Code to be executed when the "OK" button is clicked
-                System.out.println("OK Button Clicked!");
+                showComponent("/Views/LearningOverviewView.fxml");
             }
             return null;
         });
@@ -487,12 +570,22 @@ public class LearningEngController implements Initializable {
     }
 
     private void handleIncorrectAnswer() {
+        long timeSpend = 30 - secondsRemaining.get();
+        Duration duration = Duration.ofSeconds(timeSpend);
+        listQuestion.get(currentQuestionIndex).setAnsIsCorrect(false);
+        listQuestion.get(currentQuestionIndex).setFinishedTime(duration);
+
         setQuestionProgress(currentQuestionIndex + 1, incorrectQuestion);
         createAnimation(questionAndAnswerPane, false);
         updateScore(incorrectScore);
     }
 
     private void handleCorrectAnswer() {
+        long timeSpend = 30 - secondsRemaining.get();
+        Duration duration = Duration.ofSeconds(timeSpend);
+        listQuestion.get(currentQuestionIndex).setAnsIsCorrect(true);
+        listQuestion.get(currentQuestionIndex).setFinishedTime(duration);
+
         setQuestionProgress(currentQuestionIndex + 1, correctQuestion);
         updateScore(correctScore);
         createAnimation(questionAndAnswerPane, true);
@@ -528,8 +621,8 @@ public class LearningEngController implements Initializable {
     }
 
     private void setupCountdownTimer() {
-        AtomicInteger secondsRemaining = new AtomicInteger(30);
-        countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), (ActionEvent event) -> {
+        secondsRemaining = new AtomicInteger(countDownTime);
+        countdownTimer = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), (ActionEvent event) -> {
             secondsRemaining.getAndDecrement();
             countdownLabel.setText(String.valueOf(secondsRemaining.get()) + "s");
 
@@ -606,14 +699,14 @@ public class LearningEngController implements Initializable {
             KeyValue keyValueScaleX = new KeyValue(firework.scaleXProperty(), 2); // Kích thước X
             KeyValue keyValueScaleY = new KeyValue(firework.scaleYProperty(), 2); // Kích thước Y
             KeyValue keyValueOpacity = new KeyValue(firework.opacityProperty(), 0); // Độ trong suốt
-            KeyFrame keyFrame = new KeyFrame(Duration.seconds(4), keyValueScaleX, keyValueScaleY, keyValueOpacity);
+            KeyFrame keyFrame = new KeyFrame(javafx.util.Duration.seconds(4), keyValueScaleX, keyValueScaleY, keyValueOpacity);
             timeline.getKeyFrames().add(keyFrame);
 
             // KeyValues cho lắc lắc
             for (int j = 0; j < 10; j++) {
                 double offsetX = Math.random() * 10 - 5; // Tạo lắc lắc ngẫu nhiên trong khoảng [-5, 5]
                 double offsetY = Math.random() * 10 - 5;
-                KeyFrame keyFrameShake = new KeyFrame(Duration.millis(100 * j),
+                KeyFrame keyFrameShake = new KeyFrame(javafx.util.Duration.millis(100 * j),
                         new KeyValue(firework.layoutXProperty(), initialX + offsetX),
                         new KeyValue(firework.layoutYProperty(), initialY + offsetY)
                 );

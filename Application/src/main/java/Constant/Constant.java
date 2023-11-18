@@ -4,7 +4,8 @@ public class Constant {
     public static final String DATA_FILE_PATH = "Data/E_V.txt";
     public static final String QUESTION_FILE_PATH = "Data/Question.txt";
     public static final String SPLITTING_CHARACTERS = "<html>";
-    public static final String EDITED_WORD_FILE = "out/OutputFile/Edited_Word.txt";
+    public static final String EDITED_WORD_FILE = "Application/userdata/Edited_Word.txt";
+    public static final String STUDY_RECORD_FILE = "Application/userdata/StudyRecord.txt";
 
     public static final String DELETED_WORD_MARK = "<deleted>";
 

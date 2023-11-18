@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Time;
+import java.time.Duration;
 import java.util.ArrayList;
 
 import static Constant.Constant.DATA_FILE_PATH;
@@ -27,6 +29,9 @@ public class Question {
     private String correctAnswer;
     private int difficulty; //from 1 to 3
     private String subject;
+
+    private Duration finishedTime;
+    private boolean ansIsCorrect = false;
 
     public Question(String questionTitle, String answerA, String answerB,
                     String answerC, String answerD, String correctAnswer,
@@ -103,6 +108,22 @@ public class Question {
 
     public void setSubject(String subject) {
         this.subject = subject;
+    }
+
+    public Duration getFinishedTime() {
+        return finishedTime;
+    }
+
+    public void setFinishedTime(Duration finishedTime) {
+        this.finishedTime = finishedTime;
+    }
+
+    public boolean isAnsIsCorrect() {
+        return ansIsCorrect;
+    }
+
+    public void setAnsIsCorrect(boolean ansIsCorrect) {
+        this.ansIsCorrect = ansIsCorrect;
     }
 
     // Chuyển đối tượng Question thành chuỗi JSON
