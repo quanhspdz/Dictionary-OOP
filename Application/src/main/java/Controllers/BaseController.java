@@ -1,16 +1,18 @@
 package Controllers;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class BaseController {
     @FXML
     AnchorPane container;
+
+    protected static Timeline countdownTimer;
 
     public void setNode(Node node, AnchorPane container) {
         container.getChildren().clear();
@@ -18,6 +20,9 @@ public class BaseController {
     }
 
     public void showComponent(String path) {
+        if (countdownTimer != null) {
+            countdownTimer.stop();
+        }
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
             AnchorPane component = loader.load();

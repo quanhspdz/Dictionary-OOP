@@ -77,8 +77,6 @@ public class LearningEngController extends BaseController implements Initializab
 
     private int score = 0;
 
-    Timeline countdownTimer;
-
     private final int correctScore = 10;
 
     private final int incorrectScore = -5;
@@ -185,7 +183,7 @@ public class LearningEngController extends BaseController implements Initializab
         }
 
         listQuestion.set(currentQuestionIndex, currentQuestion);
-        countdownTimer.stop();
+        super.countdownTimer.stop();
         showQuestion(currentQuestion);
     }
 
@@ -561,7 +559,7 @@ public class LearningEngController extends BaseController implements Initializab
         if (answer.isEmpty()) {
             return;
         }
-        countdownTimer.stop();
+        super.countdownTimer.stop();
         if (answer.equals(question.getCorrectAnswer())) {
             handleCorrectAnswer();
         } else {
@@ -622,19 +620,19 @@ public class LearningEngController extends BaseController implements Initializab
 
     private void setupCountdownTimer() {
         secondsRemaining = new AtomicInteger(countDownTime);
-        countdownTimer = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), (ActionEvent event) -> {
+        super.countdownTimer = new Timeline(new KeyFrame(javafx.util.Duration.seconds(1), (ActionEvent event) -> {
             secondsRemaining.getAndDecrement();
             countdownLabel.setText(String.valueOf(secondsRemaining.get()) + "s");
 
             if (secondsRemaining.get() <= 0) {
-                countdownTimer.stop();
+                super.countdownTimer.stop();
                 countdownLabel.setText("Time's up!");
                 handleTimeUp();
             }
         }));
 
-        countdownTimer.setCycleCount(Timeline.INDEFINITE);
-        countdownTimer.play();
+        super.countdownTimer.setCycleCount(Timeline.INDEFINITE);
+        super.countdownTimer.play();
     }
 
     private void handleTimeUp() {
