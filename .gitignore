@@ -2,4 +2,4 @@
 target
 out
 Key.java
-Application/userdata
+Application/userdata/*.txt

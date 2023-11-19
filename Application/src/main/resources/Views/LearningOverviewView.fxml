@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
@@ -31,8 +32,9 @@
                                    prefWidth="245.40005493164062"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="249.79999389648438" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES"/>
-                <RowConstraints maxHeight="489.0000118255615" minHeight="10.0" prefHeight="461.8000015258789"
+                <RowConstraints maxHeight="249.79999389648438" minHeight="10.0" prefHeight="35.000003051757815"
+                                vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="489.0000118255615" minHeight="10.0" prefHeight="474.1999969482422"
                                 vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
@@ -41,43 +43,35 @@
                         <GridPane VBox.vgrow="ALWAYS">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="ALWAYS" maxWidth="384.0000244140625" minWidth="10.0"
-                                                   prefWidth="330.3999877929688"/>
+                                                   prefWidth="358.40001220703124"/>
                                 <ColumnConstraints hgrow="ALWAYS" maxWidth="299.0" minWidth="10.0"
-                                                   prefWidth="193.60001220703123"/>
+                                                   prefWidth="165.59998779296876"/>
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints maxHeight="243.20000000000002" minHeight="8.799981880188"
-                                                prefHeight="181.40001831054687" vgrow="SOMETIMES"/>
-                                <RowConstraints maxHeight="334.4000244140625" minHeight="0.0"
-                                                prefHeight="184.59998168945313" vgrow="SOMETIMES"/>
-                                <RowConstraints maxHeight="334.4000244140625" minHeight="10.0"
-                                                prefHeight="108.79996337890623" valignment="CENTER" vgrow="SOMETIMES"/>
+                                                prefHeight="188.4" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="334.4000244140625" minHeight="0.0" prefHeight="284.4"
+                                                vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <PieChart fx:id="pieChartQuestion"/>
-                                <LineChart fx:id="lineChartTime" prefHeight="185.0" prefWidth="287.0"
+                                <PieChart fx:id="pieChartQuestion" layoutX="10.0" layoutY="10.0" title="Số câu trả lời"
+                                          titleSide="BOTTOM">
+                                    <padding>
+                                        <Insets bottom="10.0"/>
+                                    </padding>
+                                </PieChart>
+                                <LineChart fx:id="lineChartTime" prefHeight="185.0" prefWidth="287.0" titleSide="BOTTOM"
                                            GridPane.rowIndex="1">
                                     <xAxis>
                                         <CategoryAxis side="BOTTOM"/>
                                     </xAxis>
                                     <yAxis>
-                                        <NumberAxis side="LEFT"/>
+                                        <NumberAxis label="Thời gian (phút)" side="LEFT"/>
                                     </yAxis>
+                                    <GridPane.margin>
+                                        <Insets bottom="10.0"/>
+                                    </GridPane.margin>
                                 </LineChart>
-                                <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="add-button"
-                                        text="Học offline" GridPane.halignment="CENTER" GridPane.rowIndex="2"
-                                        GridPane.valignment="CENTER">
-                                    <GridPane.margin>
-                                        <Insets right="80.0"/>
-                                    </GridPane.margin>
-                                </Button>
-                                <Button fx:id="btnPK" mnemonicParsing="false" styleClass="add-button" text="PK"
-                                        GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2"
-                                        GridPane.valignment="CENTER">
-                                    <GridPane.margin>
-                                        <Insets/>
-                                    </GridPane.margin>
-                                </Button>
                             </children>
                         </GridPane>
                     </children>
@@ -148,9 +142,9 @@
                 </GridPane>
                 <Pane prefHeight="26.0" prefWidth="438.0" styleClass="title-learning" stylesheets="@../Utils/style.css">
                     <children>
-                        <Label fx:id="progressTitle" layoutX="20.0" layoutY="-1.0" prefHeight="30.0"
-                               styleClass="question-title" stylesheets="@../Utils/style.css" text="Thống kê"
-                               textFill="#FFF" wrapText="true">
+                        <Label fx:id="progressTitle" alignment="TOP_LEFT" layoutX="20.0" layoutY="-1.0"
+                               prefHeight="30.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                               text="Thống kê" textFill="#FFF" wrapText="true">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -162,6 +156,16 @@
                                 <Insets top="5.0"/>
                             </padding>
                         </Label>
+                        <HBox layoutX="299.0" spacing="10.0">
+                            <children>
+                                <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="title-button"
+                                        stylesheets="@../Utils/style.css" text="Học offline"/>
+                                <Button fx:id="btnPK" mnemonicParsing="false" styleClass="title-button" text="PK"/>
+                            </children>
+                            <padding>
+                                <Insets top="3.0"/>
+                            </padding>
+                        </HBox>
                     </children>
                 </Pane>
                 <Pane prefHeight="30.0" prefWidth="768.0" styleClass="title-learning" stylesheets="@../Utils/style.css"

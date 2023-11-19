@@ -17,4 +17,12 @@ public class Constant {
 
     public static final String PATH_TO_INCORRECT_SOUND = "Utils/Audio/incorrect_ai_la_trieu_phu.mp3";
 
+    public static final String IMAGE_BRONZE = "Utils/images/bronze_medal.png";
+    public static final String IMAGE_SILVER = "Utils/images/silver_medal.png";
+    public static final String IMAGE_GOLD = "Utils/images/gold_medal.png";
+    public static final String IMAGE_PLATINUM = "Utils/images/platium_medal.png";
+    public static final String IMAGE_DIAMOND = "Utils/images/diamon_medal.png";
+    public static final String IMAGE_MASTER= "Utils/images/master_medal.png";
+    public static final String IMAGE_GRANDMASTER = "Utils/images/grand_master_medal.png";
+    public static final String IMAGE_CHALLENGER = "Utils/images/challeger_medal.png";
 }
