@@ -16,6 +16,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class DictionaryController extends BaseController implements Initializable {
+    @FXML
+    private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
+
+    @FXML
+    private Button addWordBtn;
+    @FXML
+    private Button translateBtn;
+    @FXML
+    private Button searchWordBtn;
+    @FXML
+    private Button userProfileBtn;
+    @FXML
+    private Button learningEngBtn;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchWordBtn.setOnAction(new EventHandler<ActionEvent>() {
@@ -59,11 +72,4 @@ public class DictionaryController extends BaseController implements Initializabl
         tooltip4.setShowDelay(Duration.seconds(0.3));
         showComponent("/Views/SearchWordView.fxml");
     }
-
-    @FXML
-    private Tooltip tooltip1, tooltip2, tooltip3, tooltip4;
-
-    @FXML
-    private Button addWordBtn, translateBtn,
-            searchWordBtn, userProfileBtn, learningEngBtn;
 }

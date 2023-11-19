@@ -13,9 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import org.w3c.dom.Node;
 
 import java.net.URL;
@@ -30,9 +32,10 @@ public class LearningOverviewController extends BaseController implements Initia
     @FXML
     ImageView imageRanking;
     @FXML
-    Label labelRanking;
+    Label labelRanking, labelTotalAttempt, labelTimeSpend,
+            labelCorrectRatio, labelTimeAverage;
     @FXML
-    ListView<String> listViewRanking;
+    ListView<StudyRecord> listViewRanking;
     @FXML
     PieChart pieChartQuestion;
     @FXML
@@ -58,12 +61,61 @@ public class LearningOverviewController extends BaseController implements Initia
             setupRanking(studyRecord);
             setupPieChart(studyRecord);
             setupLineChart(studyRecord);
-            setupRankingBoard();
+            setupRankingBoard(studyRecord);
+            setupRecordLabel(studyRecord);
         }
     }
 
-    private void setupRankingBoard() {
+    private void setupRecordLabel(StudyRecord studyRecord) {
+        int totalQuestions = studyRecord.getTotalQuestion();
 
+        // Đảm bảo chia số nguyên để tránh mất thông tin khi tính toán tỉ lệ
+        double correctRatio = ((double) studyRecord.getCorrectQuestions() / totalQuestions) * 100;
+
+        // Chia thời gian theo số lần thử để tính thời gian trung bình mỗi lần thử
+        double timeAverage = (double) studyRecord.getTotalTimeSpend().toSeconds() / studyRecord.getTimesAttempt();
+
+        Duration totalTimeDuration = studyRecord.getTotalTimeSpend();
+        long hours = totalTimeDuration.toHours();
+        long minutes = totalTimeDuration.minusHours(hours).toMinutes();
+        long seconds = totalTimeDuration.minusHours(hours).minusMinutes(minutes).getSeconds();
+
+        String timeSpendText = "";
+        if (hours > 0) {
+            timeSpendText += hours + " giờ ";
+        }
+        if (minutes > 0 || (hours == 0 && seconds == 0)) {
+            timeSpendText += minutes + " phút ";
+        }
+        if (seconds > 0 || (hours == 0 && minutes == 0)) {
+            timeSpendText += seconds + " giây";
+        }
+        labelTimeSpend.setWrapText(true);
+        labelTotalAttempt.setText("Tổng số lần học: " + studyRecord.getTimesAttempt());
+        labelTimeSpend.setText("Tổng thời gian học: " + timeSpendText);
+        labelCorrectRatio.setText("Tỉ lệ trả lời đúng: " + String.format("%.2f", correctRatio) + "%");
+        labelTimeAverage.setText("Thời gian trung bình: " + String.format("%.2f", timeAverage) + "s/q");
+    }
+
+    private void setupRankingBoard(StudyRecord studyRecord) {
+        ObservableList<StudyRecord> studyRecords = FXCollections.observableArrayList(
+                studyRecord
+        );
+        listViewRanking.setItems(studyRecords);
+
+        // Tùy chỉnh cách hiển thị mỗi ô trong ListView
+        listViewRanking.setCellFactory(param -> new ListCell<StudyRecord>() {
+            @Override
+            protected void updateItem(StudyRecord item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText("1. " + "You\t" + item.getTotalScore() + " điểm");
+                }
+            }
+        });
     }
 
     private void setupLineChart(StudyRecord studyRecord) {
@@ -89,7 +141,6 @@ public class LearningOverviewController extends BaseController implements Initia
         // Add series to the LineChart
         lineChartTime.getData().add(series);
     }
-
 
 
     private void setupPieChart(StudyRecord studyRecord) {
