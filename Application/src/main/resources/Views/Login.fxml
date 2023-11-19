@@ -38,7 +38,7 @@
                             <underline>true</underline> <!-- Underline the hyperlink text -->
                             <textFill>#FF0000</textFill> <!-- Set the text color -->
                         </Hyperlink>
-                        <TextField fx:id="login_showPassword" layoutX="182.0" layoutY="324.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" />
+                        <TextField fx:id="login_showPassword" layoutX="182.0" layoutY="150.0" prefHeight="26.0" prefWidth="222.0" promptText="Password" visible="false" />
                     </children>
                 </AnchorPane>
                 <!--                <AnchorPane fx:id="signup_form" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="410.0" prefWidth="610.0" visible="false">-->
