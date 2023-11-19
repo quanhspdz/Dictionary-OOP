@@ -244,14 +244,12 @@ public class LoginController implements Initializable {
 
         alertMessage alert = new alertMessage();
 
-        // check if we have the empty fields.
+
         if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty() || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty() || signup_selectQuestion.getSelectionModel().getSelectedItem() == null || signup_answer.getText().isEmpty()) {
             alert.errorMessage("Bạn cần nhập đầy đủ thông tin");
         } else if (signup_password.getText() == signup_cPassword.getText()) {
-            // Check if the password math with the information.
             alert.errorMessage("Mật khẩu xác nhận không trùng khớp");
         } else if (signup_password.getText().length() < 8) {
-            // CHECK IF THE LENGTH OF PASSWORD VALUE IS LESS THAN TO 8
             alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
         } else {
             String checkUsername = "SELECT * FROM users WHERE username = '" + signup_username.getText() + "'";
@@ -363,13 +361,13 @@ public class LoginController implements Initializable {
 
     public void switchForm(ActionEvent event) {
 
-        // THE REGISTRATION FORM WILL BE VISIBLE
+        // the register form will be visible
         if (event.getSource() == signup_loginAccount || event.getSource() == forgot_backBtn) {
             signup_form.setVisible(false);
             login_form.setVisible(true);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
-        } else if (event.getSource() == login_create) { // THE LOGIN FORM WILL BE VISIBLE
+        } else if (event.getSource() == login_create) { // the login form will be visible
             signup_form.setVisible(true);
             login_form.setVisible(false);
             forgot_form.setVisible(false);
@@ -379,7 +377,7 @@ public class LoginController implements Initializable {
             login_form.setVisible(false);
             forgot_form.setVisible(true);
             changePass_form.setVisible(false);
-            // TO SHOW THE DATA TO OUR COMBOBOX
+            // show data on combobox
             forgotListQuestion();
         } else if (event.getSource() == changePass_backBtn) {
             signup_form.setVisible(false);
