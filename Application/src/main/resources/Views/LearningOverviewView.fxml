@@ -146,8 +146,7 @@
                         <BorderPane GridPane.rowIndex="1">
                             <center>
                                 <ListView fx:id="listViewRanking" prefHeight="71.0" prefWidth="331.0"
-                                          styleClass="list-cell"
-                                          stylesheets="@../Utils/style.css"/>
+                                          styleClass="list-cell" stylesheets="@../Utils/style.css"/>
                             </center>
                             <top>
                                 <Pane prefHeight="30.0" prefWidth="768.0" styleClass="title-learning"

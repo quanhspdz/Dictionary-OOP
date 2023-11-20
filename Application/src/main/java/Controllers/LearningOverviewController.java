@@ -62,19 +62,24 @@ public class LearningOverviewController extends BaseController implements Initia
     }
 
     private void loadStudyRecord() {
-        studyRecord = StudyRecord.readRecordFile();
-        if (user != null) {
-            if (user.getStudyRecord() != null) {
-                studyRecord = user.getStudyRecord();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                studyRecord = StudyRecord.readRecordFile();
+                if (user != null) {
+                    if (user.getStudyRecord() != null) {
+                        studyRecord = user.getStudyRecord();
+                    }
+                }
+                if (studyRecord != null) {
+                    setupRanking(studyRecord);
+                    setupPieChart(studyRecord);
+                    setupLineChart(studyRecord);
+                    setupRecordLabel(studyRecord);
+                }
+                setupRankingBoard();
             }
-        }
-        if (studyRecord != null) {
-            setupRanking(studyRecord);
-            setupPieChart(studyRecord);
-            setupLineChart(studyRecord);
-            setupRecordLabel(studyRecord);
-        }
-        setupRankingBoard();
+        });
     }
 
     private void setupRecordLabel(StudyRecord studyRecord) {
