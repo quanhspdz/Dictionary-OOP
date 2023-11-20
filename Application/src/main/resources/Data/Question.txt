@@ -1,0 +1,602 @@
+[
+  {
+    "questionTitle": "Which of the following is a synonym for 'abundant'?",
+    "answerA": "A. Scarce",
+    "answerB": "B. Plentiful",
+    "answerC": "C. Limited",
+    "answerD": "D. Sparse",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Vocabulary"
+  },
+  {
+    "questionTitle": "In a business context, what does 'ROI' stand for?",
+    "answerA": "A. Return on Investment",
+    "answerB": "B. Revenue of Income",
+    "answerC": "C. Rate of Interest",
+    "answerD": "D. Risk of Inactivity",
+    "correctAnswer": "A",
+    "difficulty": 2,
+    "subject": "Business"
+  },
+  {
+    "questionTitle": "What is the opposite of 'flexible'?",
+    "answerA": "A. Adaptable",
+    "answerB": "B. Rigid",
+    "answerC": "C. Versatile",
+    "answerD": "D. Elastic",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Vocabulary"
+  },
+  {
+    "questionTitle": "Which tense is used to describe an action that will be completed before a specific point in the future?",
+    "answerA": "A. Present Perfect",
+    "answerB": "B. Future Perfect",
+    "answerC": "C. Past Perfect",
+    "answerD": "D. Simple Future",
+    "correctAnswer": "B",
+    "difficulty": 3,
+    "subject": "Grammar"
+  },
+  {
+    "questionTitle": "What is the purpose of a cover letter when applying for a job?",
+    "answerA": "A. List of References",
+    "answerB": "B. Personal Biography",
+    "answerC": "C. Introduction and Interest",
+    "answerD": "D. Academic Transcript",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Business Communication"
+  },
+  {
+    "questionTitle": "Which word is a synonym for 'innovative'?",
+    "answerA": "A. Conventional",
+    "answerB": "B. Traditional",
+    "answerC": "C. Creative",
+    "answerD": "D. Conservative",
+    "correctAnswer": "C",
+    "difficulty": 1,
+    "subject": "Vocabulary"
+  },
+  {
+    "questionTitle": "What does the acronym 'WWW' stand for?",
+    "answerA": "A. World Wild Web",
+    "answerB": "B. World Wide Web",
+    "answerC": "C. World Web Wonders",
+    "answerD": "D. Western World Web",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Technology"
+  },
+  {
+    "questionTitle": "In the expression 'think outside the box,' what does 'the box' represent?",
+    "answerA": "A. A physical container",
+    "answerB": "B. A mental constraint",
+    "answerC": "C. A square-shaped object",
+    "answerD": "D. A cardboard box",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Idioms"
+  },
+  {
+    "questionTitle": "Which of the following is a primary function of the human resources department in a company?",
+    "answerA": "A. Marketing",
+    "answerB": "B. Sales",
+    "answerC": "C. Recruitment and Staffing",
+    "answerD": "D. Product Development",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Business"
+  },
+  {
+    "questionTitle": "What is the correct spelling of the word meaning 'a temporary pause or break'?",
+    "answerA": "A. Intermission",
+    "answerB": "B. Interruption",
+    "answerC": "C. Interuption",
+    "answerD": "D. Interrmission",
+    "correctAnswer": "A",
+    "difficulty": 1,
+    "subject": "Spelling"
+  },
+  {
+    "questionTitle": "Which of the following sentences is grammatically correct?",
+    "answerA": "A. The cat and dog is playing in the yard.",
+    "answerB": "B. The cat and dog are playing in the yard.",
+    "answerC": "C. The cat and dog playing in the yard.",
+    "answerD": "D. Playing in the yard, the cat and dog.",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Grammar"
+  },
+  {
+    "questionTitle": "What is the purpose of a SWOT analysis in business?",
+    "answerA": "A. Evaluate Employee Performance",
+    "answerB": "B. Assess Market Opportunities",
+    "answerC": "C. Calculate Financial Ratios",
+    "answerD": "D. Analyze Customer Feedback",
+    "correctAnswer": "B",
+    "difficulty": 3,
+    "subject": "Business"
+  },
+  {
+    "questionTitle": "Which of the following is a characteristic of effective communication?",
+    "answerA": "A. Ambiguity",
+    "answerB": "B. Clarity",
+    "answerC": "C. Misunderstanding",
+    "answerD": "D. Complexity",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Communication"
+  },
+  {
+    "questionTitle": "What is the primary purpose of an agenda in a business meeting?",
+    "answerA": "A. Record Meeting Minutes",
+    "answerB": "B. Set Meeting Goals",
+    "answerC": "C. Distribute Company News",
+    "answerD": "D. Provide Employee Feedback",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Business Communication"
+  },
+  {
+    "questionTitle": "Which of the following is a renewable source of energy?",
+    "answerA": "A. Natural Gas",
+    "answerB": "B. Coal",
+    "answerC": "C. Solar Power",
+    "answerD": "D. Nuclear Power",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Environment"
+  },
+  {
+    "questionTitle": "What is the opposite of 'temporary'?",
+    "answerA": "A. Brief",
+    "answerB": "B. Lasting",
+    "answerC": "C. Momentary",
+    "answerD": "D. Short-lived",
+    "correctAnswer": "B",
+    "difficulty": 1,
+    "subject": "Vocabulary"
+  },
+  {
+    "questionTitle": "Which of the following is a common function of a spreadsheet software?",
+    "answerA": "A. Word Processing",
+    "answerB": "B. Graphic Design",
+    "answerC": "C. Data Analysis",
+    "answerD": "D. Video Editing",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Technology"
+  },
+  {
+    "questionTitle": "What does the term 'net income' represent in financial statements?",
+    "answerA": "A. Total Revenue",
+    "answerB": "B. Total Expenses",
+    "answerC": "C. Profit After Expenses",
+    "answerD": "D. Gross Profit",
+    "correctAnswer": "C",
+    "difficulty": 3,
+    "subject": "Business"
+  },
+  {
+    "questionTitle": "Which of the following is an example of a non-renewable resource?",
+    "answerA": "A. Wind",
+    "answerB": "B. Solar Power",
+    "answerC": "C. Oil",
+    "answerD": "D. Hydroelectricity",
+    "correctAnswer": "C",
+    "difficulty": 2,
+    "subject": "Environment"
+  },
+  {
+    "questionTitle": "What is the purpose of a brainstorming session in a business meeting?",
+    "answerA": "A. Make Final Decisions",
+    "answerB": "B. Generate Ideas",
+    "answerC": "C. Approve Budgets",
+    "answerD": "D. Review Project Status",
+    "correctAnswer": "B",
+    "difficulty": 2,
+    "subject": "Business Communication"
+  },
+  {
+      "questionTitle": "What is the main purpose of a company's mission statement?",
+      "answerA": "A. Set Financial Goals",
+      "answerB": "B. Define Company Values and Objectives",
+      "answerC": "C. Outline Employee Responsibilities",
+      "answerD": "D. Summarize Annual Reports",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Business"
+    },
+    {
+      "questionTitle": "Which of the following is an example of a soft skill?",
+      "answerA": "A. Project Management",
+      "answerB": "B. Technical Proficiency",
+      "answerC": "C. Communication",
+      "answerD": "D. Data Analysis",
+      "correctAnswer": "C",
+      "difficulty": 1,
+      "subject": "Employability Skills"
+    },
+    {
+      "questionTitle": "What does the acronym 'FAQ' stand for?",
+      "answerA": "A. Frequently Asked Questions",
+      "answerB": "B. Formal Answer Quotient",
+      "answerC": "C. Finding Answers Quickly",
+      "answerD": "D. Frequently Answered Queries",
+      "correctAnswer": "A",
+      "difficulty": 1,
+      "subject": "Technology"
+    },
+    {
+      "questionTitle": "In the context of business negotiations, what does 'MOU' stand for?",
+      "answerA": "A. Memorandum of Understanding",
+      "answerB": "B. Meeting of Unity",
+      "answerC": "C. Moment of Urgency",
+      "answerD": "D. Mode of Undertaking",
+      "correctAnswer": "A",
+      "difficulty": 2,
+      "subject": "Business"
+    },
+    {
+      "questionTitle": "Which of the following is a characteristic of effective teamwork?",
+      "answerA": "A. Lack of Communication",
+      "answerB": "B. Individual Autonomy",
+      "answerC": "C. Collaboration",
+      "answerD": "D. Competition",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Teamwork"
+    },
+    {
+      "questionTitle": "What is the purpose of a product demonstration in sales?",
+      "answerA": "A. Provide Customer Feedback",
+      "answerB": "B. Train Sales Representatives",
+      "answerC": "C. Showcase Product Features",
+      "answerD": "D. Generate Monthly Reports",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Sales"
+    },
+    {
+      "questionTitle": "Which of the following is a common component of a résumé?",
+      "answerA": "A. Company Revenue",
+      "answerB": "B. Personal Hobbies",
+      "answerC": "C. Contact Information",
+      "answerD": "D. Political Affiliation",
+      "correctAnswer": "C",
+      "difficulty": 1,
+      "subject": "Employability Skills"
+    },
+    {
+      "questionTitle": "What does the term 'market segmentation' refer to in marketing?",
+      "answerA": "A. Merging Companies",
+      "answerB": "B. Dividing the Market into Subgroups",
+      "answerC": "C. Expanding Global Reach",
+      "answerD": "D. Decreasing Product Prices",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Marketing"
+    },
+    {
+      "questionTitle": "Which of the following is a characteristic of effective leadership?",
+      "answerA": "A. Micromanaging Team Members",
+      "answerB": "B. Providing Clear Guidance",
+      "answerC": "C. Avoiding Decision-Making",
+      "answerD": "D. Ignoring Employee Feedback",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Leadership"
+    },
+    {
+      "questionTitle": "What is the primary purpose of a company's annual report?",
+      "answerA": "A. Advertise Products",
+      "answerB": "B. Share Financial Performance",
+      "answerC": "C. Introduce New Employees",
+      "answerD": "D. Announce Corporate Events",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Business"
+    },
+    {
+      "questionTitle": "Which of the following is a characteristic of effective time management?",
+      "answerA": "A. Procrastination",
+      "answerB": "B. Setting Priorities",
+      "answerC": "C. Multitasking",
+      "answerD": "D. Ignoring Deadlines",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Time Management"
+    },
+    {
+      "questionTitle": "What does the term 'supply chain' refer to in business?",
+      "answerA": "A. Customer Relations",
+      "answerB": "B. Production Process",
+      "answerC": "C. Product Distribution",
+      "answerD": "D. Employee Training",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Business"
+    },
+    {
+      "questionTitle": "Which of the following is a common reason for workplace conflict?",
+      "answerA": "A. Open Communication",
+      "answerB": "B. Shared Goals",
+      "answerC": "C. Differences in Opinion",
+      "answerD": "D. Team Collaboration",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Conflict Resolution"
+    },
+    {
+      "questionTitle": "In financial accounting, what is the purpose of an income statement?",
+      "answerA": "A. Summarize Company Expenses",
+      "answerB": "B. List Company Assets",
+      "answerC": "C. Report Revenue and Expenses",
+      "answerD": "D. Evaluate Employee Performance",
+      "correctAnswer": "C",
+      "difficulty": 3,
+      "subject": "Business"
+    },
+    {
+      "questionTitle": "Which of the following is a benefit of using cloud computing in business?",
+      "answerA": "A. Limited Accessibility",
+      "answerB": "B. Increased Data Security",
+      "answerC": "C. Offline Data Storage",
+      "answerD": "D. Cost Savings",
+      "correctAnswer": "D",
+      "difficulty": 2,
+      "subject": "Technology"
+    },
+    {
+      "questionTitle": "What is the purpose of a performance appraisal in the workplace?",
+      "answerA": "A. Assess Employee Training Needs",
+      "answerB": "B. Set Salary Levels",
+      "answerC": "C. Evaluate Employee Performance",
+      "answerD": "D. Advertise Job Openings",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Human Resources"
+    },
+    {
+      "questionTitle": "What is the main focus of a company's marketing strategy?",
+      "answerA": "A. Employee Training",
+      "answerB": "B. Customer Satisfaction",
+      "answerC": "C. Product Development",
+      "answerD": "D. Financial Reports",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Marketing"
+    },
+    {
+      "questionTitle": "In the context of project management, what is the purpose of a Gantt chart?",
+      "answerA": "A. Budget Planning",
+      "answerB": "B. Schedule Visualization",
+      "answerC": "C. Risk Assessment",
+      "answerD": "D. Quality Control",
+      "correctAnswer": "B",
+      "difficulty": 2,
+      "subject": "Project Management"
+    },
+    {
+      "questionTitle": "What is the primary function of the Federal Reserve in the United States?",
+      "answerA": "A. Conducting Elections",
+      "answerB": "B. Regulating Financial Institutions",
+      "answerC": "C. Providing Healthcare Services",
+      "answerD": "D. Environmental Protection",
+      "correctAnswer": "B",
+      "difficulty": 3,
+      "subject": "Economics"
+    },
+    {
+      "questionTitle": "Which of the following is an example of a tangible asset?",
+      "answerA": "A. Intellectual Property",
+      "answerB": "B. Brand Reputation",
+      "answerC": "C. Office Furniture",
+      "answerD": "D. Employee Skills",
+      "correctAnswer": "C",
+      "difficulty": 2,
+      "subject": "Finance"
+    },
+    {
+        "questionTitle": "Which of the following is a synonym for 'obsolete'?",
+        "answerA": "A. Modern",
+        "answerB": "B. Outdated",
+        "answerC": "C. Contemporary",
+        "answerD": "D. Current",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Vocabulary"
+      },
+      {
+        "questionTitle": "In a business email, what does 'FYI' stand for?",
+        "answerA": "A. For Your Interest",
+        "answerB": "B. For Your Information",
+        "answerC": "C. For Your Inquiry",
+        "answerD": "D. For Your Instruction",
+        "correctAnswer": "B",
+        "difficulty": 1,
+        "subject": "Business Communication"
+      },
+      {
+        "questionTitle": "What is the opposite of 'cooperate'?",
+        "answerA": "A. Collaborate",
+        "answerB": "B. Compete",
+        "answerC": "C. Assist",
+        "answerD": "D. Support",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Vocabulary"
+      },
+      {
+        "questionTitle": "Which of the following is a conditional sentence type 1?",
+        "answerA": "A. If I had known, I would have come.",
+        "answerB": "B. If I knew, I will come.",
+        "answerC": "C. If I know, I come.",
+        "answerD": "D. If I know, I would have come.",
+        "correctAnswer": "C",
+        "difficulty": 3,
+        "subject": "Grammar"
+      },
+      {
+        "questionTitle": "What is the purpose of a mission statement in a company?",
+        "answerA": "A. Summarize Financial Data",
+        "answerB": "B. Outline Future Plans",
+        "answerC": "C. Record Employee Attendance",
+        "answerD": "D. Analyze Market Trends",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Business"
+      },
+      {
+        "questionTitle": "Which word is a synonym for 'adaptable'?",
+        "answerA": "A. Inflexible",
+        "answerB": "B. Rigid",
+        "answerC": "C. Flexible",
+        "answerD": "D. Stiff",
+        "correctAnswer": "C",
+        "difficulty": 1,
+        "subject": "Vocabulary"
+      },
+      {
+        "questionTitle": "What does the acronym 'PDF' stand for?",
+        "answerA": "A. Personal Document Format",
+        "answerB": "B. Portable Data File",
+        "answerC": "C. Portable Document Format",
+        "answerD": "D. Personal Data File",
+        "correctAnswer": "C",
+        "difficulty": 1,
+        "subject": "Technology"
+      },
+      {
+        "questionTitle": "In the business world, what does 'B2B' refer to?",
+        "answerA": "A. Back to Basics",
+        "answerB": "B. Business to Business",
+        "answerC": "C. Buy to Borrow",
+        "answerD": "D. Before to Behind",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Business"
+      },
+      {
+        "questionTitle": "Which of the following is a characteristic of effective leadership?",
+        "answerA": "A. Micro-Management",
+        "answerB": "B. Authoritarianism",
+        "answerC": "C. Delegation",
+        "answerD": "D. Strict Control",
+        "correctAnswer": "C",
+        "difficulty": 1,
+        "subject": "Leadership"
+      },
+      {
+        "questionTitle": "What is the correct spelling of the word meaning 'a feeling of intense longing'?",
+        "answerA": "A. Nostalgy",
+        "answerB": "B. Nostalgia",
+        "answerC": "C. Nostalga",
+        "answerD": "D. Nostaljea",
+        "correctAnswer": "B",
+        "difficulty": 1,
+        "subject": "Spelling"
+      },
+      {
+        "questionTitle": "Which of the following sentences is grammatically correct?",
+        "answerA": "A. Neither of them are coming to the party.",
+        "answerB": "B. Neither of them is coming to the party.",
+        "answerC": "C. Neither of them were coming to the party.",
+        "answerD": "D. Neither of them am coming to the party.",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Grammar"
+      },
+      {
+        "questionTitle": "What is the purpose of a cost-benefit analysis in business decision-making?",
+        "answerA": "A. Evaluate Employee Performance",
+        "answerB": "B. Assess Market Opportunities",
+        "answerC": "C. Calculate Financial Ratios",
+        "answerD": "D. Weighing Pros and Cons",
+        "correctAnswer": "D",
+        "difficulty": 3,
+        "subject": "Business"
+      },
+      {
+        "questionTitle": "Which of the following is an example of non-verbal communication?",
+        "answerA": "A. Email",
+        "answerB": "B. Phone Call",
+        "answerC": "C. Facial Expression",
+        "answerD": "D. Memo",
+        "correctAnswer": "C",
+        "difficulty": 1,
+        "subject": "Communication"
+      },
+      {
+        "questionTitle": "What is the primary purpose of a memorandum in a business context?",
+        "answerA": "A. Informing the public",
+        "answerB": "B. Internal communication",
+        "answerC": "C. Advertising a product",
+        "answerD": "D. Legal documentation",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Business Communication"
+      },
+      {
+        "questionTitle": "Which of the following is a source of renewable energy?",
+        "answerA": "A. Coal",
+        "answerB": "B. Natural Gas",
+        "answerC": "C. Wind Power",
+        "answerD": "D. Petroleum",
+        "correctAnswer": "C",
+        "difficulty": 2,
+        "subject": "Environment"
+      },
+      {
+        "questionTitle": "What is the opposite of 'permanent'?",
+        "answerA": "A. Temporary",
+        "answerB": "B. Eternal",
+        "answerC": "C. Enduring",
+        "answerD": "D. Lasting",
+        "correctAnswer": "A",
+        "difficulty": 1,
+        "subject": "Vocabulary"
+      },
+      {
+        "questionTitle": "Which of the following is a common function of presentation software?",
+        "answerA": "A. Spreadsheet",
+        "answerB": "B. Word Processing",
+        "answerC": "C. Data Analysis",
+        "answerD": "D. Slideshow Creation",
+        "correctAnswer": "D",
+        "difficulty": 2,
+        "subject": "Technology"
+      },
+      {
+        "questionTitle": "What is the purpose of a balance sheet in financial reporting?",
+        "answerA": "A. Summarize Revenue",
+        "answerB": "B. List Expenses",
+        "answerC": "C. Show Financial Position",
+        "answerD": "D. Record Daily Transactions",
+        "correctAnswer": "C",
+        "difficulty": 3,
+        "subject": "Business"
+      },
+      {
+        "questionTitle": "Which of the following is a non-renewable resource?",
+        "answerA": "A. Biomass",
+        "answerB": "B. Geothermal Energy",
+        "answerC": "C. Coal",
+        "answerD": "D. Hydroelectricity",
+        "correctAnswer": "C",
+        "difficulty": 2,
+        "subject": "Environment"
+      },
+      {
+        "questionTitle": "What is the purpose of a status report in project management?",
+        "answerA": "A. Share Personal Updates",
+        "answerB": "B. Monitor Project Progress",
+        "answerC": "C. Advertise New Products",
+        "answerD": "D. Analyze Market Trends",
+        "correctAnswer": "B",
+        "difficulty": 2,
+        "subject": "Business Communication"
+      }
+]

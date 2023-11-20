@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="container" prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.LearningEngController">
+
+    <SplitPane dividerPositions="0.5" layoutX="1" layoutY="1" orientation="VERTICAL" prefHeight="510.0"
+               prefWidth="768.0">
+        <items>
+            <AnchorPane fx:id="headerContainer" prefHeight="100" prefWidth="769" styleClass="container">
+                <Pane prefHeight="108.0" prefWidth="769" styleClass="definition-wrapper"
+                      stylesheets="@../Utils/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.7999999999999545" AnchorPane.topAnchor="0.0">
+
+                    <Pane prefHeight="30.0" prefWidth="768.0" styleClass="title-learning"
+                          stylesheets="@../Utils/style.css">
+                        <children>
+                            <Label fx:id="progressTitle" layoutX="20.0" layoutY="-1.0" prefHeight="30.0"
+                                   prefWidth="100.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                                   text="Tiến trình" textFill="#FFF" wrapText="true">
+                                <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <image>
+                                            <Image url="@../Utils/icons/success.png"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Label>
+                        </children>
+                    </Pane>
+
+                    <Pane layoutX="-1.0" layoutY="30.0" prefHeight="78.0" prefWidth="769"
+                          styleClass="definition-wrapper" stylesheets="@../Utils/style.css">
+                        <children>
+                            <AnchorPane layoutX="50.0" layoutY="-1.0">
+                                <children>
+                                    <Pane layoutX="1.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle1" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText1" layoutX="10.0" layoutY="31.0" text="1"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="71.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle2" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText2" layoutX="10.0" layoutY="31.0" text="2"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="141.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle3" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText3" layoutX="10.0" layoutY="31.0" text="3"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="211.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle4" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText4" layoutX="10.0" layoutY="31.0" text="4"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="281.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle5" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText5" layoutX="10.0" layoutY="31.0" text="5"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="351.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle6" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText6" layoutX="10.0" layoutY="31.0" text="6"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="421.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle7" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText7" layoutX="10.0" layoutY="31.0" text="7"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="491.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle8" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText8" layoutX="10.0" layoutY="31.0" text="8"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="561.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle9" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Pane layoutX="30.0" layoutY="38.0" opacity="0.74" prefHeight="1.0"
+                                                  prefWidth="40.0" styleClass="explanation-menu"/>
+                                            <Label fx:id="progressText9" layoutX="10.0" layoutY="31.0" text="9"/>
+                                        </children>
+                                    </Pane>
+                                    <Pane layoutX="631.5" prefHeight="78" prefWidth="70">
+                                        <children>
+                                            <Circle fx:id="circle10" centerX="40.0" centerY="50.0" fill="WHITE"
+                                                    layoutX="-26.0" layoutY="-10.0" radius="15.0" stroke="GRAY"
+                                                    strokeWidth="1.0"/>
+                                            <Label fx:id="progressText10" layoutX="7.0" layoutY="31.0" text="10"/>
+                                        </children>
+                                    </Pane>
+                                </children>
+                            </AnchorPane>
+                        </children>
+                    </Pane>
+
+                </Pane>
+            </AnchorPane>
+            <AnchorPane fx:id="bodyContainer" prefHeight="402" prefWidth="769" styleClass="container">
+                <children>
+                    <Pane fx:id="questionAndAnswerPane" prefHeight="402.0" prefWidth="605.0"
+                          styleClass="definition-wrapper" stylesheets="@../Utils/style.css"
+                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="163.0"
+                          AnchorPane.topAnchor="0.0">
+                        <Pane prefHeight="30.0" prefWidth="602.0" styleClass="title-learning"
+                              stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label fx:id="questionTitle" layoutX="20.0" layoutY="-8.0" prefHeight="45.0"
+                                       prefWidth="230.0" styleClass="question-title" stylesheets="@../Utils/style.css"
+                                       text="Câu hỏi" textFill="#FFF">
+                                    <graphic>
+                                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../Utils/icons/question.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Label>
+                            </children>
+                        </Pane>
+                        <Pane layoutX="65.0" layoutY="47.0" prefHeight="90.0" prefWidth="470.0"
+                              styleClass="question-box" stylesheets="@../Utils/style.css">
+                            <children>
+                                <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0"
+                                       layoutY="5" prefHeight="80" prefWidth="460" styleClass="question-text"
+                                       stylesheets="@../Utils/style.css" text="ab" wrapText="true"/>
+                            </children>
+                        </Pane>
+
+                        <RadioButton fx:id="answerBtnA" layoutX="65.0" layoutY="170.0" prefHeight="60" prefWidth="200"
+                                     styleClass="answer-button" stylesheets="@../Utils/style.css"
+                                     text="A. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp traiA. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
+                        <RadioButton fx:id="answerBtnB" layoutX="335.0" layoutY="170.0" prefHeight="60" prefWidth="200"
+                                     styleClass="answer-button" stylesheets="@../Utils/style.css"
+                                     text="B. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
+                        <RadioButton fx:id="answerBtnC" layoutX="65.0" layoutY="250.0" prefHeight="60" prefWidth="200"
+                                     styleClass="answer-button" stylesheets="@../Utils/style.css"
+                                     text="C. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
+                        <RadioButton fx:id="answerBtnD" layoutX="335.0" layoutY="250.0" prefHeight="60" prefWidth="200"
+                                     styleClass="answer-button" stylesheets="@../Utils/style.css"
+                                     text="D. Quang Anh đẹp trai">
+                            <wrapText>true</wrapText>
+                        </RadioButton>
+                        <Button fx:id="nextBtn" layoutX="250.0" layoutY="334.0" mnemonicParsing="false"
+                                prefHeight="32.0" prefWidth="60.0" styleClass="add-button"
+                                stylesheets="@../Utils/style.css" text="Kiểm tra"/>
+                    </Pane>
+                    <VBox layoutX="603.0" prefHeight="401.0" prefWidth="166.0" styleClass="definition-wrapper"
+                          stylesheets="@../Utils/style.css" AnchorPane.leftAnchor="603.2"
+                          AnchorPane.rightAnchor="0.9999999999999716" AnchorPane.topAnchor="0.0">
+                        <children>
+
+                            <Pane prefHeight="30.0" prefWidth="166.0" styleClass="title-learning"
+                                  stylesheets="@../Utils/style.css">
+                                <children>
+                                    <Label fx:id="infoTitle" layoutX="20.0" layoutY="-8.0" prefHeight="45.0"
+                                           prefWidth="230.0" styleClass="question-title"
+                                           stylesheets="@../Utils/style.css" text="Thông tin" textFill="#FFF">
+                                        <graphic>
+                                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                                       preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../Utils/icons/informative.png"/>
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                    </Label>
+                                </children>
+                            </Pane>
+                            <HBox styleClass="box" stylesheets="@../Utils/style.css">
+                                <children>
+                                    <Label prefWidth="50.0" text="Timer:" textFill="#007acc">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="countdownLabel" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT"
+                                           text="30s" textFill="RED">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                </children>
+                                <VBox.margin>
+                                    <Insets left="10.0" right="10.0" top="10.0"/>
+                                </VBox.margin>
+                            </HBox>
+                            <HBox>
+                                <children>
+                                    <Label prefWidth="50.0" text="Score:" textFill="#007acc">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                    <Label fx:id="scoreLabel" text="0/100" textFill="#007acc">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                    </Label>
+                                </children>
+                                <opaqueInsets>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                </opaqueInsets>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0"/>
+                                </VBox.margin>
+                            </HBox>
+                            <Pane opacity="0.5" prefHeight="1.0" prefWidth="40.0" styleClass="explanation-menu">
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                                </VBox.margin>
+                            </Pane>
+                            <Label text="Trợ giúp:" textFill="#007acc">
+                                <font>
+                                    <Font name="System Bold" size="14.0"/>
+                                </font>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0"/>
+                                </VBox.margin>
+                            </Label>
+                            <HBox spacing="10.0">
+                                <children>
+                                    <Button fx:id="fiftyPercentBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0"
+                                            styleClass="edit-button" stylesheets="@../Utils/style.css">
+                                        <graphic>
+                                            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
+                                                       preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../Utils/icons/50-percent.png"/>
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                        <HBox.margin>
+                                            <Insets/>
+                                        </HBox.margin>
+                                        <tooltip>
+                                            <Tooltip text="Bỏ đi 2 phương án sai"/>
+                                        </tooltip>
+                                    </Button>
+                                    <Button fx:id="teamworkBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
+                                            prefWidth="40.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
+                                        <graphic>
+                                            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
+                                                       preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../Utils/icons/collaborative.png"/>
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                        <tooltip>
+                                            <Tooltip text="Trợ giúp của tổ tư vấn"/>
+                                        </tooltip>
+                                    </Button>
+                                    <Button fx:id="shuffleBtn" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0"
+                                            prefWidth="40.0" styleClass="edit-button" stylesheets="@../Utils/style.css">
+                                        <graphic>
+                                            <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
+                                                       preserveRatio="true">
+                                                <image>
+                                                    <Image url="@../Utils/icons/shuffle.png"/>
+                                                </image>
+                                            </ImageView>
+                                        </graphic>
+                                        <tooltip>
+                                            <Tooltip text="Đổi câu hỏi khác"/>
+                                        </tooltip>
+                                    </Button>
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+                                </VBox.margin>
+                            </HBox>
+                            <VBox VBox.vgrow="ALWAYS" fx:id="vboxListRanking">
+                                <children>
+                                    <Pane opacity="0.5" prefHeight="1.0" prefWidth="40.0" styleClass="explanation-menu">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                                        </VBox.margin>
+                                    </Pane>
+                                    <Label text="Xếp hạng:" textFill="#007acc">
+                                        <font>
+                                            <Font name="System Bold" size="14.0"/>
+                                        </font>
+                                        <VBox.margin>
+                                            <Insets left="10.0" right="10.0"/>
+                                        </VBox.margin>
+                                    </Label>
+                                    <ListView prefHeight="150.0" styleClass="list-cell" VBox.vgrow="ALWAYS">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0" right="10.0" top="5.0"/>
+                                        </VBox.margin>
+                                    </ListView>
+                                </children>
+                            </VBox>
+                        </children>
+                    </VBox>
+                </children>
+            </AnchorPane>
+        </items>
+    </SplitPane>
+
+
+</AnchorPane>

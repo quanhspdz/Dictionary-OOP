@@ -1,6 +1,5 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+/* Import the Roboto font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 @font-face {
     font-family: 'Roboto', sans-serif;
@@ -262,4 +261,114 @@
 }
 .exit-button:hover{
      -fx-background-color: #b22a00;
+}
+.question-text{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 14px;
+}
+
+.answer-text{
+    -fx-text-fill: #333333;
+    -fx-border-color: #4285f4;
+    -fx-background-color: #FFF;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.answer-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-border-color: #4285f4;
+    -fx-background-color: #FFF;
+    -fx-font-size: 14px;
+    -fx-border-width: 1.5;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+.answer-button:pressed{
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-background-color: #dfe6e9;
+}
+.answer-button:hover {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+.answer-button:selected {
+    -fx-text-fill: #FFF;
+    -fx-background-color: #4285f4;
+}
+.answer-button .radio {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.answer-button .box {
+    -fx-padding: 0;
+}
+.answer-button:selected .dot {
+    -fx-background-color: transparent;
+}
+.question-box{
+     -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
+     -fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);
+     -fx-background-radius: 5;
+     -fx-border-radius: 5;
+}
+
+.title-learning{
+     -fx-background-color:   #4285f4;
+     -fx-effect: dropshadow(three-pass-box, #8c7ae6, 10, 0, 0, 0);
+}
+.question-title{
+    -fx-text-fill: #FFF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+/* Apply styles to the entire PieChart */
+.pie-chart {
+    -fx-background-color: transparent;
+}
+
+/* Apply styles to the entire PieChart */
+.pie-chart {
+    -fx-background-color: transparent;
+}
+
+/* Apply styles to individual PieChart segments */
+.chart-pie {
+    -fx-pie-color: transparent;
+}
+/* Apply styles to the entire LineChart */
+.line-chart {
+    -fx-background-color: transparent;
+}
+
+/* Apply styles to individual LineChart series (lines) */
+.series0.chart-series-line {
+    -fx-stroke: #007acc; /* Blue for the line */
+}
+
+/* Apply styles to individual LineChart series data points (markers) */
+.series0.chart-line-symbol {
+    -fx-background-color: #00FF00, #00FF00; /* Blue for the marker (circle) */
+    -fx-background-radius: 30; /* Set background radius to 0 to remove the default marker shape */
+    -fx-padding: 3px; /* Adjust padding to control the size of the marker */
+}
+.title-button{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+    -fx-text-fill: #ecf0f1;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-background-color: linear-gradient(to top right, #4285f4, #0f9d58);
+    -fx-pref-width: 100px;
+    -fx-pref-height: 20px;
+}
+.title-button:pressed, .trans-button:pressed{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
