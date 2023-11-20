@@ -1,6 +1,6 @@
 package Models;
 
-public class User {
+public class User implements Comparable<User> {
     private String userId;
     private String username;
     private String email;
@@ -64,5 +64,25 @@ public class User {
                 ", password='" + password + '\'' +
                 ", studyRecord=" + studyRecord +
                 '}';
+    }
+
+    @Override
+    public int compareTo(User other) {
+        StudyRecord thisStudyRecord = this.studyRecord;
+        StudyRecord otherStudyRecord = other.studyRecord;
+
+        // Xử lý trường hợp studyRecord có thể là null
+        if (thisStudyRecord == null && otherStudyRecord == null) {
+            return 0; // Cả hai là null, xem như bằng nhau
+        } else if (thisStudyRecord == null) {
+            return -1; // this là null, nhỏ hơn other (other không null)
+        } else if (otherStudyRecord == null) {
+            return 1; // other là null, lớn hơn this (this không null)
+        }
+
+        // Tiếp tục so sánh nếu cả hai không null
+        int score = thisStudyRecord.getTotalScore();
+        int otherScore = otherStudyRecord.getTotalScore();
+        return Integer.compare(score, otherScore);
     }
 }

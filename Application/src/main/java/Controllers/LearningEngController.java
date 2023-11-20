@@ -183,7 +183,7 @@ public class LearningEngController extends BaseController implements Initializab
         }
 
         listQuestion.set(currentQuestionIndex, currentQuestion);
-        super.countdownTimer.stop();
+        countdownTimer.stop();
         showQuestion(currentQuestion);
     }
 

@@ -72,15 +72,7 @@
                                         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                                             <children>
                                                 <Label fx:id="labelTotalAttempt" alignment="TOP_RIGHT"
-                                                       contentDisplay="TOP" text="Tổng số lần học: " textFill="#636b66">
-                                                    <font>
-                                                        <Font name="System Bold" size="13.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label fx:id="labelTimeSpend" text="Tổng thời gian học:"
+                                                       contentDisplay="TOP" text="Tổng số lần học: NA"
                                                        textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
@@ -89,7 +81,7 @@
                                                         <Insets bottom="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="labelCorrectRatio" text="Tỉ lệ trả lời đúng:"
+                                                <Label fx:id="labelTimeSpend" text="Tổng thời gian học: NA"
                                                        textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
@@ -98,7 +90,17 @@
                                                         <Insets bottom="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="labelTimeAverage" text="Trung bình: " textFill="#636b66">
+                                                <Label fx:id="labelCorrectRatio" text="Tỉ lệ trả lời đúng: NA"
+                                                       textFill="#636b66">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="labelTimeAverage" text="Trung bình: NA"
+                                                       textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
                                                     </font>
@@ -144,7 +146,8 @@
                         <BorderPane GridPane.rowIndex="1">
                             <center>
                                 <ListView fx:id="listViewRanking" prefHeight="71.0" prefWidth="331.0"
-                                          styleClass="list-cell" stylesheets="@../Utils/style.css"/>
+                                          styleClass="list-cell"
+                                          stylesheets="@../Utils/style.css"/>
                             </center>
                             <top>
                                 <Pane prefHeight="30.0" prefWidth="768.0" styleClass="title-learning"
@@ -176,10 +179,10 @@
                                         <ImageView fx:id="imageRanking" fitHeight="150.0" fitWidth="200.0"
                                                    pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../Utils/images/challeger_medal.png"/>
+                                                <Image url="@../Utils/images/bronze_medal.png"/>
                                             </image>
                                         </ImageView>
-                                        <Label fx:id="labelRanking" text="Thách đấu 1000 điểm" textFill="#007acc">
+                                        <Label fx:id="labelRanking" text="NA" textFill="#007acc">
                                             <font>
                                                 <Font name="System Bold" size="14.0"/>
                                             </font>
@@ -209,15 +212,15 @@
                                 <Insets top="5.0"/>
                             </padding>
                         </Label>
-                        <HBox layoutX="299.0" spacing="10.0">
+                        <HBox layoutX="410.0" layoutY="-1.0" spacing="10.0">
                             <children>
                                 <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="title-button"
-                                        stylesheets="@../Utils/style.css" text="Học offline"/>
-                                <Button fx:id="btnPK" mnemonicParsing="false" styleClass="title-button" text="PK"/>
+                                        stylesheets="@../Utils/style.css" text="Học offline">
+                                    <HBox.margin>
+                                        <Insets left="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </Button>
                             </children>
-                            <padding>
-                                <Insets top="3.0"/>
-                            </padding>
                         </HBox>
                     </children>
                 </Pane>
