@@ -1,174 +1,115 @@
 package Controllers;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
+import DialogAlert.AlertMessage;
+import Models.User;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import static Constant.Constant.FIREBASE_KEY;
+import static Constant.Key.firebaseDatabaseUrl;
 
 
 public class LoginController implements Initializable {
 
     @FXML
-    private Button changePass_backBtn;
+    private Button changePass_backBtn, changePass_proceedBtn, forgot_backBtn, forgot_proceedBtn,
+            login_btn, login_create, signup_btn, signup_loginAccount;
 
     @FXML
-    private TextField changePass_cPassword;
+    private TextField changePass_cPassword, changePass_password, forgot_answer,
+            forgot_username, login_username, signup_answer,
+            signup_email, signup_username, login_showPassword;
 
     @FXML
-    private AnchorPane changePass_form;
+    private PasswordField login_password, signup_password, signup_cPassword;
 
     @FXML
-    private TextField changePass_password;
+    private AnchorPane changePass_form, forgot_form, login_form, main_form, signup_form;
 
     @FXML
-    private Button changePass_proceedBtn;
-
-    @FXML
-    private TextField forgot_answer;
-
-    @FXML
-    private Button forgot_backBtn;
-
-    @FXML
-    private AnchorPane forgot_form;
-
-    @FXML
-    private Button forgot_proceedBtn;
-
-    @FXML
-    private ComboBox<?> forgot_selectQuestion;
-
-    @FXML
-    private TextField forgot_username;
-
-    @FXML
-    private Button login_btn;
-
-    @FXML
-    private Button login_create;
-
-    @FXML
-    private Hyperlink login_forgotPassword;
-
-    @FXML
-    private AnchorPane login_form;
-
-    @FXML
-    private PasswordField login_password;
+    private ComboBox<?> forgot_selectQuestion, signup_selectQuestion;
 
     @FXML
     private CheckBox login_selectShowPassword;
 
     @FXML
-    private TextField login_username;
+    private Hyperlink login_forgotPassword;
 
-    @FXML
-    private TextField login_showPassword;
-
-    @FXML
-    private AnchorPane main_form;
-
-    @FXML
-    private TextField signup_answer;
-
-    @FXML
-    private Button signup_btn;
-
-    @FXML
-    private TextField signup_cPassword;
-
-    @FXML
-    private TextField signup_email;
-
-    @FXML
-    private AnchorPane signup_form;
-
-    @FXML
-    private Button signup_loginAccount;
-
-    @FXML
-    private PasswordField signup_password;
-
-    @FXML
-    private ComboBox<?> signup_selectQuestion;
-
-    @FXML
-    private TextField signup_username;
 
     private Connection connect;
 
     private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
+    private AlertMessage alert;
 
-
-    public Connection connectDB() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connect
-                    = DriverManager.getConnection("jdbc:mysql://localhost/useraccount", "root", "");
-            return connect;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    private HashMap<String, User> mapUsers = new HashMap<>();
+    private ArrayList<User> listUsers = new ArrayList<>();
+    private String typedPassword = "";
 
     public void login() {
-        alertMessage alert = new alertMessage();
+        alert = new AlertMessage();
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
-            alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
+            alert.errorMessage("Thông tin đăng nhập không chính xác, vui lòng kiểm tra lại");
         } else {
-            String selectData = "SELECT * FROM users WHERE "
-                    + "username = ? and password = ?";
-            connect = connectDB();
-            try {
-                prepare = connect.prepareStatement(selectData);
-                prepare.setString(1, login_username.getText());
-                prepare.setString(2, login_password.getText());
-
-                result = prepare.executeQuery();
-
-                if (result.next()) {
-                    alert.successMessage("Đăng nhập thành công");
-
-                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/DictionaryView.fxml")));
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    scene.setFill(Color.TRANSPARENT);
-                    stage.setScene(scene);
-                    stage.show();
-
-                    login_btn.getScene().getWindow().hide();
-                } else {
-                    alert.errorMessage("Thông tin đăng nhập không chính xác, vui long kiểm tra lại");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            String username = login_username.getText();
+            if (mapUsers.containsKey(username)) {
+                String userPassword = mapUsers.get(username).getPassword();
+                Platform.runLater(() -> {
+                    if (typedPassword.equals(userPassword)) {
+                        alert.successMessage("Đăng nhập thành công!");
+                        try {
+                            goToMainApp();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } else {
+                        alert.errorMessage("Thông tin đăng nhập không chính xác, vui lòng kiểm tra lại");
+                    }
+                });
+            } else {
+                alert.errorMessage("Thông tin đăng nhập không chính xác, vui lòng kiểm tra lại");
             }
         }
+    }
 
+    private void goToMainApp() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/DictionaryView.fxml"));
+        Parent root = loader.load();
+
+        // Access the controller of the new scene if needed
+        // Example: MainController mainController = loader.getController();
+
+        Scene scene = new Scene(root);
+        Stage mainStage = new Stage();
+        mainStage.setScene(scene);
+        mainStage.show();
+
+        // Close the current login window
+        Stage currentStage = (Stage) login_btn.getScene().getWindow();
+        currentStage.close();
     }
 
     public void showPassword() {
@@ -187,7 +128,7 @@ public class LoginController implements Initializable {
 
     public void forgotPassword() {
 
-        alertMessage alert = new alertMessage();
+        AlertMessage alert = new AlertMessage();
 
         if (forgot_username.getText().isEmpty()
                 || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
@@ -197,8 +138,6 @@ public class LoginController implements Initializable {
 
             String checkData = "SELECT username, question, answer FROM users "
                     + "WHERE username = ? AND question = ? AND answer = ?";
-
-            connect = connectDB();
 
             try {
 
@@ -241,54 +180,44 @@ public class LoginController implements Initializable {
     }
 
     public void register() {
+        AlertMessage alert = new AlertMessage();
 
-        alertMessage alert = new alertMessage();
-
-
-        if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty() || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty() || signup_selectQuestion.getSelectionModel().getSelectedItem() == null || signup_answer.getText().isEmpty()) {
+        if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty()
+                || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty()
+                || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
+                || signup_answer.getText().isEmpty()) {
             alert.errorMessage("Bạn cần nhập đầy đủ thông tin");
-        } else if (signup_password.getText() == signup_cPassword.getText()) {
+        } else if (!signup_password.getText().equals(signup_cPassword.getText())) {
             alert.errorMessage("Mật khẩu xác nhận không trùng khớp");
         } else if (signup_password.getText().length() < 8) {
             alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
         } else {
-            String checkUsername = "SELECT * FROM users WHERE username = '" + signup_username.getText() + "'";
-            connect = connectDB();
+            // Check if the username & email already exists in Firebase
+            String username = signup_username.getText();
+            String email = signup_email.getText();
+            User existingUser = null;
 
-            try {
-                statement = connect.createStatement();
-                result = statement.executeQuery(checkUsername);
+            if (existingUser != null) {
+                alert.errorMessage(username + " đã tồn tại");
+            } else {
+                // Create a new User object
+                User newUser = new User(
+                        UUID.randomUUID().toString(),  // Generate a unique user ID
+                        signup_username.getText(),
+                        signup_email.getText(),
+                        signup_password.getText(),
+                        null // Assuming you have a default constructor for StudyRecord
+                );
 
-                if (result.next()) {
-                    alert.errorMessage(signup_username.getText() + " đã tồn tại");
-                } else {
-                    String insertData = "INSERT INTO users " + "(email, username, password, question, answer, date) " + "VALUES(?,?,?,?,?,?)"; // FIVE (?)
+                // Save the user to Firebase Realtime Database
+                saveUserToFirebase(newUser);
 
-                    prepare = connect.prepareStatement(insertData);
-                    prepare.setString(1, signup_email.getText());
-                    prepare.setString(2, signup_username.getText());
-                    prepare.setString(3, signup_password.getText());
-                    prepare.setString(4, (String) signup_selectQuestion.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, signup_answer.getText());
-                    ///TODO : date
-                    Date date = new Date(System.currentTimeMillis());
-//                    java.util.Date date = new java.util.Date();
-                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                alert.successMessage("Đăng ký thành công");
 
-                    prepare.setString(6, String.valueOf(sqlDate));
+                registerClearFields();
 
-                    prepare.executeUpdate();
-
-                    alert.successMessage("Đăng ký thành công");
-
-                    registerClearFields();
-
-                    signup_form.setVisible(false);
-                    login_form.setVisible(true);
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+                signup_form.setVisible(false);
+                login_form.setVisible(true);
             }
         }
     }
@@ -305,7 +234,7 @@ public class LoginController implements Initializable {
 
     public void changePassword() {
 
-        alertMessage alert = new alertMessage();
+        AlertMessage alert = new AlertMessage();
         // CHECK ALL FIELDS IF EMPTY OR NOT
         if (changePass_password.getText().isEmpty() || changePass_cPassword.getText().isEmpty()) {
             alert.errorMessage("Vui lòng nhập đầy đủ thông tin");
@@ -319,8 +248,6 @@ public class LoginController implements Initializable {
             // USERNAME IS OUR REFERENCE TO UPDATE THE DATA OF THE USER
             String updateData = "UPDATE users SET password = ?, update_date = ? "
                     + "WHERE username = '" + forgot_username.getText() + "'";
-
-            connect = connectDB();
 
             try {
 
@@ -388,7 +315,11 @@ public class LoginController implements Initializable {
 
     }
 
-    private String[] questionList = {"Món ăn nào bạn thích nhất", "Màu sắc yêu thích nhất của bạn?", "Tên thú cưng của bạn?", "Môn thể thao bạn yêu thích nhất ?"};
+    private String[] questionList = {
+            "Món ăn nào bạn thích nhất",
+            "Màu sắc yêu thích nhất của bạn?",
+            "Tên thú cưng của bạn?",
+            "Môn thể thao bạn yêu thích nhất ?"};
 
     public void questions() {
         List<String> listQ = new ArrayList<>();
@@ -401,11 +332,103 @@ public class LoginController implements Initializable {
         signup_selectQuestion.setItems(listData);
     }
 
+    private static void saveUserToFirebase(User user) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
+        // Create a map with user data
+        // You can customize this map based on your data structure
+        // Here, we are using a simple structure with user ID as the key
+        // Adjust it according to your database schema
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("userId", user.getUserId());
+        userData.put("username", user.getUsername());
+        userData.put("email", user.getEmail());
+        userData.put("password", user.getPassword());
+        userData.put("studyRecord", user.getStudyRecord());
+
+        // Save user data to Firebase Realtime Database
+        databaseReference.child(user.getUserId()).setValueAsync(userData);
+        System.out.println("User data saved to Firebase Realtime Database.");
+    }
+
+    private static User getUser(DataSnapshot childSnapshot) {
+        Map<String, Object> userData = (Map<String, Object>) childSnapshot.getValue();
+
+        // Create a User object
+        User retrievedUser = new User(
+                (String) userData.get("userId"),
+                (String) userData.get("username"),
+                (String) userData.get("email"),
+                (String) userData.get("password"),
+                // You need to implement a constructor for StudyRecord or adapt it accordingly
+                null
+        );
+        return retrievedUser;
+    }
+
+
+    public void initFirebase() {
+        try {
+            // Load Firebase Admin SDK JSON file
+            InputStream serviceAccount = getClass().getClassLoader().getResourceAsStream(FIREBASE_KEY);
+
+            if (serviceAccount == null) {
+                throw new IOException("Failed to load Firebase Admin SDK JSON file");
+            }
+
+            // Initialize Firebase
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                    .setDatabaseUrl(firebaseDatabaseUrl)
+                    .build();
+
+            FirebaseApp.initializeApp(options);
+
+            // Close the InputStream after initialization
+            serviceAccount.close();
+
+            getListUserData();
+        } catch (IOException e) {
+            // Handle initialization failure
+            e.printStackTrace();
+        }
+    }
+
+    private void getListUserData() {
+        // Lắng nghe sự thay đổi trên node "users"
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Lặp qua tất cả các người dùng và thêm vào danh sách
+                for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                    User retrievedUser = getUser(childSnapshot);
+                    listUsers.add(retrievedUser);
+                    mapUsers.put(retrievedUser.getUsername(), retrievedUser);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Xử lý lỗi
+                System.err.println("Database read canceled: " + databaseError.getMessage());
+            }
+        });
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         questions();
-
         forgotListQuestion();
+
+        initFirebase();
+
+        login_password.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                typedPassword = login_password.getText().trim();
+            }
+        });
     }
 
 }

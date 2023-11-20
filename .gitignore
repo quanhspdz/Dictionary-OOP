@@ -3,3 +3,4 @@ target
 out
 Key.java
 Application/userdata/*.txt
+firebase_key.json
