@@ -51,9 +51,12 @@ public class SearchWordController implements Initializable {
     private WebEngine definitionWebEngine;
 
     private Word currentSelectedWord;
+    private AhoCorasick ahoCorasick;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         if (data.isEmpty()) {
             DictionaryApp.addDataLoadedListener(new DataLoadedListener() {
                 @Override
@@ -63,7 +66,10 @@ public class SearchWordController implements Initializable {
             });
         } else {
             loadWordList();
+
         }
+
+
 
         notAvailableAlert.setVisible(false);
         cancelBtn.setVisible(false);
@@ -130,6 +136,12 @@ public class SearchWordController implements Initializable {
                 showDefaultListView();
             }
         });
+        List<String> dictionary = new ArrayList<>();
+        for (Word word : data.values()) {
+            dictionary.add(word.getWord());
+        }
+        ahoCorasick = new AhoCorasick(dictionary);
+
     }
 
     private void handleDeleteWord() {
@@ -156,6 +168,7 @@ public class SearchWordController implements Initializable {
                     "Đã huỷ xoá"
             );
         }
+
     }
 
     private void deleteWord(Word currentSelectedWord) throws IOException {
@@ -244,13 +257,13 @@ public class SearchWordController implements Initializable {
     @FXML
     private void handleSearchOnKeyTyped(String searchKey) {
         List<String> searchResultList = new ArrayList<>();
-        // Chuyển sang chữ thường để tìm kiếm không phân biệt chữ hoa/chữ thường
         searchKey = searchKey.trim().toLowerCase();
 
-        for (String key : data.keySet()) {
-            if (key.toLowerCase().startsWith(searchKey)) {
-                searchResultList.add(key);
-            }
+        // Sử dụng AhoCorasick để tìm kiếm các từ khóa
+        List<String> ahoCorasickResults = ahoCorasick.search(searchKey);
+
+        for (String key : ahoCorasickResults) {
+            searchResultList.add(key);
         }
 
         if (searchResultList.isEmpty()) {

@@ -132,4 +132,5 @@ public class AddWordController implements Initializable {
             writer.newLine(); // Xuống dòng mới cho từ tiếp theo (nếu cần)
         }
     }
+
 }
