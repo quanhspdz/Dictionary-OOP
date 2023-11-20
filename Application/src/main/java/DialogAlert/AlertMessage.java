@@ -1,8 +1,8 @@
-package Controllers;
+package DialogAlert;
 
 import javafx.scene.control.Alert;
 
-public class alertMessage {
+public class AlertMessage {
     private Alert alert;
 
     public void errorMessage(String message) {

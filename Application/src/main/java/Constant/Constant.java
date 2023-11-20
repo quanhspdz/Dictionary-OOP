@@ -25,4 +25,6 @@ public class Constant {
     public static final String IMAGE_MASTER= "Utils/images/master_medal.png";
     public static final String IMAGE_GRANDMASTER = "Utils/images/grand_master_medal.png";
     public static final String IMAGE_CHALLENGER = "Utils/images/challeger_medal.png";
+
+    public static final String FIREBASE_KEY = "key/firebase_key.json";
 }
