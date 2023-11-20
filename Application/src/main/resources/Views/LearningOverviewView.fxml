@@ -209,14 +209,13 @@
                                 <Insets top="5.0"/>
                             </padding>
                         </Label>
-                        <HBox layoutX="299.0" spacing="10.0">
+                        <HBox layoutX="417.0" layoutY="-1.0" spacing="10.0">
                             <children>
                                 <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="title-button"
                                         stylesheets="@../Utils/style.css" text="Học offline"/>
-                                <Button fx:id="btnPK" mnemonicParsing="false" styleClass="title-button" text="PK"/>
                             </children>
                             <padding>
-                                <Insets top="3.0"/>
+                                <Insets top="4.0"/>
                             </padding>
                         </HBox>
                     </children>
