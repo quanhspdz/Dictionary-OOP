@@ -1,6 +1,7 @@
 package Controllers;
 
 import Models.StudyRecord;
+import Models.User;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -26,6 +27,7 @@ import java.time.Duration;
 import java.util.*;
 
 import static Constant.Constant.*;
+import static Controllers.LoginController.listUsers;
 
 public class LearningOverviewController extends BaseController implements Initializable {
 
@@ -35,13 +37,15 @@ public class LearningOverviewController extends BaseController implements Initia
     Label labelRanking, labelTotalAttempt, labelTimeSpend,
             labelCorrectRatio, labelTimeAverage;
     @FXML
-    ListView<StudyRecord> listViewRanking;
+    ListView<User> listViewRanking;
     @FXML
     PieChart pieChartQuestion;
     @FXML
     LineChart<String, Number> lineChartTime;
     @FXML
     Button btnOffline, btnPK;
+
+    private ArrayList<User> listUserRanking = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,13 +61,18 @@ public class LearningOverviewController extends BaseController implements Initia
 
     private void loadStudyRecord() {
         StudyRecord studyRecord = StudyRecord.readRecordFile();
+        if (user != null) {
+            if (user.getStudyRecord() != null) {
+                studyRecord = user.getStudyRecord();
+            }
+        }
         if (studyRecord != null) {
             setupRanking(studyRecord);
             setupPieChart(studyRecord);
             setupLineChart(studyRecord);
-            setupRankingBoard(studyRecord);
             setupRecordLabel(studyRecord);
         }
+        setupRankingBoard();
     }
 
     private void setupRecordLabel(StudyRecord studyRecord) {
@@ -97,22 +106,31 @@ public class LearningOverviewController extends BaseController implements Initia
         labelTimeAverage.setText("Thời gian trung bình: " + String.format("%.2f", timeAverage) + "s/q");
     }
 
-    private void setupRankingBoard(StudyRecord studyRecord) {
-        ObservableList<StudyRecord> studyRecords = FXCollections.observableArrayList(
-                studyRecord
-        );
+    private void setupRankingBoard() {
+        sortRankingByPoint();
+        ObservableList<User> studyRecords = FXCollections.observableArrayList(listUserRanking);
         listViewRanking.setItems(studyRecords);
 
         // Tùy chỉnh cách hiển thị mỗi ô trong ListView
-        listViewRanking.setCellFactory(param -> new ListCell<StudyRecord>() {
+        listViewRanking.setCellFactory(param -> new ListCell<User>() {
             @Override
-            protected void updateItem(StudyRecord item, boolean empty) {
+            protected void updateItem(User item, boolean empty) {
                 super.updateItem(item, empty);
 
                 if (empty || item == null) {
                     setText(null);
+                    setStyle(""); // Đặt lại cỡ chữ mặc định nếu mục trống hoặc null
                 } else {
-                    setText("1. " + "You\t" + item.getTotalScore() + " điểm");
+                    StudyRecord studyRecord = item.getStudyRecord();
+                    String point = "NA";
+                    if (studyRecord != null) {
+                        point = studyRecord.getTotalScore() + "";
+                    }
+                    int index = getIndex() + 1;
+                    setText(index + ".\t" + item.getUsername() + " " + point + " điểm");
+
+                    // Đặt cỡ chữ cho mỗi mục
+                    setStyle("-fx-font-size: 13px;"); // Thay đổi giá trị này để đặt cỡ chữ mong muốn
                 }
             }
         });
@@ -202,5 +220,10 @@ public class LearningOverviewController extends BaseController implements Initia
 
         labelRanking.setText(studyRecord.getRanking().getValue() + " "
                 + studyRecord.getTotalScore() + " points");
+    }
+
+    private void sortRankingByPoint() {
+        listUserRanking.addAll(listUsers);
+        Collections.sort(listUserRanking);
     }
 }

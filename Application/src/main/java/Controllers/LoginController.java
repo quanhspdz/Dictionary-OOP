@@ -31,7 +31,7 @@ import static Constant.Constant.FIREBASE_KEY;
 import static Constant.Key.firebaseDatabaseUrl;
 
 
-public class LoginController implements Initializable {
+public class LoginController extends BaseController implements Initializable {
 
     @FXML
     private Button changePass_backBtn, changePass_proceedBtn, forgot_backBtn, forgot_proceedBtn,
@@ -65,10 +65,6 @@ public class LoginController implements Initializable {
     private Statement statement;
     private AlertMessage alert;
 
-    private HashMap<String, User> mapUsers = new HashMap<>();
-    private ArrayList<User> listUsers = new ArrayList<>();
-    private String typedPassword = "";
-
     public void login() {
         alert = new AlertMessage();
         if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
@@ -77,10 +73,12 @@ public class LoginController implements Initializable {
             String username = login_username.getText();
             if (mapUsers.containsKey(username)) {
                 String userPassword = mapUsers.get(username).getPassword();
+                String typedPassword = login_password.getText().trim();
                 Platform.runLater(() -> {
                     if (typedPassword.equals(userPassword)) {
-                        alert.successMessage("Đăng nhập thành công!");
+                        //alert.successMessage("Đăng nhập thành công!");
                         try {
+                            user = mapUsers.get(username);
                             goToMainApp();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -195,9 +193,8 @@ public class LoginController implements Initializable {
             // Check if the username & email already exists in Firebase
             String username = signup_username.getText();
             String email = signup_email.getText();
-            User existingUser = null;
 
-            if (existingUser != null) {
+            if (mapUsers.containsKey(username)) {
                 alert.errorMessage(username + " đã tồn tại");
             } else {
                 // Create a new User object
@@ -211,13 +208,16 @@ public class LoginController implements Initializable {
 
                 // Save the user to Firebase Realtime Database
                 saveUserToFirebase(newUser);
+                mapUsers.put(newUser.getUsername(), newUser);
+                listUsers.add(newUser);
 
-                alert.successMessage("Đăng ký thành công");
-
-                registerClearFields();
-
-                signup_form.setVisible(false);
-                login_form.setVisible(true);
+                alert.successMessage("Đăng ký thành công!");
+                try {
+                    user = newUser;
+                    goToMainApp();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -233,56 +233,6 @@ public class LoginController implements Initializable {
     }
 
     public void changePassword() {
-
-        AlertMessage alert = new AlertMessage();
-        // CHECK ALL FIELDS IF EMPTY OR NOT
-        if (changePass_password.getText().isEmpty() || changePass_cPassword.getText().isEmpty()) {
-            alert.errorMessage("Vui lòng nhập đầy đủ thông tin");
-        } else if (!changePass_password.getText().equals(changePass_cPassword.getText())) {
-            // CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
-            alert.errorMessage("Mật khẩu xác thực không chính xác");
-        } else if (changePass_password.getText().length() < 8) {
-            // CHECK IF THE LENGTH OF PASSWORD IS LESS THAN TO 8
-            alert.errorMessage("Mật khẩu phải có ít nhất 8 ký tự");
-        } else {
-            // USERNAME IS OUR REFERENCE TO UPDATE THE DATA OF THE USER
-            String updateData = "UPDATE users SET password = ?, update_date = ? "
-                    + "WHERE username = '" + forgot_username.getText() + "'";
-
-            try {
-
-                prepare = connect.prepareStatement(updateData);
-                prepare.setString(1, changePass_password.getText());
-
-                java.util.Date date = new java.util.Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                prepare.setString(2, String.valueOf(sqlDate));
-
-                prepare.executeUpdate();
-                alert.successMessage("Thay Đổi mật khẩu thành công");
-
-                // LOGIN FORM WILL APPEAR
-                signup_form.setVisible(false);
-                login_form.setVisible(true);
-                forgot_form.setVisible(false);
-                changePass_form.setVisible(false);
-
-                login_username.setText("");
-                login_password.setVisible(true);
-                login_password.setText("");
-//                login_showPassword.setVisible(false);
-                login_selectShowPassword.setSelected(false);
-
-                changePass_password.setText("");
-                changePass_cPassword.setText("");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-
 
     }
 
@@ -387,7 +337,12 @@ public class LoginController implements Initializable {
             // Close the InputStream after initialization
             serviceAccount.close();
 
-            getListUserData();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    getListUserData();
+                }
+            });
         } catch (IOException e) {
             // Handle initialization failure
             e.printStackTrace();
@@ -405,6 +360,7 @@ public class LoginController implements Initializable {
                     User retrievedUser = getUser(childSnapshot);
                     listUsers.add(retrievedUser);
                     mapUsers.put(retrievedUser.getUsername(), retrievedUser);
+                    System.out.println("+1 user: " + retrievedUser.getUsername());
                 }
             }
 
@@ -422,15 +378,7 @@ public class LoginController implements Initializable {
         forgotListQuestion();
 
         initFirebase();
-
-        login_password.setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                typedPassword = login_password.getText().trim();
-            }
-        });
     }
-
 }
 
 
