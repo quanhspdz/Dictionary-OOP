@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.*;
+import java.time.Duration;
 import java.util.*;
 
 import DialogAlert.AlertMessage;
+import Models.StudyRecord;
 import Models.User;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -282,7 +284,7 @@ public class LoginController extends BaseController implements Initializable {
         signup_selectQuestion.setItems(listData);
     }
 
-    private static void saveUserToFirebase(User user) {
+    public static void saveUserToFirebase(User user) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         // Create a map with user data
@@ -300,22 +302,6 @@ public class LoginController extends BaseController implements Initializable {
         databaseReference.child(user.getUserId()).setValueAsync(userData);
         System.out.println("User data saved to Firebase Realtime Database.");
     }
-
-    private static User getUser(DataSnapshot childSnapshot) {
-        Map<String, Object> userData = (Map<String, Object>) childSnapshot.getValue();
-
-        // Create a User object
-        User retrievedUser = new User(
-                (String) userData.get("userId"),
-                (String) userData.get("username"),
-                (String) userData.get("email"),
-                (String) userData.get("password"),
-                // You need to implement a constructor for StudyRecord or adapt it accordingly
-                null
-        );
-        return retrievedUser;
-    }
-
 
     public void initFirebase() {
         try {
@@ -370,6 +356,79 @@ public class LoginController extends BaseController implements Initializable {
                 System.err.println("Database read canceled: " + databaseError.getMessage());
             }
         });
+    }
+
+    public static User getUser(DataSnapshot childSnapshot) {
+        Map<String, Object> userData = (Map<String, Object>) childSnapshot.getValue();
+        Map<String, Object> mapRecord = (Map<String, Object>) userData.get("studyRecord");
+
+        // Retrieve data for StudyRecord
+        int totalScore = mapRecord.get("totalScore") != null ? ((Long) mapRecord.get("totalScore")).intValue() : 0;
+        int timesAttempt = mapRecord.get("timesAttempt") != null ? ((Long) mapRecord.get("timesAttempt")).intValue() : 0;
+        int totalQuestion = mapRecord.get("totalQuestion") != null ? ((Long) mapRecord.get("totalQuestion")).intValue() : 0;
+        int correctQuestions = mapRecord.get("correctQuestions") != null ? ((Long) mapRecord.get("correctQuestions")).intValue() : 0;
+        int incorrectQuestions = mapRecord.get("incorrectQuestions") != null ? ((Long) mapRecord.get("incorrectQuestions")).intValue() : 0;
+
+        Duration totalTimeSpend = null;
+        Object totalTimeSpendObject = mapRecord.get("totalTimeSpend");
+
+        if (totalTimeSpendObject instanceof HashMap) {
+            Map<String, Object> mapTotalTimeSpend = (Map<String, Object>) totalTimeSpendObject;
+
+            Long seconds = (Long) mapTotalTimeSpend.get("seconds");
+            Long nano = (Long) mapTotalTimeSpend.get("nano");
+
+            Duration duration = Duration.ofSeconds(seconds, nano);
+
+            // Sử dụng duration như là một Duration
+            totalTimeSpend = duration;
+        }
+
+
+        Map<String, Duration> mapStudyTime = new HashMap<>();
+
+        Object mapStudyTimeObject = mapRecord.get("mapStudyTime");
+
+        if (mapStudyTimeObject instanceof HashMap) {
+            HashMap<String, HashMap<String, Object>> mapTotalStudyTime
+                    = (HashMap<String, HashMap<String, Object>>) mapStudyTimeObject;
+
+            for (Map.Entry<String, HashMap<String, Object>> entry : mapTotalStudyTime.entrySet()) {
+                String key = entry.getKey();
+                HashMap<String, Object> innerMap = entry.getValue();
+
+                // Assuming the inner HashMap contains "seconds" and "nano" fields
+                Long seconds = (Long) innerMap.get("seconds");
+                Long nano = (Long) innerMap.get("nano");
+
+                Duration duration = Duration.ofSeconds(seconds, nano);
+
+                // Add the duration to the map
+                mapStudyTime.put(key, duration);
+            }
+        }
+
+        // Create a StudyRecord object
+        StudyRecord studyRecord = new StudyRecord(
+                totalScore,
+                timesAttempt,
+                totalQuestion,
+                correctQuestions,
+                incorrectQuestions,
+                totalTimeSpend,
+                (HashMap<String, Duration>) mapStudyTime
+        );
+
+        // Create a User object
+        User retrievedUser = new User(
+                (String) userData.get("userId"),
+                (String) userData.get("username"),
+                (String) userData.get("email"),
+                (String) userData.get("password"),
+                studyRecord
+        );
+
+        return retrievedUser;
     }
 
     @Override

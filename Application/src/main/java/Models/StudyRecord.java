@@ -1,5 +1,6 @@
 package Models;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
@@ -15,6 +16,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import static Constant.Constant.*;
 
@@ -30,9 +32,8 @@ public class StudyRecord {
     //Hasmap lưu lại giời gian học bài mỗi ngày
     private HashMap<String, Duration> mapStudyTime = new HashMap<>();
 
-    public StudyRecord(int totalScore, int timesAttempt, int totalQuestion
-            , int correctQuestions, int incorrectQuestions, Duration totalTimeSpend,
-                       HashMap<String, Duration> mapStudyTime) {
+    public StudyRecord(int totalScore, int timesAttempt, int totalQuestion, int correctQuestions,
+                       int incorrectQuestions, Duration totalTimeSpend, HashMap<String, Duration> mapStudyTime) {
         this.totalScore = totalScore;
         this.timesAttempt = timesAttempt;
         this.totalQuestion = totalQuestion;

@@ -445,7 +445,7 @@ public class LearningEngController extends BaseController implements Initializab
         // Lấy ngày hôm nay
         Date currentDate = new Date();
         // Định dạng ngày thành chuỗi
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = dateFormat.format(currentDate);
 
         if (studyRecord == null) {
@@ -487,6 +487,9 @@ public class LearningEngController extends BaseController implements Initializab
         }
 
         studyRecord.writeStudyRecord();
+        LearningOverviewController.studyRecord = studyRecord;
+        user.setStudyRecord(studyRecord);
+        LoginController.saveUserToFirebase(user);
     }
 
     private void showScoreSummaryDialog() {

@@ -47,6 +47,8 @@ public class LearningOverviewController extends BaseController implements Initia
 
     private ArrayList<User> listUserRanking = new ArrayList<>();
 
+    public static StudyRecord studyRecord;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         btnOffline.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,7 +62,7 @@ public class LearningOverviewController extends BaseController implements Initia
     }
 
     private void loadStudyRecord() {
-        StudyRecord studyRecord = StudyRecord.readRecordFile();
+        studyRecord = StudyRecord.readRecordFile();
         if (user != null) {
             if (user.getStudyRecord() != null) {
                 studyRecord = user.getStudyRecord();
@@ -82,7 +84,7 @@ public class LearningOverviewController extends BaseController implements Initia
         double correctRatio = ((double) studyRecord.getCorrectQuestions() / totalQuestions) * 100;
 
         // Chia thời gian theo số lần thử để tính thời gian trung bình mỗi lần thử
-        double timeAverage = (double) studyRecord.getTotalTimeSpend().toSeconds() / studyRecord.getTimesAttempt();
+        double timeAverage = (double) studyRecord.getTotalTimeSpend().toSeconds() / (studyRecord.getTimesAttempt() * 10);
 
         Duration totalTimeDuration = studyRecord.getTotalTimeSpend();
         long hours = totalTimeDuration.toHours();
