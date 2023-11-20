@@ -442,6 +442,11 @@ public class LearningEngController extends BaseController implements Initializab
 
     private void updateTestRecord(int score, int numberOfCorrectAns, Duration duration) {
         StudyRecord studyRecord = StudyRecord.readRecordFile();
+        if (user != null) {
+            if (user.getStudyRecord() != null) {
+                studyRecord = user.getStudyRecord();
+            }
+        }
         // Lấy ngày hôm nay
         Date currentDate = new Date();
         // Định dạng ngày thành chuỗi
