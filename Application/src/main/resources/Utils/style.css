@@ -358,6 +358,11 @@
     -fx-background-radius: 30; /* Set background radius to 0 to remove the default marker shape */
     -fx-padding: 3px; /* Adjust padding to control the size of the marker */
 }
+
+/* Apply styles to tick labels on the X-axis */
+.axis-label {
+    -fx-font-size: 10px; /* Adjust font size */
+}
 .title-button{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
     -fx-text-fill: #ecf0f1;
