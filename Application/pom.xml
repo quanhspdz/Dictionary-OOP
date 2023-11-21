@@ -101,6 +101,17 @@
             <artifactId>logback-classic</artifactId>
             <version>1.4.11</version> <!-- Kiểm tra phiên bản mới nhất -->
         </dependency>
+
+        <dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-texttospeech</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>

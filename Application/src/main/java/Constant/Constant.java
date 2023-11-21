@@ -28,4 +28,7 @@ public class Constant {
     public static final String IMAGE_CHALLENGER = "Utils/images/challeger_medal.png";
 
     public static final String FIREBASE_KEY = "key/firebase_key.json";
+
+    public static final String TEMP_TXT_FILE = "Application/userdata/temp.txt";
+    public static final String TEMP_AUDIO_FILE = "Application/userdata/tempAudio.mp3";
 }
