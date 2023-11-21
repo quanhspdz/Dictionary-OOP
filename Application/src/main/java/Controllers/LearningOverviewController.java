@@ -2,34 +2,30 @@ package Controllers;
 
 import Models.StudyRecord;
 import Models.User;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.*;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import org.w3c.dom.Node;
 
 import java.net.URL;
-import java.sql.Time;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
 import static Constant.Constant.*;
-import static Controllers.LoginController.listUsers;
 
 public class LearningOverviewController extends BaseController implements Initializable {
 
@@ -47,7 +43,7 @@ public class LearningOverviewController extends BaseController implements Initia
     @FXML
     Button btnOffline, btnPK;
 
-    private ArrayList<User> listUserRanking = new ArrayList<>();
+    public static ObservableList<User> listRankingUsers;
 
     public static StudyRecord studyRecord;
 
@@ -55,6 +51,8 @@ public class LearningOverviewController extends BaseController implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        getListUserData();
+
         btnOffline.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -119,9 +117,23 @@ public class LearningOverviewController extends BaseController implements Initia
 
     private void setupRankingBoard() {
         sortRankingByPoint();
-        ObservableList<User> studyRecords = FXCollections.observableArrayList(listUserRanking);
-        listViewRanking.setItems(studyRecords);
+        listRankingUsers = FXCollections.observableArrayList(listUsers);
 
+        // Add a listener to update the ListView when the studyRecords list changes
+        listRankingUsers.addListener((ListChangeListener<User>) c -> {
+            while (c.next()) {
+                if (c.wasAdded() || c.wasRemoved()) {
+                    // Update the ListView
+                    updateListView(listRankingUsers);
+                    System.out.println("SOMETHING CHANGE!");
+                }
+            }
+        });
+        updateListView(listRankingUsers);
+    }
+
+    private void updateListView(ObservableList<User> listRankingUsers) {
+        listViewRanking.setItems(listRankingUsers);
         // Tùy chỉnh cách hiển thị mỗi ô trong ListView
         listViewRanking.setCellFactory(param -> new ListCell<User>() {
             @Override
@@ -232,11 +244,5 @@ public class LearningOverviewController extends BaseController implements Initia
 
         labelRanking.setText(studyRecord.getRanking().getValue() + " "
                 + studyRecord.getTotalScore() + " points");
-    }
-
-    private void sortRankingByPoint() {
-        listUserRanking.addAll(listUsers);
-        Collections.sort(listUserRanking);
-        Collections.reverse(listUserRanking);
     }
 }
