@@ -115,10 +115,10 @@
                                         </VBox>
                                     </children>
                                 </GridPane>
-                                <LineChart fx:id="lineChartTime" prefHeight="185.0" prefWidth="287.0" titleSide="BOTTOM"
-                                           GridPane.rowIndex="1">
+                                <LineChart fx:id="lineChartTime" axisSortingPolicy="NONE" prefHeight="185.0"
+                                           prefWidth="287.0" titleSide="BOTTOM" GridPane.rowIndex="1">
                                     <xAxis>
-                                        <CategoryAxis side="BOTTOM"/>
+                                        <CategoryAxis/>
                                     </xAxis>
                                     <yAxis>
                                         <NumberAxis label="Thời gian (phút)" side="LEFT"/>

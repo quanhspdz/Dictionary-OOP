@@ -23,6 +23,8 @@ import org.w3c.dom.Node;
 
 import java.net.URL;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 
@@ -48,6 +50,8 @@ public class LearningOverviewController extends BaseController implements Initia
     private ArrayList<User> listUserRanking = new ArrayList<>();
 
     public static StudyRecord studyRecord;
+
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -136,12 +140,17 @@ public class LearningOverviewController extends BaseController implements Initia
                     int index = getIndex() + 1;
                     setText(index + ".\t" + item.getUsername() + " " + point + " điểm");
 
-                    // Đặt cỡ chữ cho mỗi mục
-                    setStyle("-fx-font-size: 13px;"); // Thay đổi giá trị này để đặt cỡ chữ mong muốn
+                    String style = "-fx-font-size: 13px;";
+                    if (user.getUsername().equals(item.getUsername())) {
+                        // Hiển thị màu xanh lá cho tên current user
+                        style += "-fx-text-fill: #12bd69;";
+                    }
+                    setStyle(style);
                 }
             }
         });
     }
+
 
     private void setupLineChart(StudyRecord studyRecord) {
         HashMap<String, Duration> mapStudyDay = studyRecord.getMapStudyTime();
@@ -150,23 +159,19 @@ public class LearningOverviewController extends BaseController implements Initia
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Thời gian học mỗi ngày");
 
-        // Reverse the order of entries in the HashMap
-        List<Map.Entry<String, Duration>> entryList = new ArrayList<>(mapStudyDay.entrySet());
-        Collections.reverse(entryList);
+        // Extract and sort dates
+        List<String> sortedDates = new ArrayList<>(mapStudyDay.keySet());
+        Collections.reverse(sortedDates);
 
-        // Add reversed data to the series
-        // Add reversed data to the series
-        for (Map.Entry<String, Duration> entry : entryList) {
-            String date = entry.getKey();
-            Duration duration = entry.getValue();
-
+        // Add sorted data to the series
+        for (String date : sortedDates) {
+            Duration duration = mapStudyDay.get(date);
             series.getData().add(new XYChart.Data<>(date, duration.toMinutes()));
         }
 
         // Add series to the LineChart
         lineChartTime.getData().add(series);
     }
-
 
     private void setupPieChart(StudyRecord studyRecord) {
         int totalQuestions = studyRecord.getTotalQuestion();
@@ -232,5 +237,6 @@ public class LearningOverviewController extends BaseController implements Initia
     private void sortRankingByPoint() {
         listUserRanking.addAll(listUsers);
         Collections.sort(listUserRanking);
+        Collections.reverse(listUserRanking);
     }
 }

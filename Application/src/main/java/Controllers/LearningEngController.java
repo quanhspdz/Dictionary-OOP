@@ -24,10 +24,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -475,7 +473,6 @@ public class LearningEngController extends BaseController implements Initializab
                     + listQuestion.size() - numberOfCorrectAns;
 
             Duration newDayStudyTime = studyRecord.getMapStudyTime().get(formattedDate);
-
             if (newDayStudyTime == null) {
                 studyRecord.getMapStudyTime().put(formattedDate, duration);
             } else {

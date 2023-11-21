@@ -205,7 +205,7 @@ public class LoginController extends BaseController implements Initializable {
                         signup_username.getText(),
                         signup_email.getText(),
                         signup_password.getText(),
-                        null // Assuming you have a default constructor for StudyRecord
+                        new StudyRecord() 
                 );
 
                 // Save the user to Firebase Realtime Database
