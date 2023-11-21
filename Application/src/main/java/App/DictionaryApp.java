@@ -1,6 +1,5 @@
 package App;
 
-import Constant.Constant;
 import Interfaces.DataLoadedListener;
 import Models.Word;
 import javafx.application.Application;
@@ -11,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -34,7 +32,7 @@ public class DictionaryApp extends Application {
 
     @Override
     public void start(final Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Login.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/LoginView.fxml")));
         stage.setTitle("Dictionary Application");
         readData();
 //        stage.initStyle(StageStyle.TRANSPARENT);

@@ -22,7 +22,7 @@ import static App.DictionaryApp.data;
 import static Constant.Constant.EDITED_WORD_FILE;
 import static Constant.Constant.SPLITTING_CHARACTERS;
 
-public class AddWordController implements Initializable {
+public class AddWordController extends BaseController implements Initializable {
 
     @FXML
     private Button addBtn, deleteDefinitionInput, deleteWordInputBtn;
