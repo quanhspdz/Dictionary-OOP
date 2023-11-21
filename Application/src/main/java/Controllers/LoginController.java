@@ -35,6 +35,8 @@ import static Constant.Key.firebaseDatabaseUrl;
 
 public class LoginController extends BaseController implements Initializable {
 
+    public CheckBox register_save_password;
+    public CheckBox login_savePassword;
     @FXML
     private Button changePass_backBtn, changePass_proceedBtn, forgot_backBtn, forgot_proceedBtn,
             login_btn, login_create, signup_btn, signup_loginAccount;
@@ -75,6 +77,7 @@ public class LoginController extends BaseController implements Initializable {
                         //alert.successMessage("Đăng nhập thành công!");
                         try {
                             user = mapUsers.get(username);
+                            user.setSavePassword(login_savePassword.isSelected());
                             user.writeUserInfo();
                             goToMainApp();
                         } catch (IOException e) {
@@ -201,6 +204,7 @@ public class LoginController extends BaseController implements Initializable {
                 alert.successMessage("Đăng ký thành công!");
                 try {
                     user = newUser;
+                    user.setSavePassword(register_save_password.isSelected());
                     user.writeUserInfo();
                     goToMainApp();
                 } catch (IOException e) {
@@ -269,6 +273,18 @@ public class LoginController extends BaseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         initFirebase();
+        loadUserInfo();
+    }
+
+    private void loadUserInfo() {
+        user = User.readUserFromFile();
+        if (user != null) {
+            if (user.isSavePassword()) {
+                login_username.setText(user.getUsername());
+                login_password.setText(user.getPassword());
+                login_savePassword.setSelected(true);
+            }
+        }
     }
 }
 
