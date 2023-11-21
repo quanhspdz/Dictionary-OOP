@@ -42,8 +42,8 @@
                                     </VBox.margin>
                                 </PasswordField>
 
-                                <CheckBox id="login_selectShowPassword" fx:id="login_savePassword" alignment="TOP_LEFT"
-                                          mnemonicParsing="false" onAction="#showPassword" prefHeight="18.0"
+                                <CheckBox fx:id="login_savePassword" alignment="TOP_LEFT"
+                                          mnemonicParsing="false" prefHeight="18.0"
                                           prefWidth="106.0" text="Lưu mật khẩu" VBox.vgrow="ALWAYS">
                                     <VBox.margin>
                                         <Insets right="125.0" top="5.0"/>
@@ -255,8 +255,8 @@
                                         <Insets bottom="5.0"/>
                                     </VBox.margin>
                                 </PasswordField>
-                                <CheckBox id="login_selectShowPassword" fx:id="register_save_password"
-                                          alignment="TOP_LEFT" mnemonicParsing="false" onAction="#showPassword"
+                                <CheckBox fx:id="register_save_password"
+                                          alignment="TOP_LEFT" mnemonicParsing="false"
                                           prefHeight="18.0" prefWidth="106.0" text="Lưu mật khẩu">
                                     <VBox.margin>
                                         <Insets bottom="15.0" right="130.0"/>
