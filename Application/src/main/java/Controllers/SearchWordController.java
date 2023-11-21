@@ -13,16 +13,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 import static App.DictionaryApp.*;
 import static Constant.Constant.*;
+import static Constant.Key.apiKey;
 
 public class SearchWordController extends BaseController implements Initializable {
 
@@ -89,7 +96,7 @@ public class SearchWordController extends BaseController implements Initializabl
             public void handle(ActionEvent event) {
                 String word = selectedWord.getText();
                 if (word != null) {
-                    textToSpeech(word);
+                    textToSpeechGoogle(word);
                 }
             }
         });
@@ -274,5 +281,141 @@ public class SearchWordController extends BaseController implements Initializabl
         } else {
             System.out.println("Không thể tìm thấy giọng đọc.");
         }
+    }
+
+    public static void textToSpeechGoogle(String text) {
+        try {
+            // Build the URL for the Text-to-Speech API
+            URL url = new URL("https://texttospeech.googleapis.com/v1/text:synthesize?key=" + apiKey);
+
+            // Create a connection to the API endpoint
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setDoOutput(true);
+
+//            String language = "vi-VN"; // Mã ngôn ngữ tiếng Việt
+//            String voice = "vi-VN-Wavenet-A"; // Tên giọng nữ tiếng Việt
+
+            String language = "en-US";
+            String voice = "en-US-Studio-O";
+
+            // Build the JSON payload
+            String jsonInputString = "{\"input\": {\"text\":\"" + text
+                    + "\"}, \"voice\": {\"languageCode\":\""+ language +"\",\"name\":\""+ voice +"\"}, " +
+                    "\"audioConfig\": {\"audioEncoding\":\"MP3\"}}";
+
+            // Write the JSON payload to the connection
+            try (OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
+                os.write(input, 0, input.length);
+            }
+
+            // Get the response from the API
+            int responseCode = connection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Read the audio contents from the response
+                try (InputStream inputStream = connection.getInputStream()) {
+                    byte[] audioBytes = inputStream.readAllBytes();
+                    playAudio(audioBytes);
+                }
+            } else {
+                System.out.println("Error: " + responseCode);
+                textToSpeech(text);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            textToSpeech(text);
+        }
+    }
+
+    private static void saveAudioFile(InputStream inputStream) throws IOException, ParseException {
+        // Đọc nội dung của tệp JSON thành chuỗi
+        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+
+        StringBuilder contentBuilder = new StringBuilder();
+        int c;
+        while ((c = reader.read()) != -1) {
+            contentBuilder.append((char) c);
+        }
+
+        String content = contentBuilder.toString();
+//        JSONParser parser = new JSONParser();
+//        JSONObject object = (JSONObject) parser.parse(content);
+//        String base64 = (String) object.get("audioContent");
+        System.out.println("BASE64: " + content);
+    }
+
+    private static void writeAudioToFile(byte[] audioData, String filename) throws IOException {
+        try (FileOutputStream output = new FileOutputStream(filename)) {
+            output.write(audioData);
+            System.out.println("Audio content written to file \"" + filename + "\"");
+        }
+    }
+
+    public static void playAudio(byte[] audioBytes) {
+        try {
+            byte[] decodedBytes = decodeResponse(audioBytes);
+            // Tạo tệp tạm thời từ mảng byte
+            File audioTempFile = new File(TEMP_AUDIO_FILE);
+            audioTempFile.createNewFile();
+            try (FileOutputStream fos = new FileOutputStream(audioTempFile)) {
+                fos.write(decodedBytes);
+            }
+
+            // Tạo Media từ đường dẫn tạm thời
+            Media media = new Media(audioTempFile.toURI().toString());
+
+            // Tạo MediaPlayer từ Media
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+            // Phát âm thanh
+            mediaPlayer.play();
+
+            // Đợi cho đến khi âm thanh phát xong và sau đó giải phóng tài nguyên
+            mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.stop();
+                mediaPlayer.dispose();
+                audioTempFile.delete();
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private static byte[] decodeResponse(byte[] audioBytes) throws IOException, ParseException {
+        // Tạo tệp tạm thời từ mảng byte
+        File tempFile = new File(TEMP_TXT_FILE);
+        tempFile.createNewFile();
+        try (FileOutputStream fos = new FileOutputStream(tempFile)) {
+            fos.write(audioBytes);
+        }
+
+        // Đọc nội dung của tệp JSON thành chuỗi
+        InputStream inputStream = new FileInputStream(tempFile.getPath());
+        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+
+        StringBuilder contentBuilder = new StringBuilder();
+        int c;
+        while ((c = reader.read()) != -1) {
+            contentBuilder.append((char) c);
+        }
+
+        String content = contentBuilder.toString();
+        JSONParser parser = new JSONParser();
+        JSONObject object = (JSONObject) parser.parse(content);
+        String base64 = (String) object.get("audioContent");
+        tempFile.delete(); // Xóa tệp tạm thời sau khi đã sử dụng
+
+        return Base64.getDecoder().decode(base64);
+    }
+
+        public static void main(String[] args) {
+        textToSpeechGoogle("Hello World");
     }
 }
