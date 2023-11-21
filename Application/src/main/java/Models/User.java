@@ -1,5 +1,15 @@
 package Models;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.stream.JsonReader;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+import static Constant.Constant.STUDY_RECORD_FILE;
+import static Constant.Constant.USER_INFO_FILE;
+
 public class User implements Comparable<User> {
     private String userId;
     private String username;
@@ -84,5 +94,31 @@ public class User implements Comparable<User> {
         int score = thisStudyRecord.getTotalScore();
         int otherScore = otherStudyRecord.getTotalScore();
         return Integer.compare(score, otherScore);
+    }
+
+    public void writeUserInfo() {
+        String userInfo = this.toJson();
+
+        File file = new File(USER_INFO_FILE);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            try (FileOutputStream fileOutputStream = new FileOutputStream(file, false);
+                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
+                 BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {
+
+                writer.write(userInfo);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Chuyển đối tượng thành chuỗi JSON
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }

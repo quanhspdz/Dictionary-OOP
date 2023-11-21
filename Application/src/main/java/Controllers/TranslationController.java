@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 import static Constant.Key.apiKey;
 
-public class TranslationController implements Initializable {
+public class TranslationController extends BaseController implements Initializable {
     private String sourceLanguage = "en";
     private String targetLanguage = "vi";
     private boolean isToVietnameseLang = true;

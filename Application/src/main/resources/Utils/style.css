@@ -377,3 +377,7 @@
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
 }
+.login_box{
+    -fx-prompt-text-fill: #808080;
+    -fx-background-radius:  5;
+}

@@ -24,7 +24,7 @@ import java.util.*;
 import static App.DictionaryApp.*;
 import static Constant.Constant.*;
 
-public class SearchWordController implements Initializable {
+public class SearchWordController extends BaseController implements Initializable {
 
     @FXML
     private TextField searchTerm;

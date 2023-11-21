@@ -53,12 +53,6 @@ public class LoginController extends BaseController implements Initializable {
     @FXML
     private ComboBox<?> forgot_selectQuestion, signup_selectQuestion;
 
-    @FXML
-    private CheckBox login_selectShowPassword;
-
-    @FXML
-    private Hyperlink login_forgotPassword;
-
 
     private Connection connect;
 
@@ -81,6 +75,7 @@ public class LoginController extends BaseController implements Initializable {
                         //alert.successMessage("Đăng nhập thành công!");
                         try {
                             user = mapUsers.get(username);
+                            user.writeUserInfo();
                             goToMainApp();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
@@ -113,16 +108,6 @@ public class LoginController extends BaseController implements Initializable {
     }
 
     public void showPassword() {
-
-        if (login_selectShowPassword.isSelected()) {
-            login_showPassword.setText(login_password.getText());
-            login_showPassword.setVisible(true);
-            login_password.setVisible(false);
-        } else {
-            login_password.setText(login_showPassword.getText());
-            login_showPassword.setVisible(false);
-            login_password.setVisible(true);
-        }
 
     }
 
@@ -216,6 +201,7 @@ public class LoginController extends BaseController implements Initializable {
                 alert.successMessage("Đăng ký thành công!");
                 try {
                     user = newUser;
+                    user.writeUserInfo();
                     goToMainApp();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -251,18 +237,6 @@ public class LoginController extends BaseController implements Initializable {
             login_form.setVisible(false);
             forgot_form.setVisible(false);
             changePass_form.setVisible(false);
-        } else if (event.getSource() == login_forgotPassword) {
-            signup_form.setVisible(false);
-            login_form.setVisible(false);
-            forgot_form.setVisible(true);
-            changePass_form.setVisible(false);
-            // show data on combobox
-            forgotListQuestion();
-        } else if (event.getSource() == changePass_backBtn) {
-            signup_form.setVisible(false);
-            login_form.setVisible(false);
-            forgot_form.setVisible(true);
-            changePass_form.setVisible(false);
         }
 
     }
@@ -272,17 +246,6 @@ public class LoginController extends BaseController implements Initializable {
             "Màu sắc yêu thích nhất của bạn?",
             "Tên thú cưng của bạn?",
             "Môn thể thao bạn yêu thích nhất ?"};
-
-    public void questions() {
-        List<String> listQ = new ArrayList<>();
-
-        for (String data : questionList) {
-            listQ.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listQ);
-        signup_selectQuestion.setItems(listData);
-    }
 
     public static void saveUserToFirebase(User user) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -305,9 +268,6 @@ public class LoginController extends BaseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        questions();
-        forgotListQuestion();
-
         initFirebase();
     }
 }
