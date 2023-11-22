@@ -358,8 +358,10 @@ public class SearchWordController extends BaseController implements Initializabl
 //            String language = "vi-VN"; // Mã ngôn ngữ tiếng Việt
 //            String voice = "vi-VN-Wavenet-A"; // Tên giọng nữ tiếng Việt
 
+            String escapedText = JSONObject.escape(text);
+
             // Build the JSON payload
-            String jsonInputString = "{\"input\": {\"text\":\"" + text
+            String jsonInputString = "{\"input\": {\"text\":\"" + escapedText
                     + "\"}, \"voice\": {\"languageCode\":\""+ language +"\",\"name\":\""+ voice +"\"}, " +
                     "\"audioConfig\": {\"audioEncoding\":\"MP3\"}}";
 
