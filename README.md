@@ -20,7 +20,7 @@ The application is designed to support learning English. The application is writ
 ## Installation
   1. Clone the project from the repository by command: git clone https://github.com/quanhspdz/Dictionary-OOP.git
   2. Open the project in the IDE.
-  3. Instruction for build app
+  3. Instruction for build app:
     - Project Stucture -> Modules -> DictionaryApplication:
         + Source Folders: src\main\java
         + Resource Folders: src\main\resources
