@@ -22,12 +22,12 @@ The application is designed to support learning English. The application is writ
   1. Clone the project from the repository by command: git clone https://github.com/quanhspdz/Dictionary-OOP.git
   2. Open the project in the IDE.
   3. Instruction for build app:
-    - Project Stucture -> Modules -> DictionaryApplication:
-        + Source Folders: src\main\java
-        + Resource Folders: src\main\resources
-    - Run -> Edit Configurations... -> Add new run configuration... -> Application
-        + Name: DictionaryApp
-        + MainClass: App.DictionaryApp
+- Project Stucture -> Modules -> DictionaryApplication:
+  + Source Folders: src\main\java
+  + Resource Folders: src\main\resources
+- Run -> Edit Configurations... -> Add new run configuration... -> Application
+  + Name: DictionaryApp
+  + MainClass: App.DictionaryApp
 - Modify options --> Add VM options
 - VM options: --module-path "\path\to\openjfx-21.0.1_windows-x64_bin-sdk\javafx-sdk-21.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.web --add-opens java.base/java.time=ALL-UNNAMED
 4. If you want to change the data, you can change the E_V.txt and V_E.txt files.
