@@ -46,7 +46,7 @@ public class LoginController extends BaseController implements Initializable {
 
     @FXML
     private TextField changePass_cPassword, changePass_password, forgot_answer,
-            forgot_username, login_username, signup_answer,
+            forgot_username, login_username,
             signup_email, signup_username, login_showPassword;
 
     @FXML
@@ -54,9 +54,6 @@ public class LoginController extends BaseController implements Initializable {
 
     @FXML
     private AnchorPane changePass_form, forgot_form, login_form, main_form, signup_form;
-
-    @FXML
-    private ComboBox<?> forgot_selectQuestion, signup_selectQuestion;
 
 
     private Connection connect;
@@ -128,7 +125,6 @@ public class LoginController extends BaseController implements Initializable {
         AlertMessage alert = new AlertMessage();
 
         if (forgot_username.getText().isEmpty()
-                || forgot_selectQuestion.getSelectionModel().getSelectedItem() == null
                 || forgot_answer.getText().isEmpty()) {
             alert.errorMessage("Vui lòng nhập đầy đủ thông tin");
         } else {
@@ -140,7 +136,6 @@ public class LoginController extends BaseController implements Initializable {
 
                 prepare = connect.prepareStatement(checkData);
                 prepare.setString(1, forgot_username.getText());
-                prepare.setString(2, (String) forgot_selectQuestion.getSelectionModel().getSelectedItem());
                 prepare.setString(3, forgot_answer.getText());
 
                 result = prepare.executeQuery();
@@ -172,7 +167,6 @@ public class LoginController extends BaseController implements Initializable {
         }
 
         ObservableList listData = FXCollections.observableArrayList(listQ);
-        forgot_selectQuestion.setItems(listData);
 
     }
 
@@ -180,9 +174,7 @@ public class LoginController extends BaseController implements Initializable {
         AlertMessage alert = new AlertMessage();
 
         if (signup_email.getText().isEmpty() || signup_username.getText().isEmpty()
-                || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty()
-                || signup_selectQuestion.getSelectionModel().getSelectedItem() == null
-                || signup_answer.getText().isEmpty()) {
+                || signup_password.getText().isEmpty() || signup_cPassword.getText().isEmpty()) {
             alert.errorMessage("Bạn cần nhập đầy đủ thông tin");
         } else if (!signup_password.getText().equals(signup_cPassword.getText())) {
             alert.errorMessage("Mật khẩu xác nhận không trùng khớp");
@@ -229,8 +221,6 @@ public class LoginController extends BaseController implements Initializable {
         signup_username.setText("");
         signup_password.setText("");
         signup_cPassword.setText("");
-        signup_selectQuestion.getSelectionModel().clearSelection();
-        signup_answer.setText("");
     }
 
     public void changePassword() {
