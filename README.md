@@ -42,7 +42,7 @@ The application is designed to support learning English. The application is writ
   8. To practice, click the Practice button (Readbook icon), then the application will display a Game window.
   9. To exit the application, click the Blue Power button.
 ## Demo
-  1. Video:
+  1. Video: (https://drive.google.com/file/d/1TLd0UXtu5qmLr5MCD_NTcFYVqYaeggG9/view?usp=drivesdk)
     
   2. Screenshots:
   - Login and Register:
