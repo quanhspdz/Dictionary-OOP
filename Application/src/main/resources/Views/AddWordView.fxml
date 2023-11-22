@@ -34,8 +34,8 @@
                     </font>
                 </Label>
                 <TextArea fx:id="wordDefinitionInput" layoutX="31.0" layoutY="97.0" prefHeight="258.0" prefWidth="706.0" promptText="Nhập giải nghĩa của từ...." styleClass="meaning-input" stylesheets="@../Utils/style.css" wrapText="true" />
-                <Button fx:id="addBtn" layoutX="107.0" layoutY="361.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
-                <Label fx:id="successAlert" alignment="CENTER" layoutX="466.0" layoutY="360.0" prefHeight="32.0" prefWidth="262.0" styleClass="success-alert" stylesheets="@../Utils/style.css" text="Thành công">
+                <Button fx:id="addBtn" layoutX="31.0" layoutY="361.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Thêm " />
+                <Label fx:id="successAlert" alignment="CENTER" layoutX="165.0" layoutY="360.0" prefHeight="32.0" prefWidth="262.0" styleClass="success-alert" stylesheets="@../Utils/style.css" text="Thành công">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
