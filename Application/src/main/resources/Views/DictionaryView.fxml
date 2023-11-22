@@ -17,7 +17,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/search.png" />
+                          <Image url="@../Utils/icons/ic_search.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -35,7 +35,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/addition.png" />
+                          <Image url="@../Utils/icons/ic_add.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -53,7 +53,7 @@
               <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                       <image>
-                          <Image url="@../Utils/icons/google-translate.png" />
+                          <Image url="@../Utils/icons/ic_translate.png" />
                       </image>
                   </ImageView>
               </graphic>
@@ -71,7 +71,7 @@
             <graphic>
                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Utils/icons/user.png" />
+                        <Image url="@../Utils/icons/ic_profile.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -90,7 +90,7 @@
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Utils/icons/reading.png" />
+                  <Image url="@../Utils/icons/ic_readbook.png" />
                </image>
             </ImageView>
          </graphic>
