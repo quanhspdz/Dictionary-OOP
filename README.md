@@ -11,10 +11,10 @@ The application is designed to support learning English. The application is writ
   3. The application is based on the MVC model.
   4. The application has two types of dictionaries: English-Vietnamese and Vietnamese-English.
   5. The application use E_V.txt and V_E.txt files to store data and word search features.
-  6. The application use firebase to store data user.
-  7. Game-intergrated application to practice English and study time statistics.
-  8. The application use Google' Api to translate the entire paragraph.
-  9. The application use Google' Api to pronounce each word. 
+  6. Game-intergrated application to practice English, study time statistics and ranking user.
+  7. The application use Firebase Realtime Database to store user's data.
+  8. Use Google' Cloud Text-to-Speech API to translate the entire paragraph.
+  9. Use Google' Cloud Translation API to pronounce each word.
 ## UML diagram
 ![UML diagram](https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/a15a785b-8c04-468f-ad78-c414ef51263a)
 
@@ -40,7 +40,7 @@ The application is designed to support learning English. The application is writ
   6. To save the changes, click the Save button (Disk icon).
   7. To pronounce the word, click the Pronounce button (Speaker icon).
   8. To practice, click the Practice button (Readbook icon), then the application will display a Game window.
-  9. To exit the application, click the Exit button (Cross icon).
+  9. To exit the application, click the Blue Power button.
 ## Demo
   1. Video:
     
