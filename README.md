@@ -10,13 +10,25 @@ The application is designed to support learning English. The application is writ
   2. The application is written in Java and uses the JavaFX library.
   3. The application is based on the MVC model.
   4. The application has two types of dictionaries: English-Vietnamese and Vietnamese-English.
-  5. The application use E_V.txt and V_E.txt files to store data.
+  5. The application use E_V.txt and V_E.txt files to store data and word search features.
+  6. The application use firebase to store data user.
+  7. Game-intergrated application to practice English and study time statistics.
+  8. Use Google' Api to translate the entire paragraph.
+  9. Use Google' Api to pronounce each word. 
 ## UML diagram
 ![UML diagram](
 ## Installation
-  1. Clone the project from the repository.
+  1. Clone the project from the repository by command: git clone https://github.com/quanhspdz/Dictionary-OOP.git
   2. Open the project in the IDE.
-  3. Run the project.
+  3. Instruction for build app
+    - Project Stucture -> Modules -> DictionaryApplication:
+        + Source Folders: src\main\java
+        + Resource Folders: src\main\resources
+    - Run -> Edit Configurations... -> Add new run configuration... -> Application
+        + Name: DictionaryApp
+        + MainClass: App.DictionaryApp
+- Modify options --> Add VM options
+- VM options: --module-path "\path\to\openjfx-21.0.1_windows-x64_bin-sdk\javafx-sdk-21.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.web
   4. If you want to change the data, you can change the E_V.txt and V_E.txt files.
 ## Usage
   1. Select mode: English-Vietnamese or Vietnamese-English to choose the dictionary.
@@ -26,7 +38,7 @@ The application is designed to support learning English. The application is writ
   5. To edit a word, click the Edit button (Pencil icon).
   6. To save the changes, click the Save button (Disk icon).
   7. To pronounce the word, click the Pronounce button (Speaker icon).
-  8. To practice, click the Practice button (Play icon), then the application will display a Game window.
+  8. To practice, click the Practice button (Readbook icon), then the application will display a Game window.
   9. To exit the application, click the Exit button (Cross icon).
 ## Demo
 ![Demo](
@@ -34,10 +46,8 @@ The application is designed to support learning English. The application is writ
   1. Add more dictionaries.
   2. Add more complex games.
   3. Optimize the word lookup algorithm.
-  4. Use a database to store data.
-  5. Integrate the application with API of Google Translate to translate paragraphs and whole documents.
-  6. Integrate the application with API of Google Speech to Text to convert speech to text.
-  7. Improve the user interface.
+  4. Integrate the application with API of Google Speech to Text to convert speech to text.
+  5. Improve the user interface.
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 ## Project status
