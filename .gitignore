@@ -5,3 +5,4 @@ Key.java
 Application/userdata/*.txt
 Application/userdata/*.mp3
 firebase_key.json
+*.log
