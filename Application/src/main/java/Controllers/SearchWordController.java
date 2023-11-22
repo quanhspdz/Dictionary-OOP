@@ -6,6 +6,7 @@ import Interfaces.DataLoadedListener;
 import Models.Word;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -59,6 +60,11 @@ public class SearchWordController extends BaseController implements Initializabl
 
     private Word currentSelectedWord;
 
+    public static final String engLangCode = "en-US";
+    public static final String vieLangCode = "vi-VN";
+    public static final String voiceEng = "en-US-Studio-O";
+    public static final String voiceVie = "vi-VN-Wavenet-A";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if (data.isEmpty()) {
@@ -96,7 +102,7 @@ public class SearchWordController extends BaseController implements Initializabl
             public void handle(ActionEvent event) {
                 String word = selectedWord.getText();
                 if (word != null) {
-                    textToSpeechGoogle(word);
+                    textToSpeechGoogle(word, engLangCode, voiceEng);
                 }
             }
         });
@@ -283,7 +289,7 @@ public class SearchWordController extends BaseController implements Initializabl
         }
     }
 
-    public static void textToSpeechGoogle(String text) {
+    public static void textToSpeechGoogle(String text, String language, String voice) {
         try {
             // Build the URL for the Text-to-Speech API
             URL url = new URL("https://texttospeech.googleapis.com/v1/text:synthesize?key=" + apiKey);
@@ -296,9 +302,6 @@ public class SearchWordController extends BaseController implements Initializabl
 
 //            String language = "vi-VN"; // Mã ngôn ngữ tiếng Việt
 //            String voice = "vi-VN-Wavenet-A"; // Tên giọng nữ tiếng Việt
-
-            String language = "en-US";
-            String voice = "en-US-Studio-O";
 
             // Build the JSON payload
             String jsonInputString = "{\"input\": {\"text\":\"" + text
@@ -318,7 +321,12 @@ public class SearchWordController extends BaseController implements Initializabl
                 // Read the audio contents from the response
                 try (InputStream inputStream = connection.getInputStream()) {
                     byte[] audioBytes = inputStream.readAllBytes();
-                    playAudio(audioBytes);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            playAudio(audioBytes);
+                        }
+                    });
                 }
             } else {
                 System.out.println("Error: " + responseCode);
@@ -328,30 +336,6 @@ public class SearchWordController extends BaseController implements Initializabl
         } catch (IOException e) {
             e.printStackTrace();
             textToSpeech(text);
-        }
-    }
-
-    private static void saveAudioFile(InputStream inputStream) throws IOException, ParseException {
-        // Đọc nội dung của tệp JSON thành chuỗi
-        InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-
-        StringBuilder contentBuilder = new StringBuilder();
-        int c;
-        while ((c = reader.read()) != -1) {
-            contentBuilder.append((char) c);
-        }
-
-        String content = contentBuilder.toString();
-//        JSONParser parser = new JSONParser();
-//        JSONObject object = (JSONObject) parser.parse(content);
-//        String base64 = (String) object.get("audioContent");
-        System.out.println("BASE64: " + content);
-    }
-
-    private static void writeAudioToFile(byte[] audioData, String filename) throws IOException {
-        try (FileOutputStream output = new FileOutputStream(filename)) {
-            output.write(audioData);
-            System.out.println("Audio content written to file \"" + filename + "\"");
         }
     }
 
@@ -375,11 +359,11 @@ public class SearchWordController extends BaseController implements Initializabl
             mediaPlayer.play();
 
             // Đợi cho đến khi âm thanh phát xong và sau đó giải phóng tài nguyên
-            mediaPlayer.setOnEndOfMedia(() -> {
-                mediaPlayer.stop();
-                mediaPlayer.dispose();
-                audioTempFile.delete();
-            });
+//            mediaPlayer.setOnEndOfMedia(() -> {
+//                mediaPlayer.stop();
+//                mediaPlayer.dispose();
+//                audioTempFile.delete();
+//            });
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -413,9 +397,5 @@ public class SearchWordController extends BaseController implements Initializabl
         tempFile.delete(); // Xóa tệp tạm thời sau khi đã sử dụng
 
         return Base64.getDecoder().decode(base64);
-    }
-
-        public static void main(String[] args) {
-        textToSpeechGoogle("Hello World");
     }
 }
