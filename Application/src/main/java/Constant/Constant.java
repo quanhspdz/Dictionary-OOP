@@ -1,10 +1,12 @@
 package Constant;
 
 public class Constant {
-    public static final String DATA_FILE_PATH = "Data/E_V.txt";
+    public static final String DATA_EV_FILE_PATH = "Data/E_V.txt";
+    public static final String DATA_VE_FILE_PATH = "Data/V_E.txt";
     public static final String QUESTION_FILE_PATH = "Data/Question.txt";
     public static final String SPLITTING_CHARACTERS = "<html>";
-    public static final String EDITED_WORD_FILE = "Application/userdata/Edited_Word.txt";
+    public static final String EDITED_WORD_EV_FILE = "Application/userdata/Edited_Word_EV.txt";
+    public static final String EDITED_WORD_VE_FILE = "Application/userdata/Edited_Word_VE.txt";
     public static final String STUDY_RECORD_FILE = "Application/userdata/StudyRecord.txt";
     public static final String USER_INFO_FILE = "Application/userdata/UserInfo.txt";
 

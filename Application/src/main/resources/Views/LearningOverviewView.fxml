@@ -199,7 +199,7 @@
                     <children>
                         <Label fx:id="progressTitle" alignment="TOP_LEFT" layoutX="20.0" layoutY="-1.0"
                                prefHeight="30.0" styleClass="question-title" stylesheets="@../Utils/style.css"
-                               text="Thông số" textFill="#FFF" wrapText="true">
+                               text="Thông số - NA" textFill="#FFF" wrapText="true">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -214,7 +214,7 @@
                         <HBox layoutX="410.0" layoutY="-1.0" spacing="10.0">
                             <children>
                                 <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="title-button"
-                                        stylesheets="@../Utils/style.css" text="Học offline">
+                                        stylesheets="@../Utils/style.css" text="Vào học">
                                     <HBox.margin>
                                         <Insets left="5.0" top="5.0"/>
                                     </HBox.margin>

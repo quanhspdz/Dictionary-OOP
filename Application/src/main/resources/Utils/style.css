@@ -26,9 +26,11 @@
  -fx-font-weight: bold;
  -fx-font-family: "Roboto";
 }
-.menu-item:hover,
+.menu-item:hover{
+    -fx-background-color: #bbd5aa;
+}
 .menu-item:focused{
- -fx-background-color: #c6a1d6;
+ -fx-background-color: #a0e376;
 }
 .search-box{
     -fx-background-color:   #4285f4;

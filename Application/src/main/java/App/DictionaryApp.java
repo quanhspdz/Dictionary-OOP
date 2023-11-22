@@ -21,7 +21,10 @@ public class DictionaryApp extends Application {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    public static Map<String, Word> data = new HashMap<>();
+    public static Map<String, Word> dataEngVie = new HashMap<>();
+    public static Map<String, Word> dataVieEng = new HashMap<>();
+    public static Map<String, Word> currentData = new HashMap<>();
+
 
     public static boolean isLoadedAllData = false;
     private static List<DataLoadedListener> listeners = new ArrayList<>();
@@ -34,7 +37,8 @@ public class DictionaryApp extends Application {
     public void start(final Stage stage) throws Exception {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/LoginView.fxml")));
         stage.setTitle("Dictionary Application");
-        readData();
+        readData(dataVieEng, DATA_VE_FILE_PATH, EDITED_WORD_VE_FILE);
+        readData(dataEngVie, DATA_EV_FILE_PATH, EDITED_WORD_EV_FILE);
 //        stage.initStyle(StageStyle.TRANSPARENT);
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -58,8 +62,11 @@ public class DictionaryApp extends Application {
         stage.show();
     }
 
-    public void readData() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
+    public static void readData(Map<String, Word> data,
+                                String DATA_FILE_PATH, String EDITED_WORD_FILE) throws IOException {
+        data.clear();
+
+        ClassLoader classLoader = DictionaryApp.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(DATA_FILE_PATH);
         InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
         BufferedReader br = new BufferedReader(reader);
@@ -91,10 +98,11 @@ public class DictionaryApp extends Application {
             }
         }
 
+        currentData = data;
         dataLoaded();
     }
 
-    public void dataLoaded() {
+    public static void dataLoaded() {
         isLoadedAllData = true;
         notifyListeners();
     }
@@ -107,7 +115,7 @@ public class DictionaryApp extends Application {
         listeners.remove(listener);
     }
 
-    private void notifyListeners() {
+    private static void notifyListeners() {
         for (DataLoadedListener listener : listeners) {
             listener.onDataLoaded();
         }
