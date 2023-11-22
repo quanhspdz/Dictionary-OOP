@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -56,9 +57,15 @@ public class DictionaryApp extends Application {
             }
         });
 
+        ClassLoader classLoader = DictionaryApp.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_DICTIONARY);
+        assert inputStream != null;
+        Image image = new Image(inputStream);
+
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
+        stage.getIcons().add(image);
         stage.show();
     }
 

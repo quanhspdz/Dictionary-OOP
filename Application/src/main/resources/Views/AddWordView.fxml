@@ -77,12 +77,14 @@
                 </Button>
             </children>
         </AnchorPane>
-        <Pane layoutX="3.0" layoutY="8.0" prefHeight="45.0" prefWidth="764.0" styleClass="title"
-              stylesheets="@../Utils/style.css" AnchorPane.topAnchor="5.0">
+        <Pane layoutX="3.0" layoutY="8.0" prefHeight="35.0" prefWidth="769.0" styleClass="title-learning"
+              stylesheets="@../Utils/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+              AnchorPane.topAnchor="0.0">
             <children>
-                <Label layoutX="20.0" prefHeight="45.0" prefWidth="240.0" text="Thêm từ vựng mới" textFill="#fff">
+                <Label layoutX="20.0" prefHeight="35.0" prefWidth="240.0" styleClass="question-title"
+                       text="Thêm từ vựng mới" textFill="#fff">
                     <font>
-                        <Font name="System Bold Italic" size="18.0"/>
+                        <Font name="System Bold" size="18.0"/>
                     </font>
                     <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -92,8 +94,8 @@
                         </ImageView>
                     </graphic>
                 </Label>
-                <Button fx:id="btnSwitchLang" layoutX="655.0" layoutY="7.0" mnemonicParsing="false" prefHeight="32.0"
-                        prefWidth="60.0" styleClass="add-button" stylesheets="@../Utils/style.css" text="Anh - Việt"/>
+                <Button fx:id="btnSwitchLang" layoutX="650.0" layoutY="2.0" mnemonicParsing="false"
+                        styleClass="add-button" stylesheets="@../Utils/style.css" text="Anh - Việt"/>
             </children>
         </Pane>
     </children>

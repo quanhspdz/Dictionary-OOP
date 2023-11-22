@@ -42,7 +42,7 @@
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="11.0" layoutY="8.0" pickOnBounds="true"
                                    preserveRatio="true">
                             <image>
-                                <Image url="@../Utils/icons/search.png"/>
+                                <Image url="@../Utils/icons/search_white.png"/>
                             </image>
                         </ImageView>
                         <Button fx:id="cancelBtn" layoutX="256.0" layoutY="4.0" mnemonicParsing="false"

@@ -7,6 +7,7 @@ import java.sql.*;
 import java.time.Duration;
 import java.util.*;
 
+import App.DictionaryApp;
 import DialogAlert.AlertMessage;
 import Models.StudyRecord;
 import Models.User;
@@ -25,11 +26,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import static Constant.Constant.FIREBASE_KEY;
+import static Constant.Constant.PATH_TO_IMAGE_DICTIONARY;
 import static Constant.Key.firebaseDatabaseUrl;
 
 
@@ -100,9 +103,15 @@ public class LoginController extends BaseController implements Initializable {
         // Access the controller of the new scene if needed
         // Example: MainController mainController = loader.getController();
 
+        ClassLoader classLoader = DictionaryApp.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(PATH_TO_IMAGE_DICTIONARY);
+        assert inputStream != null;
+        Image image = new Image(inputStream);
+
         Scene scene = new Scene(root);
         Stage mainStage = new Stage();
         mainStage.setScene(scene);
+        mainStage.getIcons().add(image);
         mainStage.show();
 
         // Close the current login window

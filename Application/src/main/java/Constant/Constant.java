@@ -14,6 +14,8 @@ public class Constant {
 
     public static final String PATH_TO_IMAGE_FIREWORK = "Utils/images/party-popper.png";
 
+    public static final String PATH_TO_IMAGE_DICTIONARY = "Utils/images/dictionary.png";
+
     public static final String PATH_TO_IMAGE_SAD = "Utils/images/sad.png";
 
     public static final String PATH_TO_CORRECT_CHEERING = "Utils/Audio/correct_ai_la_trieu_phu.mp3";
