@@ -25,6 +25,23 @@ The application is designed to support learning English. The application is writ
   4. To delete a word, click the Delete button (Minus icon).
   5. To edit a word, click the Edit button (Pencil icon).
   6. To save the changes, click the Save button (Disk icon).
-  7. To pronounce the word, click the Pronounce button (Speaker icon).
-  8. To practice, click the Practice button (Play icon), then the application will display a Game window.
-     - 
+  7. To pronounce t
+  8. he word, click the Pronounce button (Speaker icon).
+  9. To practice, click the Practice button (Play icon), then the application will display a Game window
+  10. To exit the application, click the Exit button (Cross icon).
+## Demo
+![Demo](
+## Future improvements
+  1. Add more dictionaries.
+  2. Add more complex games.
+  3. Optimize the word lookup algorithm.
+  4. Use a database to store data.
+  5. Integrate the application with API of Google Translate to translate paragraphs and whole documents.
+  6. Integrate the application with API of Google Speech to Text to convert speech to text.
+  7. Improve the user interface.
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Project status
+The project is completed.
+## Notes
+The application is written for educational purposes.
