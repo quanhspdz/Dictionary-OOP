@@ -52,6 +52,12 @@
     -fx-text-fill: #2b2b2b;
     -fx-cursor: hand;
 }
+.cancel-button:hover{
+    -fx-effect: dropshadow(three-pass-box, #418816, 3, 0, 0, 1) ;
+}
+.cancel-button:pressed{
+    -fx-effect: dropshadow(three-pass-box, #62ff00, 4, 0, 0, 1) ;
+}
 .definition-wrapper{
     -fx-border-width: 1.5;
     -fx-background-radius: 5;

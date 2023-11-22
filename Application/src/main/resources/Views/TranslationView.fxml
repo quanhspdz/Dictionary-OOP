@@ -7,99 +7,117 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.TranslationController">
-    <Pane prefHeight="91.0" prefWidth="769.0" styleClass="header" stylesheets="@../Utils/style.css">
+<AnchorPane prefHeight="510.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.TranslationController">
+    <Pane layoutX="3.0" layoutY="14.0" prefHeight="45.0" prefWidth="764.0" styleClass="title"
+          stylesheets="@../Utils/style.css" AnchorPane.topAnchor="2.0">
         <children>
-         <Pane layoutX="240.0" layoutY="20.0">
-            <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="2.0" prefHeight="40.0" prefWidth="308.0" text="Sắp deadline rồi" textFill="#4285f4">
-                      <font>
-                          <Font name="System Bold Italic" size="20.0" />
-                      </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="22.0" prefHeight="40.0" prefWidth="308.0" text="Nhanh lên ae!" textFill="#4285f4">
-                      <font>
-                          <Font name="System Italic" size="18.0" />
-                      </font>
-                  </Label>
-            </children>
-         </Pane>
-            <ImageView fitHeight="78.0" fitWidth="100.0" layoutX="115.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../Utils/images/suzy-header.jpg" />
-                </image>
-            </ImageView>
-            <ImageView fitHeight="145.0" fitWidth="130.0" layoutX="565.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../Utils/images/suzy.jpg" />
-                </image>
-            </ImageView>
+            <Label layoutX="20.0" prefHeight="45.0" prefWidth="391.0" text="Phiên dịch " textFill="#fff">
+                <font>
+                    <Font name="System Bold Italic" size="18.0"/>
+                </font>
+                <graphic>
+                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Utils/icons/translation.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Label>
         </children>
     </Pane>
-    <AnchorPane layoutY="91.0" prefHeight="419.0" prefWidth="769.0">
+    <Pane layoutX="65.0" layoutY="171.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+          AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
         <children>
-            <Pane layoutX="2.0" prefHeight="45.0" prefWidth="764.0" styleClass="title" stylesheets="@../Utils/style.css">
+            <Pane prefHeight="57.0" prefWidth="729.0" styleClass="header-translate" stylesheets="@../Utils/style.css">
                 <children>
-                    <Label layoutX="20.0" prefHeight="45.0" prefWidth="391.0" text="Phiên dịch " textFill="#fff">
-                        <font>
-                            <Font name="System Bold Italic" size="18.0" />
-                        </font>
-                        <graphic>
-                            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../Utils/icons/translation.png" />
-                                </image>
-                            </ImageView>
-                        </graphic>
-                    </Label>
-                </children>
-            </Pane>
-            <Pane layoutX="65.0" layoutY="80.0">
-                <children>
-                    <Pane prefHeight="57.0" prefWidth="645.0" styleClass="header-translate" stylesheets="@../Utils/style.css">
+                    <HBox alignment="CENTER" layoutX="126.0" layoutY="10.0">
                         <children>
-                            <Label fx:id="englishLabel" layoutX="104.0" layoutY="13.0" prefHeight="37.0" prefWidth="100.0" text="Tiếng Anh" textFill="#4285f4">
+                            <Label fx:id="sourceLangLabel" prefHeight="37.0" text="Tiếng Anh" textFill="#4285f4">
                                 <font>
-                                    <Font name="System Bold" size="16.0" />
+                                    <Font name="System Bold" size="16.0"/>
                                 </font>
                             </Label>
-                            <Label fx:id="vietnameseLabel" layoutX="426.0" layoutY="14.0" prefHeight="37.0" prefWidth="130.0" text="Tiếng Việt" textFill="#4285f4">
-                                <font>
-                                    <Font name="System Bold" size="16.0" />
-                                </font>
-                            </Label>
-                            <Button fx:id="switchToggle" layoutX="302.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleOnClickSwitchToggle" styleClass="switch-button" stylesheets="@../Utils/style.css">
+                            <Button fx:id="btnListenSource" contentDisplay="CENTER" graphicTextGap="0.0"
+                                    mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0"
+                                    styleClass="cancel-button" stylesheets="@../Utils/style.css">
+                                <tooltip>
+                                    <Tooltip text="Nghe"/>
+                                </tooltip>
                                 <graphic>
-                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                               preserveRatio="true">
                                         <image>
-                                            <Image url="@../Utils/icons/exchange.png" />
+                                            <Image url="@../Utils/icons/speaker_blue.png"/>
                                         </image>
                                     </ImageView>
                                 </graphic>
                             </Button>
                         </children>
-                    </Pane>
-                    <TextArea fx:id="sourceTextField" layoutY="55.0" prefHeight="207.0" prefWidth="323.0" promptText="Nhập văn bản..." styleClass="src-speech-field" stylesheets="@../Utils/style.css" wrapText="true" />
-                    <TextArea fx:id="translationTextField" layoutX="322.0" layoutY="55.0" prefHeight="207.0" prefWidth="323.0" styleClass="to-speech-field" stylesheets="@../Utils/style.css" wrapText="true" />
-                    <Button fx:id="translateBtn" layoutX="275.0" layoutY="272.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" styleClass="trans-button" stylesheets="@../Utils/style.css" text="Dịch">
-                    </Button>
-                    <Button fx:id="clearBtn" layoutX="286.0" layoutY="57.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
+                    </HBox>
+                    <HBox alignment="CENTER" layoutX="499.0" layoutY="10.0">
+                        <children>
+                            <Label fx:id="targetLangLabel" prefHeight="37.0" text="Tiếng Việt" textFill="#4285f4">
+                                <font>
+                                    <Font name="System Bold" size="16.0"/>
+                                </font>
+                            </Label>
+                            <Button fx:id="btnListenTarget" contentDisplay="CENTER" graphicTextGap="0.0"
+                                    mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0"
+                                    styleClass="cancel-button" stylesheets="@../Utils/style.css">
+                                <tooltip>
+                                    <Tooltip text="Nghe"/>
+                                </tooltip>
+                                <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true"
+                                               preserveRatio="true">
+                                        <image>
+                                            <Image url="@../Utils/icons/speaker_blue.png"/>
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                        </children>
+                    </HBox>
+                    <Button fx:id="switchToggle" layoutX="344.0" layoutY="12.0" mnemonicParsing="false"
+                            onAction="#handleOnClickSwitchToggle" styleClass="switch-button"
+                            stylesheets="@../Utils/style.css">
                         <graphic>
-                            <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image url="@../Utils/icons/cancel_blue.png" />
+                                    <Image url="@../Utils/icons/exchange.png"/>
                                 </image>
                             </ImageView>
                         </graphic>
-                        <tooltip>
-                            <Tooltip text="Clear" />
-                        </tooltip>
                     </Button>
                 </children>
             </Pane>
+            <TextArea fx:id="sourceTextField" layoutY="55.0" prefHeight="318.0" prefWidth="365.0"
+                      promptText="Nhập văn bản..." styleClass="src-speech-field" stylesheets="@../Utils/style.css"
+                      wrapText="true"/>
+            <TextArea fx:id="translationTextField" layoutX="364.0" layoutY="55.0" prefHeight="318.0" prefWidth="365.0"
+                      styleClass="to-speech-field" stylesheets="@../Utils/style.css" wrapText="true"/>
+            <Button fx:id="translateBtn" layoutX="315.0" layoutY="389.0" mnemonicParsing="false"
+                    nodeOrientation="RIGHT_TO_LEFT" styleClass="trans-button" stylesheets="@../Utils/style.css"
+                    text="Dịch">
+            </Button>
+            <Button fx:id="clearBtn" layoutX="320.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0"
+                    prefWidth="29.0" styleClass="cancel-button" stylesheets="@../Utils/style.css">
+                <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="@../Utils/icons/cancle.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+                <tooltip>
+                    <Tooltip text="Clear"/>
+                </tooltip>
+            </Button>
         </children>
-    </AnchorPane>
+    </Pane>
 </AnchorPane>
