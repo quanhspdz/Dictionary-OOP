@@ -42,7 +42,33 @@ The application is designed to support learning English. The application is writ
   8. To practice, click the Practice button (Readbook icon), then the application will display a Game window.
   9. To exit the application, click the Exit button (Cross icon).
 ## Demo
-![Demo](
+  1. Video:
+    
+  2. Screenshots:
+  - Login and Register:
+  <p>
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/e370c9b3-1071-4770-a8b3-4d3f4010b5a3" width="400" height="300">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/22e65d99-6b1d-4076-b4ff-a5989db9207b" width="400" height="300">
+  </p>
+  
+  - Search word:
+  <p>
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3c358d6b-8841-441b-818a-4017944bca05" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/b8b755e3-4028-441c-bdb6-e2116c5d84d3" width="500" height="340">
+  </p>
+  
+  - Add new word and Translate:
+  <p>
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/00658b8a-f19c-4c1c-b96d-09e8ba6944d9" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3104837c-3a6e-4ff9-8bd8-c3121db17cfc" width="500" height="340">
+  </p>
+  
+  - Mini game:
+  <p>
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/332f686f-ef68-4383-b90c-b85609c60c93" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/229d774c-6d7f-4c16-9602-61887c30d30e" width="500" height="340">
+  </p>
+
 ## Future improvements
   1. Add more dictionaries.
   2. Add more complex games.
