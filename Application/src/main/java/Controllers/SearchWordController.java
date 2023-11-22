@@ -6,6 +6,8 @@ import Interfaces.DataLoadedListener;
 import Models.Word;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +20,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.util.Duration;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -39,7 +42,7 @@ public class SearchWordController extends BaseController implements Initializabl
 
     @FXML
     private Button cancelBtn, saveBtn, textToSpeechBtn,
-            editDefinitionBtn, deleteWordBtn;
+            editDefinitionBtn, deleteWordBtn, btnSwitchLang;
 
     @FXML
     private Label selectedWord, headerList, notAvailableAlert;
@@ -64,10 +67,13 @@ public class SearchWordController extends BaseController implements Initializabl
     public static final String vieLangCode = "vi-VN";
     public static final String voiceEng = "en-US-Studio-O";
     public static final String voiceVie = "vi-VN-Wavenet-A";
+    public static String currentVoice = "en-US-Studio-O";
+    public static String currentLang = "en-US";
+    public static boolean isEngVie = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (data.isEmpty()) {
+        if (dataEngVie.isEmpty()) {
             DictionaryApp.addDataLoadedListener(new DataLoadedListener() {
                 @Override
                 public void onDataLoaded() {
@@ -83,8 +89,21 @@ public class SearchWordController extends BaseController implements Initializabl
         saveBtn.setVisible(false);
 
         searchTerm.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            private final Timeline searchTimeline = new Timeline();
+
+            {
+                // Set the delay
+                searchTimeline.getKeyFrames().add(
+                        new KeyFrame(Duration.millis(500), this::executeSearch)
+                );
+                searchTimeline.setCycleCount(1);
+            }
+
             @Override
             public void handle(KeyEvent keyEvent) {
+                // Reset the timeline to cancel any pending execution
+                searchTimeline.stop();
+
                 String searchKey = searchTerm.getText();
                 if (searchKey.isEmpty()) {
                     showDefaultListView();
@@ -92,8 +111,15 @@ public class SearchWordController extends BaseController implements Initializabl
                     notAvailableAlert.setVisible(false);
                 } else {
                     cancelBtn.setVisible(true);
-                    handleSearchOnKeyTyped(searchKey);
+                    // Schedule the search operation after the delay
+                    searchTimeline.playFromStart();
                 }
+            }
+
+            private void executeSearch(ActionEvent event) {
+                // This method will be called after the delay
+                String searchKey = searchTerm.getText();
+                handleSearchOnKeyTyped(searchKey);
             }
         });
 
@@ -102,7 +128,7 @@ public class SearchWordController extends BaseController implements Initializabl
             public void handle(ActionEvent event) {
                 String word = selectedWord.getText();
                 if (word != null) {
-                    textToSpeechGoogle(word, engLangCode, voiceEng);
+                    textToSpeechGoogle(word, currentLang, currentVoice);
                 }
             }
         });
@@ -143,6 +169,30 @@ public class SearchWordController extends BaseController implements Initializabl
                 showDefaultListView();
             }
         });
+
+        btnSwitchLang.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleSwitchLang();
+            }
+        });
+    }
+
+    private void handleSwitchLang() {
+        if (isEngVie) {
+            currentLang = vieLangCode;
+            currentVoice = voiceVie;
+            btnSwitchLang.setText("Việt - Anh");
+            currentData = dataVieEng;
+        } else {
+            currentLang = engLangCode;
+            currentVoice = voiceEng;
+            btnSwitchLang.setText("Anh - Việt");
+            currentData = dataEngVie;
+        }
+        isEngVie = !isEngVie;
+
+        showDefaultListView();
     }
 
     private void handleDeleteWord() {
@@ -172,7 +222,7 @@ public class SearchWordController extends BaseController implements Initializabl
     }
 
     private void deleteWord(Word currentSelectedWord) throws IOException {
-        data.remove(currentSelectedWord.getWord());
+        currentData.remove(currentSelectedWord.getWord());
         showDefaultListView();
         currentSelectedWord.setDef("");
         selectedWord.setText("");
@@ -194,7 +244,12 @@ public class SearchWordController extends BaseController implements Initializabl
 
     private void saveWordToFile(Word currentSelectedWord) throws IOException {
         // Tạo một đối tượng File cho tệp dữ liệu
-        File file = new File(EDITED_WORD_FILE);
+         File file;
+        if (isEngVie) {
+            file = new File(EDITED_WORD_EV_FILE);
+        } else {
+            file = new File(EDITED_WORD_VE_FILE);
+        }
 
         try (FileOutputStream fileOutputStream = new FileOutputStream(file, true);
              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
@@ -221,7 +276,7 @@ public class SearchWordController extends BaseController implements Initializabl
         this.wordListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 // Đảm bảo rằng newValue không null
-                Word selectedWord = data.get(newValue.trim());
+                Word selectedWord = currentData.get(newValue.trim());
                 currentSelectedWord = selectedWord;
                 saveBtn.setVisible(false);
                 String definition = selectedWord.getDef();
@@ -237,7 +292,7 @@ public class SearchWordController extends BaseController implements Initializabl
 
     private void showDefaultListView() {
         // Chuyển danh sách từ Map thành danh sách có thứ tự
-        List<String> sortedWords = new ArrayList<>(data.keySet());
+        List<String> sortedWords = new ArrayList<>(currentData.keySet());
 
         // Sắp xếp danh sách các từ theo thứ tự bảng chữ cái (alpha)
         Collections.sort(sortedWords);
@@ -260,7 +315,7 @@ public class SearchWordController extends BaseController implements Initializabl
         // Chuyển sang chữ thường để tìm kiếm không phân biệt chữ hoa/chữ thường
         searchKey = searchKey.trim().toLowerCase();
 
-        for (String key : data.keySet()) {
+        for (String key : currentData.keySet()) {
             if (key.toLowerCase().startsWith(searchKey)) {
                 searchResultList.add(key);
             }

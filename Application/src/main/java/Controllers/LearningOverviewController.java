@@ -33,7 +33,7 @@ public class LearningOverviewController extends BaseController implements Initia
     ImageView imageRanking;
     @FXML
     Label labelRanking, labelTotalAttempt, labelTimeSpend,
-            labelCorrectRatio, labelTimeAverage;
+            labelCorrectRatio, labelTimeAverage, progressTitle;
     @FXML
     ListView<User> listViewRanking;
     @FXML
@@ -85,6 +85,7 @@ public class LearningOverviewController extends BaseController implements Initia
     }
 
     private void setupRecordLabel(StudyRecord studyRecord) {
+        progressTitle.setText("Thông số - " + user.getUsername());
         int totalQuestions = studyRecord.getTotalQuestion();
 
         // Đảm bảo chia số nguyên để tránh mất thông tin khi tính toán tỉ lệ
