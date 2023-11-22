@@ -13,8 +13,8 @@ The application is designed to support learning English. The application is writ
   5. The application use E_V.txt and V_E.txt files to store data and word search features.
   6. The application use firebase to store data user.
   7. Game-intergrated application to practice English and study time statistics.
-  8. Use Google' Api to translate the entire paragraph.
-  9. Use Google' Api to pronounce each word. 
+  8. The application use Google' Api to translate the entire paragraph.
+  9. The application use Google' Api to pronounce each word. 
 ## UML diagram
 ![UML diagram](https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/a15a785b-8c04-468f-ad78-c414ef51263a)
 
