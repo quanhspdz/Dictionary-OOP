@@ -29,7 +29,7 @@ The application is designed to support learning English. The application is writ
         + MainClass: App.DictionaryApp
 - Modify options --> Add VM options
 - VM options: --module-path "\path\to\openjfx-21.0.1_windows-x64_bin-sdk\javafx-sdk-21.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.web --add-opens java.base/java.time=ALL-UNNAMED
-  4. If you want to change the data, you can change the E_V.txt and V_E.txt files.
+4. If you want to change the data, you can change the E_V.txt and V_E.txt files.
 ## Usage
   1. Select mode: English-Vietnamese or Vietnamese-English to choose the dictionary.
   2. Search for a word in the dictionary and click the Search button, then the right side of the window will display the meaning of the word.
