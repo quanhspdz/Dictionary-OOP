@@ -53,20 +53,20 @@ The application is designed to support learning English. The application is writ
   
   - Search word:
   <p>
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3c358d6b-8841-441b-818a-4017944bca05" width="500" height="340">
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/b8b755e3-4028-441c-bdb6-e2116c5d84d3" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3c358d6b-8841-441b-818a-4017944bca05" width="400" height="280">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/b8b755e3-4028-441c-bdb6-e2116c5d84d3" width="400" height="280">
   </p>
   
   - Add new word and Translate:
   <p>
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/00658b8a-f19c-4c1c-b96d-09e8ba6944d9" width="500" height="340">
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3104837c-3a6e-4ff9-8bd8-c3121db17cfc" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/00658b8a-f19c-4c1c-b96d-09e8ba6944d9" width="400" height="280">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/3104837c-3a6e-4ff9-8bd8-c3121db17cfc" width="400" height="280">
   </p>
   
   - Mini game:
   <p>
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/332f686f-ef68-4383-b90c-b85609c60c93" width="500" height="340">
-    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/229d774c-6d7f-4c16-9602-61887c30d30e" width="500" height="340">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/332f686f-ef68-4383-b90c-b85609c60c93" width="400" height="280">
+    <img src="https://github.com/quanhspdz/Dictionary-OOP/assets/81352730/229d774c-6d7f-4c16-9602-61887c30d30e" width="400" height="280">
   </p>
 
 ## Future improvements
