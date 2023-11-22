@@ -323,7 +323,7 @@
                                             <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true"
                                                        preserveRatio="true">
                                                 <image>
-                                                    <Image url="@../Utils/icons/shuffle.png"/>
+                                                    <Image url="@../Utils/icons/shuffe.png"/>
                                                 </image>
                                             </ImageView>
                                         </graphic>
