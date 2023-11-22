@@ -6,100 +6,130 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="530.0" prefWidth="831.0" styleClass="root" stylesheets="@../Utils/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DictionaryController">
+<AnchorPane prefHeight="530.0" prefWidth="831.0" styleClass="root" stylesheets="@../Utils/style.css"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controllers.DictionaryController">
     <children>
-          <Button fx:id="searchWordBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="212.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="     Search">
-              <font>
-                  <Font name="System Bold" size="12.0" />
-              </font>
-              <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../Utils/icons/ic_search.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <tooltip>
-                  <Tooltip fx:id="tooltip1" text="Tra từ điển" />
-              </tooltip>
-          </Button>
-          <Button fx:id="addWordBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="287.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="     Add">
-              <font>
-                  <Font name="System Bold" size="12.0" />
-              </font>
-              <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../Utils/icons/ic_add.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <tooltip>
-                  <Tooltip fx:id="tooltip2" text="Thêm từ vựng mới" />
-              </tooltip>
-          </Button>
-          <Button fx:id="translateBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="365.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="    Translate">
-              <font>
-                  <Font name="System Bold" size="12.0" />
-              </font>
-              <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                      <image>
-                          <Image url="@../Utils/icons/ic_translate.png" />
-                      </image>
-                  </ImageView>
-              </graphic>
-              <cursor>
-                  <Cursor fx:constant="HAND" />
-              </cursor>
-              <tooltip>
-                  <Tooltip fx:id="tooltip3" text="Phiên dịch" />
-              </tooltip>
-          </Button>
-        <Button fx:id="userProfileBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="469.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="    Profile">
-            <font>
-                <Font name="System Bold" size="12.0" />
-            </font>
-            <graphic>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../Utils/icons/ic_profile.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-            <cursor>
-                <Cursor fx:constant="HAND" />
-            </cursor>
-            <tooltip>
-                <Tooltip fx:id="tooltip4" text="Hồ sơ" />
-            </tooltip>
-        </Button>
-      <AnchorPane fx:id="container" layoutX="52.0" layoutY="9.0" prefHeight="510.0" prefWidth="769.0" styleClass="container" />
-      <Button fx:id="learningEngBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY" layoutX="4.0" layoutY="137.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item" stylesheets="@../Utils/style.css" text="Learning">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Utils/icons/ic_readbook.png" />
-               </image>
-            </ImageView>
-         </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <tooltip>
-            <Tooltip fx:id="tooltip11" text="Học tiếng Anh" />
-         </tooltip>
-      </Button>
+        <GridPane layoutX="3.2" layoutY="117.0" prefHeight="399.0" prefWidth="46.0" AnchorPane.leftAnchor="3.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" valignment="BOTTOM" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <Button fx:id="searchWordBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY"
+                        mnemonicParsing="false" prefHeight="45.0" prefWidth="46.0" styleClass="menu-item"
+                        stylesheets="@../Utils/style.css" text="     Search">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/search_white.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <tooltip>
+                        <Tooltip fx:id="tooltip1" text="Tra từ điển"/>
+                    </tooltip>
+                </Button>
+                <Button fx:id="addWordBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY"
+                        mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item"
+                        stylesheets="@../Utils/style.css" text="     Add" GridPane.rowIndex="1">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/addition.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <tooltip>
+                        <Tooltip fx:id="tooltip2" text="Thêm từ vựng mới"/>
+                    </tooltip>
+                </Button>
+                <Button fx:id="translateBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY"
+                        mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item"
+                        stylesheets="@../Utils/style.css" text="    Translate" GridPane.rowIndex="2">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/google-translate.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <tooltip>
+                        <Tooltip fx:id="tooltip3" text="Phiên dịch"/>
+                    </tooltip>
+                </Button>
+                <Button fx:id="learningEngBtn" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY"
+                        mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item"
+                        stylesheets="@../Utils/style.css" text="Learning" GridPane.rowIndex="3">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/reading.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <tooltip>
+                        <Tooltip fx:id="tooltip11" text="Học tiếng Anh"/>
+                    </tooltip>
+                </Button>
+                <Button fx:id="btnLogout" alignment="BASELINE_LEFT" contentDisplay="GRAPHIC_ONLY"
+                        mnemonicParsing="false" prefHeight="45.0" prefWidth="45.0" styleClass="menu-item"
+                        stylesheets="@../Utils/style.css" text="    Logout" GridPane.rowIndex="4">
+                    <font>
+                        <Font name="System Bold" size="12.0"/>
+                    </font>
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../Utils/icons/power.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                    <tooltip>
+                        <Tooltip fx:id="tooltip4" text="Thoát"/>
+                    </tooltip>
+                </Button>
+            </children>
+        </GridPane>
+        <AnchorPane fx:id="container" layoutX="52.0" layoutY="9.0" prefHeight="510.0" prefWidth="769.0"
+                    styleClass="container"/>
     </children>
 </AnchorPane>

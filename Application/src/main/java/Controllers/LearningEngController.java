@@ -24,10 +24,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.InputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
-import java.sql.Time;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -183,7 +181,7 @@ public class LearningEngController extends BaseController implements Initializab
         }
 
         listQuestion.set(currentQuestionIndex, currentQuestion);
-        super.countdownTimer.stop();
+        countdownTimer.stop();
         showQuestion(currentQuestion);
     }
 
@@ -442,10 +440,15 @@ public class LearningEngController extends BaseController implements Initializab
 
     private void updateTestRecord(int score, int numberOfCorrectAns, Duration duration) {
         StudyRecord studyRecord = StudyRecord.readRecordFile();
+        if (user != null) {
+            if (user.getStudyRecord() != null) {
+                studyRecord = user.getStudyRecord();
+            }
+        }
         // Lấy ngày hôm nay
         Date currentDate = new Date();
         // Định dạng ngày thành chuỗi
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedDate = dateFormat.format(currentDate);
 
         if (studyRecord == null) {
@@ -470,7 +473,6 @@ public class LearningEngController extends BaseController implements Initializab
                     + listQuestion.size() - numberOfCorrectAns;
 
             Duration newDayStudyTime = studyRecord.getMapStudyTime().get(formattedDate);
-
             if (newDayStudyTime == null) {
                 studyRecord.getMapStudyTime().put(formattedDate, duration);
             } else {
@@ -487,6 +489,9 @@ public class LearningEngController extends BaseController implements Initializab
         }
 
         studyRecord.writeStudyRecord();
+        LearningOverviewController.studyRecord = studyRecord;
+        user.setStudyRecord(studyRecord);
+        LoginController.saveUserToFirebase(user);
     }
 
     private void showScoreSummaryDialog() {

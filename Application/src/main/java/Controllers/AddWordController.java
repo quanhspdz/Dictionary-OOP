@@ -1,6 +1,5 @@
 package Controllers;
 
-import App.DictionaryApp;
 import DialogAlert.AlertDialog;
 import Models.Word;
 import javafx.event.ActionEvent;
@@ -18,20 +17,23 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
-import static App.DictionaryApp.data;
-import static Constant.Constant.EDITED_WORD_FILE;
-import static Constant.Constant.SPLITTING_CHARACTERS;
+import static App.DictionaryApp.*;
+import static Constant.Constant.*;
+import static Controllers.SearchWordController.isEngVie;
 
-public class AddWordController implements Initializable {
+public class AddWordController extends BaseController implements Initializable {
 
     @FXML
-    private Button addBtn, deleteDefinitionInput, deleteWordInputBtn;
+    private Button addBtn, deleteDefinitionInput, deleteWordInputBtn, btnSwitchLang;
     @FXML
     private TextField newWordInput;
     @FXML
     private TextArea wordDefinitionInput;
     @FXML
-    private Label successAlert;
+    private Label successAlert, labelSourceWord;
+
+    private String currentEditFile = EDITED_WORD_EV_FILE;
+    private boolean isEngVie = true;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,6 +93,26 @@ public class AddWordController implements Initializable {
                 successAlert.setVisible(false);
             }
         });
+
+        btnSwitchLang.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleSwitchLang();
+            }
+        });
+    }
+
+    private void handleSwitchLang() {
+        if (isEngVie) {
+            currentEditFile = EDITED_WORD_VE_FILE;
+            btnSwitchLang.setText("Việt - Anh");
+            labelSourceWord.setText("Từ Tiếng Việt");
+        } else {
+            currentEditFile = EDITED_WORD_EV_FILE;
+            btnSwitchLang.setText("Anh - Việt");
+            labelSourceWord.setText("Từ Tiếng Anh");
+        }
+        isEngVie = !isEngVie;
     }
 
     private void handleAddNewWord() throws IOException {
@@ -117,10 +139,14 @@ public class AddWordController implements Initializable {
 
     private void addNewWord(Word word) throws IOException {
         //Thêm từ mới vào trong hashmap data
-        data.put(word.getWord(), word);
+        if (isEngVie) {
+            dataEngVie.put(word.getWord(), word);
+        } else {
+            dataVieEng.put(word.getWord(), word);
+        }
 
         // Tạo một đối tượng File cho tệp dữ liệu
-        File file = new File(EDITED_WORD_FILE);
+        File file = new File(currentEditFile);
         try (FileOutputStream fileOutputStream = new FileOutputStream(file, true);
              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, StandardCharsets.UTF_8);
              BufferedWriter writer = new BufferedWriter(outputStreamWriter)) {

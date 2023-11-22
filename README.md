@@ -28,7 +28,7 @@ The application is designed to support learning English. The application is writ
         + Name: DictionaryApp
         + MainClass: App.DictionaryApp
 - Modify options --> Add VM options
-- VM options: --module-path "\path\to\openjfx-21.0.1_windows-x64_bin-sdk\javafx-sdk-21.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.web
+- VM options: --module-path "\path\to\openjfx-21.0.1_windows-x64_bin-sdk\javafx-sdk-21.0.1\lib" --add-modules javafx.controls,javafx.fxml,javafx.web --add-opens java.base/java.time=ALL-UNNAMED
   4. If you want to change the data, you can change the E_V.txt and V_E.txt files.
 ## Usage
   1. Select mode: English-Vietnamese or Vietnamese-English to choose the dictionary.

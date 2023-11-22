@@ -16,8 +16,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static Constant.Key.apiKey;
+import static Controllers.SearchWordController.*;
 
-public class TranslationController implements Initializable {
+public class TranslationController extends BaseController implements Initializable {
     private String sourceLanguage = "en";
     private String targetLanguage = "vi";
     private boolean isToVietnameseLang = true;
@@ -28,15 +29,17 @@ public class TranslationController implements Initializable {
     private TextArea translationTextField, sourceTextField;
 
     @FXML
-    private Button translateBtn, clearBtn;
+    private Button translateBtn, clearBtn, btnListenSource, btnListenTarget;
 
     @FXML
-    private Label englishLabel , vietnameseLabel;
+    private Label sourceLangLabel , targetLangLabel;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         translate =  TranslateOptions.newBuilder().setApiKey(apiKey).build().getService();
         clearBtn.setVisible(false);
+        btnListenSource.setDisable(true);
+        btnListenTarget.setDisable(true);
 
         translateBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -49,6 +52,7 @@ public class TranslationController implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 translateBtn.setDisable(sourceTextField.getText().trim().isEmpty());
+                btnListenSource.setDisable(sourceTextField.getText().trim().isEmpty());
                 clearBtn.setVisible(!sourceTextField.getText().trim().isEmpty());
             }
         });
@@ -61,8 +65,34 @@ public class TranslationController implements Initializable {
             }
         });
 
+        btnListenSource.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleTextToSpeech(
+                        sourceTextField.getText(),
+                        sourceLanguage);
+            }
+        });
+
+        btnListenTarget.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                handleTextToSpeech(
+                        translationTextField.getText(),
+                        targetLanguage);
+            }
+        });
+
         translateBtn.setDisable(true);
         translationTextField.setEditable(false);
+    }
+
+    private void handleTextToSpeech(String text, String language) {
+        if (language.equals("en")) {
+            textToSpeechGoogle(text, engLangCode, voiceEng);
+        } else {
+            textToSpeechGoogle(text, vieLangCode, voiceVie);
+        }
     }
 
     private void handleTranslation() {
@@ -76,6 +106,7 @@ public class TranslationController implements Initializable {
                         Translate.TranslateOption.model("nmt"));
 
         translationTextField.setText(translation.getTranslatedText());
+        btnListenTarget.setDisable(translationTextField.getText().trim().isEmpty());
     }
 
     @FXML
@@ -83,13 +114,13 @@ public class TranslationController implements Initializable {
         sourceTextField.clear();
         translationTextField.clear();
         if (isToVietnameseLang) {
-            englishLabel.setLayoutX(426);
-            vietnameseLabel.setLayoutX(104);
+            sourceLangLabel.setText("Tiếng Việt");
+            targetLangLabel.setText("Tiếng Anh");
             sourceLanguage = "vi";
             targetLanguage = "en";
         } else {
-            englishLabel.setLayoutX(100);
-            vietnameseLabel.setLayoutX(426);
+            targetLangLabel.setText("Tiếng Việt");
+            sourceLangLabel.setText("Tiếng Anh");
             sourceLanguage = "en";
             targetLanguage = "vi";
         }

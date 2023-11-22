@@ -72,15 +72,7 @@
                                         <VBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                                             <children>
                                                 <Label fx:id="labelTotalAttempt" alignment="TOP_RIGHT"
-                                                       contentDisplay="TOP" text="Tổng số lần học: " textFill="#636b66">
-                                                    <font>
-                                                        <Font name="System Bold" size="13.0"/>
-                                                    </font>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0"/>
-                                                    </VBox.margin>
-                                                </Label>
-                                                <Label fx:id="labelTimeSpend" text="Tổng thời gian học:"
+                                                       contentDisplay="TOP" text="Tổng số lần học: NA"
                                                        textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
@@ -89,7 +81,7 @@
                                                         <Insets bottom="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="labelCorrectRatio" text="Tỉ lệ trả lời đúng:"
+                                                <Label fx:id="labelTimeSpend" text="Tổng thời gian học: NA"
                                                        textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
@@ -98,7 +90,17 @@
                                                         <Insets bottom="10.0"/>
                                                     </VBox.margin>
                                                 </Label>
-                                                <Label fx:id="labelTimeAverage" text="Trung bình: " textFill="#636b66">
+                                                <Label fx:id="labelCorrectRatio" text="Tỉ lệ trả lời đúng: NA"
+                                                       textFill="#636b66">
+                                                    <font>
+                                                        <Font name="System Bold" size="13.0"/>
+                                                    </font>
+                                                    <VBox.margin>
+                                                        <Insets bottom="10.0"/>
+                                                    </VBox.margin>
+                                                </Label>
+                                                <Label fx:id="labelTimeAverage" text="Trung bình: NA"
+                                                       textFill="#636b66">
                                                     <font>
                                                         <Font name="System Bold" size="13.0"/>
                                                     </font>
@@ -113,10 +115,10 @@
                                         </VBox>
                                     </children>
                                 </GridPane>
-                                <LineChart fx:id="lineChartTime" prefHeight="185.0" prefWidth="287.0" titleSide="BOTTOM"
-                                           GridPane.rowIndex="1">
+                                <LineChart fx:id="lineChartTime" axisSortingPolicy="NONE" prefHeight="185.0"
+                                           prefWidth="287.0" titleSide="BOTTOM" GridPane.rowIndex="1">
                                     <xAxis>
-                                        <CategoryAxis side="BOTTOM"/>
+                                        <CategoryAxis/>
                                     </xAxis>
                                     <yAxis>
                                         <NumberAxis label="Thời gian (phút)" side="LEFT"/>
@@ -176,10 +178,10 @@
                                         <ImageView fx:id="imageRanking" fitHeight="150.0" fitWidth="200.0"
                                                    pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../Utils/images/challeger_medal.png"/>
+                                                <Image url="@../Utils/images/bronze_medal.png"/>
                                             </image>
                                         </ImageView>
-                                        <Label fx:id="labelRanking" text="Thách đấu 1000 điểm" textFill="#007acc">
+                                        <Label fx:id="labelRanking" text="NA" textFill="#007acc">
                                             <font>
                                                 <Font name="System Bold" size="14.0"/>
                                             </font>
@@ -197,7 +199,7 @@
                     <children>
                         <Label fx:id="progressTitle" alignment="TOP_LEFT" layoutX="20.0" layoutY="-1.0"
                                prefHeight="30.0" styleClass="question-title" stylesheets="@../Utils/style.css"
-                               text="Thông số" textFill="#FFF" wrapText="true">
+                               text="Thông số - NA" textFill="#FFF" wrapText="true">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -209,15 +211,15 @@
                                 <Insets top="5.0"/>
                             </padding>
                         </Label>
-                        <HBox layoutX="299.0" spacing="10.0">
+                        <HBox layoutX="410.0" layoutY="-1.0" spacing="10.0">
                             <children>
                                 <Button fx:id="btnOffline" mnemonicParsing="false" styleClass="title-button"
-                                        stylesheets="@../Utils/style.css" text="Học offline"/>
-                                <Button fx:id="btnPK" mnemonicParsing="false" styleClass="title-button" text="PK"/>
+                                        stylesheets="@../Utils/style.css" text="Vào học">
+                                    <HBox.margin>
+                                        <Insets left="5.0" top="5.0"/>
+                                    </HBox.margin>
+                                </Button>
                             </children>
-                            <padding>
-                                <Insets top="3.0"/>
-                            </padding>
                         </HBox>
                     </children>
                 </Pane>

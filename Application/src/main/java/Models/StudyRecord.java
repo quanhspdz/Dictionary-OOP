@@ -3,20 +3,13 @@ package Models;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.stream.JsonReader;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.sql.Time;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
-import static Constant.Constant.*;
+import static Constant.Constant.STUDY_RECORD_FILE;
 
 public class StudyRecord {
     private int totalScore;
@@ -30,9 +23,8 @@ public class StudyRecord {
     //Hasmap lưu lại giời gian học bài mỗi ngày
     private HashMap<String, Duration> mapStudyTime = new HashMap<>();
 
-    public StudyRecord(int totalScore, int timesAttempt, int totalQuestion
-            , int correctQuestions, int incorrectQuestions, Duration totalTimeSpend,
-                       HashMap<String, Duration> mapStudyTime) {
+    public StudyRecord(int totalScore, int timesAttempt, int totalQuestion, int correctQuestions,
+                       int incorrectQuestions, Duration totalTimeSpend, HashMap<String, Duration> mapStudyTime) {
         this.totalScore = totalScore;
         this.timesAttempt = timesAttempt;
         this.totalQuestion = totalQuestion;
@@ -40,6 +32,16 @@ public class StudyRecord {
         this.incorrectQuestions = incorrectQuestions;
         this.totalTimeSpend = totalTimeSpend;
         this.mapStudyTime = mapStudyTime;
+    }
+
+    public StudyRecord() {
+        this.totalScore = 0;
+        this.timesAttempt = 0;
+        this.totalQuestion = 0;
+        this.correctQuestions = 0;
+        this.incorrectQuestions = 0;
+        this.totalTimeSpend = Duration.ofSeconds(0);
+        this.mapStudyTime = new HashMap<>();
     }
 
     public int getTotalScore() {
