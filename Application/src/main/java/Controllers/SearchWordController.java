@@ -21,10 +21,15 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.util.Duration;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.advanced.AdvancedPlayer;
+import javazoom.jl.player.advanced.PlaybackEvent;
+import javazoom.jl.player.advanced.PlaybackListener;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.sound.sampled.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -406,26 +411,36 @@ public class SearchWordController extends BaseController implements Initializabl
                 fos.write(decodedBytes);
             }
 
-            // Tạo Media từ đường dẫn tạm thời
-            Media media = new Media(audioTempFile.toURI().toString());
-
-            // Tạo MediaPlayer từ Media
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-            // Phát âm thanh
-            mediaPlayer.play();
-
-            // Đợi cho đến khi âm thanh phát xong và sau đó giải phóng tài nguyên
-//            mediaPlayer.setOnEndOfMedia(() -> {
-//                mediaPlayer.stop();
-//                mediaPlayer.dispose();
-//                audioTempFile.delete();
-//            });
+            playMP3(audioTempFile.getPath());
 
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException ex) {
             throw new RuntimeException(ex);
+        }
+    }
+
+    public static void playMP3(String filePath) {
+        try {
+            // Tạo một luồng đọc từ tệp MP3
+            InputStream inputStream = new FileInputStream(filePath);
+
+            // Tạo một đối tượng AdvancedPlayer từ InputStream
+            AdvancedPlayer player = new AdvancedPlayer(inputStream);
+
+            // Thêm lắng nghe để xử lý sự kiện kết thúc
+            player.setPlayBackListener(new PlaybackListener() {
+                @Override
+                public void playbackFinished(PlaybackEvent evt) {
+                    // Xử lý sự kiện khi phát xong, nếu cần
+                }
+            });
+
+            // Bắt đầu phát âm thanh
+            player.play();
+
+        } catch (JavaLayerException | IOException e) {
+            e.printStackTrace();
         }
     }
 
