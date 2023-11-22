@@ -25,10 +25,9 @@ The application is designed to support learning English. The application is writ
   4. To delete a word, click the Delete button (Minus icon).
   5. To edit a word, click the Edit button (Pencil icon).
   6. To save the changes, click the Save button (Disk icon).
-  7. To pronounce t
-  8. he word, click the Pronounce button (Speaker icon).
-  9. To practice, click the Practice button (Play icon), then the application will display a Game window
-  10. To exit the application, click the Exit button (Cross icon).
+  7. To pronounce the word, click the Pronounce button (Speaker icon).
+  8. To practice, click the Practice button (Play icon), then the application will display a Game window.
+  9. To exit the application, click the Exit button (Cross icon).
 ## Demo
 ![Demo](
 ## Future improvements
